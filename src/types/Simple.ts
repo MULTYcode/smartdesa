@@ -1,0 +1,108 @@
+// Site Information Types
+export interface SiteInfo {
+    name: string
+    tagline: string
+    phone: string
+    email: string
+    address: string
+    logo: string
+  }
+  
+  // Navigation Types
+  export interface NavItem {
+    label: string
+    href: string
+    icon?: string
+    isActive?: boolean
+  }
+  
+  // Social Media Types
+  export interface SocialLink {
+    platform: "facebook" | "twitter" | "instagram" | "youtube" | "linkedin"
+    url: string
+  }
+  
+  // Info Card Types
+  export interface InfoCard {
+    id: string
+    title: string
+    description: string
+    icon: string
+    link: {
+      text: string
+      url: string
+    }
+  }
+  
+  // News Item Types
+  export interface NewsItem {
+    id: string
+    title: string
+    excerpt: string
+    date: string
+    readTime: string
+    image: string
+    slug: string
+  }
+  
+  // Gallery Item Types
+  export interface GalleryItem {
+    id: string
+    image: string
+    title: string
+  }
+  
+  // Service Types
+  export interface Service {
+    id: string
+    title: string
+    url: string
+  }
+  
+  // Hero Section Types
+  export interface HeroSection {
+    title: string
+    description: string
+    image: string
+    buttons: {
+      primary: {
+        text: string
+        url: string
+      }
+      secondary: {
+        text: string
+        url: string
+      }
+    }
+  }
+  
+  // About Section Types
+  export interface AboutSection {
+    badge: string
+    title: string
+    description: string[]
+    image: string
+    button: {
+      text: string
+      url: string
+    }
+  }
+  
+  // CTA Section Types
+  export interface CTASection {
+    title: string
+    description: string
+    buttons: {
+      primary: {
+        text: string
+        url: string
+        icon: string
+      }
+      secondary: {
+        text: string
+        url: string
+        icon: string
+      }
+    }
+  }
+  
