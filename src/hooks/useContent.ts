@@ -1,4 +1,4 @@
-import type { InfoCard, HeroSection, AboutSection, CTASection, NewsItem, GalleryItem } from "@/types/Simple"
+import type { InfoCard, HeroSection, AboutSection, CTASection, NewsItem, GalleryItem, ProfilInterface, PemerintahInterface, BudgetInterface } from "@/types/Simple"
 
 export function useContent() {
   const hero: HeroSection = {
@@ -121,6 +121,161 @@ export function useContent() {
     },
   }
 
+  const budgetPembelanjaan: BudgetInterface[] = [
+    {
+      title: "Bidang Penyelenggarakan Pemerintahan Desa",
+      current: "Rp 2.026.530.313,00",
+      target: "Rp 2.476.461.419,00",
+      percentage: 81.83,
+    },
+    {
+      title: "Bidang Pelaksanaan Pembangunan Desa",
+      current: "Rp 646.928.920,00",
+      target: "Rp 862.834.121,00",
+      percentage: 74.18,
+    },
+    {
+      title: "Bidang Pembinaan Kemasyarakatan",
+      current: "Rp 599.126.500,00",
+      target: "Rp 1.027.473.920,00",
+      percentage: 48.3,
+    },    
+    {
+      title: "Bidang Pemberdayaan Kemasyarakatan",
+      current: "Rp 599.126.500,00",
+      target: "Rp 1.027.473.920,00",
+      percentage: 68.8,
+    },    
+    {
+      title: "Bidang Penanggulangan Bencana, Darurat Dan Mendesak Desa",
+      current: "Rp 178.614.960,00",
+      target: "Rp 178.614.960,00",
+      percentage: 100,
+    },    
+  ]
+
+  const budgetPelaksanaan: BudgetInterface[] = [
+    {
+      title: "Pendapatan",
+      current: "Rp 4.135.209.356,00",
+      target: "Rp 4.817.650.000,00",
+      percentage: 85.83,
+    },
+    {
+      title: "Belanja",
+      current: "Rp 3.605.287.733,00",
+      target: "Rp 4.996.264.960,00",
+      percentage: 72.18,
+    },
+    {
+      title: "Pembiayaan",
+      current: "Rp 178.614.960,00",
+      target: "Rp 178.614.960,00",
+      percentage: 100,
+    },    
+  ]
+
+  const budgetPendapatan: BudgetInterface[] = [
+    {
+      title: "Hasil Usaha Desa",
+      current: "Rp 18.500.000,00",
+      target: "Rp 26.200.000,00",
+      percentage: 70.61,
+    },
+    {
+      title: "Dana Desa",
+      current: "Rp 1.204.504.000,00",
+      target: "Rp 1.204.504.000,00",
+      percentage: 100,
+    },
+    {
+      title: "Bagi Hasil Pajak Dan Retribusi",
+      current: "Rp 150.217.500,00",
+      target: "Rp 252.841.000,00",
+      percentage: 59.41,
+    },
+    {
+      title: "Alokasi Dana Desa",
+      current: "Rp 2.484.462.325,00",
+      target: "Rp 2.552.280.000,00",
+      percentage: 97.34,
+    },
+    {
+      title: "Bantuan Keuangan Provinsi",
+      current: "Rp 209.300.000,00",
+      target: "Rp 255.500.000,00",
+      percentage: 81.92,
+    },
+    {
+      title: "Bantuan Keuangan Kabupaten/Kota",
+      current: "Rp 61.000.000,00",
+      target: "Rp 517.000.000,00",
+      percentage: 11.8,
+    },
+    {
+      title: "Lain-Lain Pendapatan Desa Yang Sah",
+      current: "Rp 7.225.531,00",
+      target: "Rp 9.325.000,00",
+      percentage: 77.49,
+    },
+  ]
+
+  const profil: ProfilInterface = {
+    title: "Profil Desa",
+    date: "29 Juli 2013",
+    author: "Administrator",
+    readTime: "Dibaca 78.187 Kali",
+    content: `
+            <h2>Profil Desa Susut</h2>
+            <p>Desa Susut merupakan daerah dataran tinggi, terletak 4 km arah Selatan dari kota kecamatan Susut dan 10 km arah Barat kota Kabupaten Bangli, dengan luas wilayah 4,83 km², dengan sebagian besar lahan digunakan untuk kegiatan pertanian, yakni seluas 216,00 Ha (0,45%).</p>
+
+            <p>Desa Susut Bangli meliputi 9 Banjar/Pekraman, yaitu: Banjar Pukuh, Banjar Penatahan, Banjar Penglumbaran, Banjar Lebah, Banjar Juwuk Bali, Banjar Manuk, Banjar Tangkas, Banjar Susut Kaja, dan Banjar Susut Kelod.</p>
+
+            <h3>Keadaan Umum Desa</h3>
+
+            <h4>Ekonomi</h4>
+            <p>Struktur perekonomian Desa Susut didominasi oleh sektor pertanian. Hal ini terlihat dari persentase penggunaan lahan untuk usaha pertanian sebesar 50%, dengan sebagian besar penduduk menggantungkan hidup dari sektor ini. Sekitar 1.030 jiwa atau 0,17% penduduk bergantung pada sektor pertanian, khususnya pertanian sawah dengan produk unggulan berupa padi dan palawija.</p>
+
+            <p>Masyarakat juga mengandalkan sektor peternakan, dengan jenis ternak peliharaan seperti sapi, babi, unggas, dan lainnya. Sistem beternak masih bersifat tradisional, karena diposisikan sebagai usaha sampingan untuk memenuhi kebutuhan konsumsi keluarga. Selain itu, perekonomian desa juga digerakkan oleh sektor perdagangan dan industri kecil/rumah tangga.</p>
+
+            <h4>Sosial dan Budaya</h4>
+            <p>Kondisi sosial budaya masyarakat desa ditentukan oleh empat pilar utama: penduduk, tingkat pendidikan, derajat kesehatan, dan tradisi/budaya masyarakat desa.</p>
+
+            <p>Penduduk merupakan modal dasar pembangunan karena menjadi pelaku dan pemanfaat hasil pembangunan. Di sektor pendidikan, pemerintah telah menyediakan berbagai fasilitas mulai dari gedung, tenaga pendidik, hingga pembiayaan melalui program BOS. Hal ini bertujuan untuk pemerataan pendidikan, peningkatan kualitas, serta kapasitas masyarakat.</p>
+
+            <p>Sebagian besar penduduk berpendidikan tamat SD, disusul oleh lulusan SMP, SLTA, D1, dan S1.</p>
+
+            <p>Dalam bidang kebudayaan, masyarakat Desa Susut memiliki budaya Bali yang kental, dengan nilai-nilai agama Hindu. Filosofi <strong>Tri Hita Karana</strong> menjadi tuntunan hidup dalam menjaga keseimbangan hubungan antara manusia dengan Tuhan, sesama manusia, dan lingkungan. Nilai-nilai <em>paras paros sarpa naya salunglung sabyantaka</em> (kerukunan, keselarasan, dan kepatutan) menjadi pedoman dalam menjaga ketertiban dan kedamaian sosial.</p>
+
+            <h4>Kesehatan dan Kesejahteraan Masyarakat</h4>
+            <p>Pemerintah telah menyediakan sarana dan prasarana kesehatan serta tenaga medis untuk memudahkan akses masyarakat terhadap layanan kesehatan. Di bidang kesejahteraan, berbagai program seperti raskin dan bedah rumah telah diluncurkan, namun masalah kemiskinan tetap menjadi tantangan utama. Jumlah penduduk miskin tercatat sebanyak 286 jiwa.</p>
+          `,
+  }
+
+  const pemerintah: PemerintahInterface = {
+    title: "Visi & Misi",
+    date: "29 Juli 2013",
+    author: "Administrator",
+    readTime: "Dibaca 78.187 Kali",
+    content: `
+                      <section>
+              <h2>Visi</h2>
+              <p>
+                “Terbangunnya tata kelola pemerintahan desa yang baik dan bersih guna mewujudkan kehidupan masyarakat Desa yang Adil, Makmur dan Sejahtera”
+              </p>
+
+              <h2>Misi</h2>
+              <ul>
+                <li>Melakukan reformasi sistem kinerja aparatur pemerintahan desa guna meningkatkan kualitas pelayanan kepada masyarakat.</li>
+                <li>Menyelenggarakan pemerintahan yang bersih, terbebas dari korupsi serta bentuk-bentuk penyelewengan lainnya.</li>
+                <li>Menyelenggarakan urusan pemerintahan desa secara terbuka dan bertanggung jawab sesuai dengan peraturan perundang-undangan.</li>
+                <li>Meningkatkan perekonomian masyarakat melalui pendampingan berupa penyuluhan khusus kepada UKM, wiraswasta, dan petani.</li>
+                <li>Meningkatkan mutu kesejahteraan masyarakat untuk mencapai taraf kehidupan yang lebih baik dan layak sehingga menjadi desa yang maju dan mandiri.</li>
+              </ul>
+            </section>
+          `,
+  }
+
   return {
     hero,
     infoCards,
@@ -128,5 +283,10 @@ export function useContent() {
     news,
     gallery,
     cta,
+    profil,
+    pemerintah,
+    budgetPendapatan,
+    budgetPelaksanaan,
+    budgetPembelanjaan,
   }
 }

@@ -106,3 +106,28 @@ export interface SiteInfo {
     }
   }
   
+  // Profil Section Types
+  export interface ProfilInterface {
+    title: string
+    date: string
+    author: string
+    readTime: string
+    content: string
+  }
+  
+  // Pemerintah Desa Section Types
+  export interface PemerintahInterface {
+    title: string
+    date: string
+    author: string
+    readTime: string
+    content: string
+  }
+
+  // Budget Section Types
+  export interface BudgetInterface {
+    title: string,
+    current: string,
+    target: string,
+    percentage: number,
+  }

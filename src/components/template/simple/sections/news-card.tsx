@@ -5,13 +5,13 @@ import { cn } from "@/lib/utils"
 import { CustomCard } from "@/components/ui/simple/CustomCard"
 
 export interface NewsCardProps {
-  id: string
+  id?: string
   title: string
-  excerpt: string
+  excerpt?: string
   date: string
   readTime: string
-  image: string
-  slug: string
+  image?: string
+  slug?: string
   className?: string
 }
 
