@@ -11,26 +11,58 @@ export function useNavigation() {
     {
       label: "Profil Desa",
       href: "/profil",
+      children: [
+        {
+          label: "Profil Wilayah",
+          href: "/profil",
+        },
+        {
+          label: "Sejarah",
+          href: "/profil/sejarah",
+        },
+      ],
     },
     {
       label: "Pemerintahan Desa",
       href: "/pemerintahan",
+      children: [
+        {
+          label: "Visi & Misi",
+          href: "/pemerintahan",
+        },
+        {
+          label: "Aparatur",
+          href: "/pemerintahan/aparatur",
+        },
+      ],
     },
     {
       label: "Data Desa",
-      href: "/data-desa",
+      href: "/data-penduduk",
+      children: [
+        {
+          label: "Statistic Penduduk",
+          href: "/data-penduduk",
+        },
+        {
+          label: "Statistic Keluarga",
+          href: "/data-keluarga",
+        },
+      ],
     },
     {
       label: "Regulasi",
       href: "/regulasi",
-    },
-    {
-      label: "Pembangunan",
-      href: "/pembangunan",
-    },
-    {
-      label: "Status Desa",
-      href: "/status-desa",
+      children: [
+        {
+          label: "Produk Hukum",
+          href: "/regulasi/hukum",
+        },
+        {
+          label: "Informasi Public",
+          href: "/regulasi/public",
+        },
+      ],
     },
     {
       label: "Galeri",

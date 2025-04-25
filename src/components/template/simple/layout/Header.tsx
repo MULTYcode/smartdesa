@@ -1,8 +1,11 @@
+"use client"
 import Image from "next/image"
 import { CustomButton } from "@/components/ui/simple/CustomButton"
 import { useSiteInfo } from "@/hooks/useSiteInfo"
 import { useNavigation } from "@/hooks/useNavigation"
-import { Facebook, Instagram, Mail, Menu, Phone, Search, Key, Twitter } from "lucide-react"
+import { Facebook, Instagram, Mail, Phone, Key, Twitter } from "lucide-react"
+import { MobileNav } from "../sections/mobilnav-section"
+import { MainNav } from "../sections/mainnav-section"
 
 export function Header() {
   const siteInfo = useSiteInfo()
@@ -64,45 +67,18 @@ export function Header() {
             </div>
           </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6">
-            {mainNav.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className={`font-medium flex items-center ${
-                  item.isActive ? "text-[#0d6b3f] hover:text-[#0a5733]" : "text-gray-700 hover:text-[#0d6b3f]"
-                }`}
-              >
-                {item.icon === "home" && (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="mr-1"
-                  >
-                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                    <polyline points="9 22 9 12 15 12 15 22" />
-                  </svg>
-                )}
-                <span>{item.label}</span>
-              </a>
-            ))}
+          <div className="flex items-center justify-between">
+            <MainNav items={mainNav} />
+            <MobileNav items={mainNav} />
             <CustomButton variant="outline" size="icon" className="border-gray-300">
               <Key className="h-4 w-4" />
             </CustomButton>
-          </nav>
+          </div>
 
           {/* Mobile Menu Button */}
-          <CustomButton variant="ghost" size="icon" className="md:hidden">
+          {/* <CustomButton variant="ghost" size="icon" className="md:hidden">
             <Menu className="h-6 w-6" />
-          </CustomButton>
+          </CustomButton> */}
         </div>
       </header>
     </>

@@ -1,3 +1,5 @@
+"use client"
+
 import { Header } from "@/components/template/simple/layout/Header"
 import { Footer } from "@/components/template/simple/layout/Footer"
 import { HeroSection } from "@/components/template/simple/sections/hero-section"
@@ -7,6 +9,7 @@ import { NewsSection } from "@/components/template/simple/sections/news-section"
 import { GallerySection } from "@/components/template/simple/sections/gallery-section"
 import { CTASection } from "@/components/template/simple/sections/cta-section"
 import { useContent } from "@/hooks/useContent"
+import Chatbot from "@/components/template/simple/sections/chat-bot"
 
 export default function Home() {
   const { hero, infoCards, about, news, gallery, cta } = useContent()
@@ -23,6 +26,8 @@ export default function Home() {
         <GallerySection items={gallery} />
         <CTASection data={cta} />
       </main>
+
+      <Chatbot/>
 
       <Footer />
     </div>

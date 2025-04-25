@@ -14,6 +14,14 @@ export interface SiteInfo {
     href: string
     icon?: string
     isActive?: boolean
+    children?: NavItem[]
+  }
+
+  //aparatur Types
+  export interface AparaturInterface {
+    nama: string
+    jabatan: string
+    foto?: string
   }
   
   // Social Media Types
@@ -130,4 +138,13 @@ export interface SiteInfo {
     current: string,
     target: string,
     percentage: number,
+  }
+
+  export interface DataPendudukInterface {
+    id: number,
+    wilayah: string,
+    kk: number,
+    lp: number,
+    l: number,
+    p: number
   }

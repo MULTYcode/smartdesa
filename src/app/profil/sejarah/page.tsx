@@ -8,13 +8,13 @@ import { useContent } from "@/hooks/useContent"
 
 export default function Page() {
 
-  const { profil } = useContent()
+  const { sejarah } = useContent()
 
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
       <PageContent>
-        <ProfilSection profil={profil} />
+        <ProfilSection profil={sejarah} />
         
         <div className="w-full lg:w-2/4 flex flex-col gap-4">
           <StatisticWidget />
