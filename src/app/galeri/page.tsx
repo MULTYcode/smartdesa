@@ -17,7 +17,7 @@ export default function Page() {
                 <section className="py-16">
                     <div className="container mx-auto px-4">
                         <div className="flex item-center text-center mb-3">
-                            <h2 className="text-3xl font-bold text-gray-800 mb-4">Galeri Desa</h2>                            
+                            <h2 className="text-3xl font-bold text-gray-800 mb-4">Galeri Desa</h2>
                         </div>
 
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -33,7 +33,7 @@ export default function Page() {
                             ))}
                         </div>
                     </div>
-                </section>
+                </section>               
 
             </PageContent>
 

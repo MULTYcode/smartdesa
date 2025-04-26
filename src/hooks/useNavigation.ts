@@ -64,9 +64,35 @@ export function useNavigation() {
         },
       ],
     },
+    // {
+    //   label: "Galeri",
+    //   href: "/galeri",
+    // },
     {
-      label: "Galeri",
-      href: "/galeri",
+      label: "Layanan",
+      href: "/layanan-desa",
+      children: [
+        {
+          label: "Pembuatan KTP",
+          href: "/layanan-ktp",
+        },
+        {
+          label: "Pembuatan KK",
+          href: "/layanan-kk",
+        },
+        {
+          label: "Pembuatan Akte",
+          href: "/layanan-akte",
+        },
+        {
+          label: "Surat Keterangan",
+          href: "/layanan-keterangan",
+        },
+        {
+          label: "Pengaduan",
+          href: "/layanan-pengaduan",
+        },
+      ],
     },
     {
       label: "Lapak Desa",
@@ -102,10 +128,10 @@ export function useNavigation() {
       label: "Pemerintahan",
       href: "/pemerintahan",
     },
-    {
-      label: "Layanan",
-      href: "/layanan",
-    },
+    // {
+    //   label: "Layanan",
+    //   href: "/layanan",
+    // },
     {
       label: "Berita",
       href: "/berita",
