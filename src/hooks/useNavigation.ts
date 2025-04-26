@@ -52,21 +52,21 @@ export function useNavigation() {
     },
     {
       label: "Regulasi",
-      href: "/regulasi",
+      href: "/produk-hukum",
       children: [
         {
           label: "Produk Hukum",
-          href: "/regulasi/hukum",
+          href: "/produk-hukum",
         },
         {
           label: "Informasi Public",
-          href: "/regulasi/public",
+          href: "/informasi-public",
         },
       ],
     },
     {
       label: "Galeri",
-      href: "/galeri-desa",
+      href: "/galeri",
     },
     {
       label: "Lapak Desa",

@@ -1,4 +1,4 @@
-import type { InfoCard, HeroSection, AboutSection, CTASection, NewsItem, GalleryItem, ProfilInterface, PemerintahInterface, BudgetInterface, AparaturInterface, DataPendudukInterface } from "@/types/Simple"
+import type { InfoCard, HeroSection, AboutSection, CTASection, NewsItem, GalleryItem, ProfilInterface, PemerintahInterface, BudgetInterface, AparaturInterface, DataPendudukInterface, KategoriKeluargaInterface, DataStatisticInterface, ProdukHukumInterface } from "@/types/Simple"
 
 export function useContent() {
   const hero: HeroSection = {
@@ -410,6 +410,107 @@ export function useContent() {
     }
   ]
 
+  const kategoriKeluarga: KategoriKeluargaInterface[] = [
+    {
+      id: 0,
+      kategori: "Keluarga Sangat Miskin (KSM)",
+      jumlah: 908
+    },
+    {
+      id: 1,
+      kategori: "Keluarga Miskin",
+      jumlah: 621
+    },
+    {
+      id: 2,
+      kategori: "Keluarga Pra-Sejahtera",
+      jumlah: 90
+    },
+    {
+      id: 3,
+      kategori: "Keluarga Sejahtera I (Menengah Bawah)",
+      jumlah: 120
+    },
+    {
+      id: 4,
+      kategori: "Keluarga Sejahtera II (Menengah)",
+      jumlah: 643
+    },
+    {
+      id: 5,
+      kategori: "Keluarga Sejahtera III (Menengah Atas)",
+      jumlah: 389
+    },
+    {
+      id: 6,
+      kategori: "Keluarga Mampu/Kaya",
+      jumlah: 124
+    },
+  ]
+
+  const statisticKeluarga: DataStatisticInterface[] = [
+    {
+      id: 0,
+      kategori: "Balita",
+      lp: 44,
+      l: 56,
+      p: 32,
+    },
+    {
+      id: 1,
+      kategori: "Batita",
+      lp: 99,
+      l: 57,
+      p: 25,
+    },
+    {
+      id: 2,
+      kategori: "Produktif",
+      lp: 34,
+      l: 65,
+      p: 78,
+    },
+    {
+      id: 3,
+      kategori: "30 > 40",
+      lp: 88,
+      l: 67,
+      p: 54,
+    },
+    {
+      id: 4,
+      kategori: "40 > 55",
+      lp: 37,
+      l: 56,
+      p: 71,
+    },
+    {
+      id: 5,
+      kategori: "Manula",
+      lp: 34,
+      l: 56,
+      p: 24,
+    },
+  ]
+
+  const produkHukum: ProdukHukumInterface[] = [
+    {
+      id: 0,
+      title: "Judul 1",
+      file: "/images/produk-hukum/file1.pdf"
+    },
+    {
+      id: 1,
+      title: "Judul 2",
+      file: "/images/produk-hukum/file2.pdf"
+    },
+    {
+      id: 2,
+      title: "Judul 3",
+      file: "/images/produk-hukum/file3.pdf"
+    }
+  ]
+
   return {
     hero,
     infoCards,
@@ -425,5 +526,8 @@ export function useContent() {
     sejarah,
     aparatur,
     dataPenduduk,
+    kategoriKeluarga,
+    statisticKeluarga,
+    produkHukum,
   }
 }

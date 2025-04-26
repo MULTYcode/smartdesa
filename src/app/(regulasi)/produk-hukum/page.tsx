@@ -3,27 +3,24 @@ import { Header } from '@/components/template/simple/layout/Header'
 import APBDSection from '@/components/template/simple/sections/apbd-section'
 import PageContent from '@/components/template/simple/sections/page-content'
 import React from 'react'
-import DataTablePenduduk from './datatable-component'
 import { useContent } from '@/hooks/useContent'
+import CarouselPDFViewer from '@/components/template/simple/sections/carousel-pdf-view'
 
 export default function Page() {
-
-    const { dataPenduduk, kategoriKeluarga } = useContent()
+    const { produkHukum } = useContent()
 
     return (
         <div className="flex min-h-screen flex-col">
             <Header />
             <PageContent>
 
-                <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
-                    <div className="max-w-full overflow-x-auto">
-                        <div className="min-w-[1102px]">
-                            <DataTablePenduduk 
-                            data={dataPenduduk} 
-                            kategoriKeluarga={kategoriKeluarga} 
-                            />
-                        </div>
-                    </div>
+                <div className="min-w-[1102px]">
+                    <CarouselPDFViewer
+                        fileItems={produkHukum.map((item) => ({
+                            title: item.title,
+                            file: item.file,
+                        }))}
+                    />
                 </div>
 
             </PageContent>
