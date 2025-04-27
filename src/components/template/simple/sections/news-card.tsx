@@ -15,7 +15,7 @@ export interface NewsCardProps {
   className?: string
 }
 
-export function NewsCard({ id, title, excerpt, date, readTime, image, slug, className }: NewsCardProps) {
+export function NewsCard({ title, excerpt, date, readTime, image, slug, className }: NewsCardProps) {
   return (
     <CustomCard className={cn("overflow-hidden", className)}>
       <div className="relative h-48">

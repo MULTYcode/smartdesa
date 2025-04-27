@@ -21,7 +21,7 @@ export function FeatureCard({
   title,
   description,
   icon: Icon,
-  iconColor = "#0d6b3f",
+  // iconColor = "#0d6b3f",
   accentColor = "#0d6b3f",
   link,
   className,
