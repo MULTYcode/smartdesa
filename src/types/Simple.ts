@@ -168,3 +168,11 @@ export interface ProdukHukumInterface {
   title: string,
   file: string
 }
+
+export interface ProductItem {
+  id: number;
+  name: string;
+  seller: string;
+  price: number;
+  image: string;
+}

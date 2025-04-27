@@ -1,4 +1,4 @@
-import type { InfoCard, HeroSection, AboutSection, CTASection, NewsItem, GalleryItem, ProfilInterface, PemerintahInterface, BudgetInterface, AparaturInterface, DataPendudukInterface, KategoriKeluargaInterface, DataStatisticInterface, ProdukHukumInterface } from "@/types/Simple"
+import type { InfoCard, HeroSection, AboutSection, CTASection, NewsItem, GalleryItem, ProfilInterface, PemerintahInterface, BudgetInterface, AparaturInterface, DataPendudukInterface, KategoriKeluargaInterface, DataStatisticInterface, ProdukHukumInterface, ProductItem } from "@/types/Simple"
 
 export function useContent() {
   const hero: HeroSection = {
@@ -511,6 +511,16 @@ export function useContent() {
     }
   ]
 
+  const productItems: ProductItem[] = [
+    { id: 1, name: "Gula Aren Premium", seller: "Toko Sukses", price: 75000, image: "/images/produk/produk1.jpeg" },
+    { id: 2, name: "Tapona Food ", seller: "Warung Maju", price: 32000, image: "/images/produk/produk2.jpeg" },
+    { id: 3, name: "Kue Wingko", seller: "Pasar Sejahtera", price: 14000, image: "/images/produk/produk3.jpeg" },
+    { id: 4, name: "Minuman Racikan", seller: "Toko Sukses", price: 75000, image: "/images/produk/produk4.jpeg" },
+    { id: 5, name: "Bawang Goreng", seller: "Warung Maju", price: 32000, image: "/images/produk/produk5.jpeg" },
+    { id: 6, name: "Mie Bola", seller: "Pasar Sejahtera", price: 14000, image: "/images/produk/produk6.jpeg" },
+    { id: 7, name: "Bawang Goreng", seller: "Toko Sukses", price: 75000, image: "/images/produk/produk7.jpeg" },
+  ];
+
   return {
     hero,
     infoCards,
@@ -529,5 +539,6 @@ export function useContent() {
     kategoriKeluarga,
     statisticKeluarga,
     produkHukum,
+    productItems,
   }
 }
