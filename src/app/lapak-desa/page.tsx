@@ -16,7 +16,7 @@ export default function Page() {
             <PageContent>
 
                 <main className="min-h-screen bg-gray-50">
-                    <h1 className="text-2xl font-bold text-center mt-8 mb-4">Lapak Desa</h1>
+                    <h1 className="text-2xl font-bold text-center mt-8 mb-4">Lapak Desa / Produk UMKM Desa</h1>
                     <ProductList products={productItems} />
                 </main>
 
