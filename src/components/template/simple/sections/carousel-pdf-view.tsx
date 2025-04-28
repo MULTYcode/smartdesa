@@ -118,19 +118,19 @@ export default function CarouselPDFViewer({ fileItems }: CarouselPDFViewerProps)
 
             {/* Zoom & Download */}
             <div className="flex justify-center gap-4 mt-2 mb-3">
-                {/* <button
-          onClick={() => setScale((prev) => Math.max(0.5, prev - 0.2))}
-          className="bg-gray-100 px-3 py-1 rounded hover:bg-gray-200 text-sm"
-        >
-          Zoom -
-        </button>
+                <button
+                    onClick={() => setScale((prev) => Math.max(0.5, prev - 0.2))}
+                    className="bg-gray-100 px-3 py-1 rounded hover:bg-gray-200 text-sm"
+                >
+                    Zoom -
+                </button>
 
-        <button
-          onClick={() => setScale((prev) => Math.min(3, prev + 0.2))}
-          className="bg-gray-100 px-3 py-1 rounded hover:bg-gray-200 text-sm"
-        >
-          Zoom +
-        </button> */}
+                <button
+                    onClick={() => setScale((prev) => Math.min(3, prev + 0.2))}
+                    className="bg-gray-100 px-3 py-1 rounded hover:bg-gray-200 text-sm"
+                >
+                    Zoom +
+                </button>
 
                 <a
                     href={fileItems[currentIndex].file}
