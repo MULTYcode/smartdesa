@@ -86,7 +86,7 @@ export function useNavigation() {
         },
         {
           label: "Surat Keterangan",
-          href: "/layanan-keterangan",
+          href: "/layanan-surat",
         },
         {
           label: "Pengaduan",
@@ -146,27 +146,27 @@ export function useNavigation() {
     {
       id: "ktp",
       title: "Pembuatan KTP",
-      url: "/layanan/ktp",
+      url: "/layanan-ktp",
     },
     {
       id: "kk",
       title: "Pembuatan KK",
-      url: "/layanan/kk",
+      url: "/layanan-kk",
     },
     {
       id: "akta",
-      title: "Pembuatan Akta",
-      url: "/layanan/akta",
+      title: "Pembuatan Akte",
+      url: "/layanan-akte",
     },
     {
       id: "surat",
       title: "Surat Keterangan",
-      url: "/layanan/surat",
+      url: "/layanan-surat",
     },
     {
       id: "pengaduan",
       title: "Pengaduan Masyarakat",
-      url: "/layanan/pengaduan",
+      url: "/layanan-pengaduan",
     },
   ]
 
