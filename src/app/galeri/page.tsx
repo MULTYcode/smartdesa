@@ -14,15 +14,15 @@ export default function Page() {
             <Header />
             <PageContent>
 
-                <section className="py-16">
+                <section className="py-5">
                     <div className="container mx-auto px-4">
                         <div className="flex item-center text-center mb-3">
                             <h2 className="text-3xl font-bold text-gray-800 mb-4">Galeri Desa</h2>
                         </div>
 
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div className="grid md:grid-cols-4 gap-4">
                             {gallery.map((item) => (
-                                <div key={item.id} className="relative md:w-64 h-48 md:h-64 rounded-lg overflow-hidden group">
+                                <div key={item.id} className="relative md:w-64 h-80 w-80 md:h-64 rounded-lg overflow-hidden group">
                                     <Image
                                         src={item.image || "/placeholder.svg"}
                                         alt={item.title}
