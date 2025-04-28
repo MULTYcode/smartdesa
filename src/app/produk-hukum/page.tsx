@@ -14,14 +14,14 @@ export default function Page() {
             <Header />
             <PageContent>
 
-                <div className="min-w-[1102px]">
+                {/* <div className="min-w-[1102px]"> */}
                     <CarouselPDFViewer
                         fileItems={produkHukum.map((item) => ({
                             title: item.title,
                             file: item.file,
                         }))}
                     />
-                </div>
+                {/* </div> */}
 
             </PageContent>
 
