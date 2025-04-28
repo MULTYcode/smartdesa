@@ -176,3 +176,24 @@ export interface ProductItem {
   price: number;
   image: string;
 }
+
+export interface MetaDataPDF {
+  type: string;
+  title: string;
+  TEU: string;
+  number: string;
+  form: string;
+  shortForm: string;
+  year: number;
+  location: string;
+  approvalDate: string;
+  enactmentDate: string;
+  effectiveDate: string;
+  source: string;
+  subject: string;
+  status: string;
+  language: string;
+  region: string;
+  field: string;
+  translation: string;
+}

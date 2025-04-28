@@ -1,4 +1,4 @@
-import type { InfoCard, HeroSection, AboutSection, CTASection, NewsItem, GalleryItem, ProfilInterface, PemerintahInterface, BudgetInterface, AparaturInterface, DataPendudukInterface, KategoriKeluargaInterface, DataStatisticInterface, ProdukHukumInterface, ProductItem } from "@/types/Simple"
+import type { InfoCard, HeroSection, AboutSection, CTASection, NewsItem, GalleryItem, ProfilInterface, PemerintahInterface, BudgetInterface, AparaturInterface, DataPendudukInterface, KategoriKeluargaInterface, DataStatisticInterface, ProdukHukumInterface, ProductItem, MetaDataPDF } from "@/types/Simple"
 
 export function useContent() {
   const hero: HeroSection = {
@@ -521,6 +521,27 @@ export function useContent() {
     { id: 7, name: "Bawang Goreng", seller: "Toko Sukses", price: 75000, image: "/images/produk/produk7.jpeg" },
   ];
 
+  const metaDataPDF: MetaDataPDF = {    
+      type: "Peraturan Perundang-undangan",
+      title: "Peraturan Bupati Muara Enim Nomor 45 Tahun 2024 PENJABARAN ANGGARAN PENDAPATAN DAN BELANJA DAERAH TAHUN ANGGARAN 2025",
+      TEU: "Indonesia. Badan Pemeriksa Keuangan",
+      number: "45",
+      form: "Peraturan Bupati Muara Enim",
+      shortForm: "Perbup Muara Enim",
+      year: 2024,
+      location: "Muara Enim",
+      approvalDate: "30 Desember 2024",
+      enactmentDate: "30 Desember 2024",
+      effectiveDate: "30 Desember 2024",
+      source: "LN 2025 (3/BPK) : 16 hlm.",
+      subject: "PENJABARAN ANGGARAN - Kabupaten Muara Enim",
+      status: "Berlaku",
+      language: "Bahasa Indonesia",
+      region: "Kabupaten Muara Enim",
+      field: "BAGIAN HUKUM ADMINISTRASI SEKRETARIAT KABUPATEN MUARA ENIM",
+      translation: "Tidak Ada",    
+  }
+
   return {
     hero,
     infoCards,
@@ -540,5 +561,6 @@ export function useContent() {
     statisticKeluarga,
     produkHukum,
     productItems,
+    metaDataPDF,
   }
 }
