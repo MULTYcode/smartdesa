@@ -1,5 +1,42 @@
 import type { InfoCard, HeroSection, AboutSection, CTASection, NewsItem, GalleryItem, ProfilInterface, PemerintahInterface, BudgetInterface, AparaturInterface, DataPendudukInterface, KategoriKeluargaInterface, DataStatisticInterface, ProdukHukumInterface, ProductItem, MetaDataPDF } from "@/types/Simple"
 
+// ini data dummy server-side
+
+export async function getContent() {
+  return [
+    {
+      id: "1",
+      title: "Kegiatan Gotong Royong Pembangunan Balai Banjar",
+      excerpt:
+        "Masyarakat Desa Lubuk Raman melaksanakan kegiatan gotong royong dalam rangka pembangunan balai banjar yang akan digunakan sebagai pusat kegiatan masyarakat...",
+      date: "12 April 2023",
+      readTime: "5 menit membaca",
+      image: "/images/news/berita-1.jpeg?height=200&width=400&text=Berita+1",
+      slug: "1",
+    },
+    {
+      id: "2",
+      title: "Pelatihan Kerajinan Tangan untuk Ibu-Ibu PKK",
+      excerpt:
+        "Desa Lubuk Raman mengadakan pelatihan kerajinan tangan untuk meningkatkan keterampilan dan ekonomi kreatif bagi ibu-ibu PKK di balai desa...",
+      date: "5 April 2023",
+      readTime: "4 menit membaca",
+      image: "/images/news/berita-2.jpeg?height=200&width=400&text=Berita+2",
+      slug: "2",
+    },
+    {
+      id: "3",
+      title: "Penyuluhan Kesehatan dan Vaksinasi Gratis",
+      excerpt:
+        "Bekerjasama dengan Puskesmas setempat, Desa Lubuk Raman mengadakan kegiatan penyuluhan kesehatan dan vaksinasi gratis untuk seluruh warga...",
+      date: "28 Maret 2023",
+      readTime: "3 menit membaca",
+      image: "/images/news/berita-3.jpeg?height=200&width=400&text=Berita+3",
+      slug: "3",
+    },
+  ];
+}
+
 export function useContent() {
   const hero: HeroSection = {
     title: "Selamat Datang di Desa Lubuk Raman",
