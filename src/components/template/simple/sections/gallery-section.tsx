@@ -1,12 +1,23 @@
 import Image from "next/image"
 import { CustomButton } from "@/components/ui/simple/CustomButton"
 import type { GalleryItem } from "@/types/Simple"
+import { useRouter } from "next/navigation";
 
 interface GallerySectionProps {
   items: GalleryItem[]
 }
 
 export function GallerySection({ items }: GallerySectionProps) {
+  const router = useRouter();
+
+  const handleClickAll = () => {
+    router.push('/galeri');
+  };
+
+  const handleSelected = () => {
+    router.push('/galeri');
+  };
+
   return (
     <section className="py-16">
       <div className="container mx-auto px-4">
@@ -27,7 +38,7 @@ export function GallerySection({ items }: GallerySectionProps) {
                 className="object-cover transition-transform duration-300 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <CustomButton variant="outline" size="sm" className="text-white border-white hover:bg-white/20">
+                <CustomButton variant="outline" size="sm" className="text-white border-white hover:bg-white/20" onClick={handleSelected}>
                   Lihat
                 </CustomButton>
               </div>
@@ -36,7 +47,7 @@ export function GallerySection({ items }: GallerySectionProps) {
         </div>
 
         <div className="text-center mt-8">
-          <CustomButton variant="outline" className="border-[#0d6b3f] text-[#0d6b3f] hover:bg-[#0d6b3f] hover:text-white">
+          <CustomButton variant="outline" className="border-[#0d6b3f] text-[#0d6b3f] hover:bg-[#0d6b3f] hover:text-white" onClick={handleClickAll}>
             Lihat Semua Galeri
           </CustomButton>
         </div>

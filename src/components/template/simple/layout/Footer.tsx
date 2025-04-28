@@ -40,7 +40,7 @@ export function Footer() {
               </div>
             </div>
             <p className="text-gray-400 mb-4">
-              Website resmi Desa Peninjoan yang menyediakan informasi dan layanan untuk masyarakat.
+              Website resmi Desa Lubuk Raman yang menyediakan informasi dan layanan untuk masyarakat.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (

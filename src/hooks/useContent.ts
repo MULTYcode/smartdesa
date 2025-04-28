@@ -25,7 +25,7 @@ export function useContent() {
       icon: "users",
       link: {
         text: "Selengkapnya",
-        url: "/demografi",
+        url: "/data-penduduk",
       },
     },
     {
@@ -35,7 +35,7 @@ export function useContent() {
       icon: "map-pin",
       link: {
         text: "Selengkapnya",
-        url: "/wilayah",
+        url: "/data-penduduk",
       },
     },
     {

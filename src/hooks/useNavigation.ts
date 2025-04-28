@@ -70,7 +70,7 @@ export function useNavigation() {
     // },
     {
       label: "Layanan",
-      href: "/layanan-desa",
+      href: "/layanan",
       children: [
         {
           label: "Pembuatan KTP",
@@ -94,10 +94,10 @@ export function useNavigation() {
         },
       ],
     },
-    {
-      label: "Lapak Desa",
-      href: "/lapak-desa",
-    },
+    // {
+    //   label: "Lapak Desa",
+    //   href: "/lapak-desa",
+    // },
   ]
 
   const socialLinks: SocialLink[] = [

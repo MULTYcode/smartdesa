@@ -2,12 +2,20 @@ import Image from "next/image"
 import { CustomButton } from "@/components/ui/simple/CustomButton"
 import { ChevronRight } from "lucide-react"
 import type { AboutSection as AboutSectionType } from "@/types/Simple"
+import { useRouter } from "next/navigation"
 
 interface AboutSectionProps {
   data: AboutSectionType
 }
 
 export function AboutSection({ data }: AboutSectionProps) {
+
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push('/profil');
+  };
+
   return (
     <section className="py-16">
       <div className="container mx-auto px-4">
@@ -22,7 +30,7 @@ export function AboutSection({ data }: AboutSectionProps) {
                 {paragraph}
               </p>
             ))}
-            <CustomButton className="bg-[#0d6b3f] hover:bg-[#0a5733]">
+            <CustomButton className="bg-[#0d6b3f] hover:bg-[#0a5733]" onClick={handleClick}>
               {data.button.text}
               <ChevronRight className="h-4 w-4 ml-1" />
             </CustomButton>
