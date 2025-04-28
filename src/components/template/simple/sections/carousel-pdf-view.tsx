@@ -177,18 +177,18 @@ export default function CarouselPDFViewer({ fileItems }: CarouselPDFViewerProps)
 
             {/* Meta Data */}
             <div className="mt-6 p-4 bg-gray-50 rounded-xl shadow-md">
-  <h2 className="font-semibold text-lg mb-4">Meta Data</h2>
-  <div className="grid grid-cols-1 sm:grid-cols-1 gap-4 text-sm text-gray-600">
-    {Object.entries(metaDataPDF).map(([key, value]) => (
-      <div key={key} className="flex gap-4">
-        <span className="font-medium capitalize text-left w-1/5">
-          {key.replace(/([A-Z])/g, ' $1').toUpperCase()}
-        </span>
-        <span className="text-left w-2/3">{value}</span>
-      </div>
-    ))}
-  </div>
-</div>
+                <h2 className="font-semibold text-lg mb-4">Meta Data</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-1 gap-4 text-sm text-gray-600">
+                    {Object.entries(metaDataPDF).map(([key, value]) => (
+                        <div key={key} className="flex gap-4">
+                            <span className="font-medium capitalize text-left w-1/3">
+                                {key.replace(/([A-Z])/g, ' $1').toUpperCase()}
+                            </span>
+                            <span className="text-left w-2/3">{value}</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
 
 
         </div>
