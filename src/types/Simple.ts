@@ -46,7 +46,7 @@ export interface InfoCard {
 export interface NewsItem {
   id: string
   title: string
-  excerpt: string
+  excerpt: string  
   date: string
   readTime: string
   image: string
