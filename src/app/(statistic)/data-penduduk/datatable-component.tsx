@@ -9,7 +9,7 @@ interface DataTableProps {
 const DataTablePenduduk: React.FC<DataTableProps> = ({ data, kategoriKeluarga }) => {
   return (
     <>
-      <div className="overflow-x-auto w-full text-md">
+      <div className="w-full overflow-x-auto text-md">
         <div className="flex px-6 py-3 font-semibold text-lg">Data Kepala Keluarga Dan Jenis Kelamin</div>
         <table className="min-w-full border border-gray-200 text-sm md:text-base">
           <thead className="bg-[#0d6b3f] text-white">
@@ -54,7 +54,7 @@ const DataTablePenduduk: React.FC<DataTableProps> = ({ data, kategoriKeluarga })
         </table>
       </div>
 
-      <div className="overflow-x-auto w-full text-md">
+      <div className=" w-full overflow-x-auto text-md">
         <div className="flex px-6 py-3 font-semibold text-lg">Kategori Keluarga Dan Kondisi Kesejahteraan Keluarga</div>
         <table className="min-w-full border border-gray-200 text-sm md:text-base">
           <thead className="bg-[#0d6b3f] text-white">

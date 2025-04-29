@@ -7,28 +7,24 @@ import DataTablePenduduk from './datatable-component'
 import { useContent } from '@/hooks/useContent'
 
 export default function Page() {
-  const { statisticKeluarga } = useContent()
-  
-  return (
-    <div className="flex min-h-screen flex-col">
-        <Header />
-        <PageContent>
+    const { statisticKeluarga } = useContent()
 
-            <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
-                <div className="max-w-full overflow-x-auto">
-                    <div className="min-w-[1102px]">
-                        <DataTablePenduduk 
-                        data={statisticKeluarga}                         
-                        />
-                    </div>
+    return (
+        <>
+            <Header />
+            <PageContent>
+
+                <div className="w-full overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
+                    <DataTablePenduduk
+                        data={statisticKeluarga}
+                    />
                 </div>
-            </div>
 
-        </PageContent>
+            </PageContent>
 
-        <APBDSection />
+            <APBDSection />
 
-        <Footer />
-    </div>
-)
+            <Footer />
+        </>
+    )
 }

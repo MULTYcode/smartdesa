@@ -8,7 +8,7 @@ interface DataTableProps {
 const DataTablePenduduk: React.FC<DataTableProps> = ({ data }) => {
   return (
     <>
-      <div className="overflow-x-auto w-full text-md">
+      <div className="w-full overflow-x-auto text-md">
         <div className="flex px-6 py-3 font-semibold text-lg">Data Statistic Keluarga</div>
         <table className="min-w-full border border-gray-200 text-sm md:text-base">
           <thead className="bg-[#0d6b3f] text-white">

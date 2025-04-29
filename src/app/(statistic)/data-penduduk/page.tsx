@@ -11,19 +11,15 @@ export default function Page() {
     const { dataPenduduk, kategoriKeluarga } = useContent()
 
     return (
-        <div className="flex min-h-screen flex-col">
+        <>
             <Header />
             <PageContent>
 
-                <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
-                    <div className="max-w-full overflow-x-auto">
-                        <div className="min-w-[1102px]">
-                            <DataTablePenduduk 
-                            data={dataPenduduk} 
-                            kategoriKeluarga={kategoriKeluarga} 
-                            />
-                        </div>
-                    </div>
+                <div className="w-full overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
+                    <DataTablePenduduk
+                        data={dataPenduduk}
+                        kategoriKeluarga={kategoriKeluarga}
+                    />
                 </div>
 
             </PageContent>
@@ -31,6 +27,6 @@ export default function Page() {
             <APBDSection />
 
             <Footer />
-        </div>
+        </>
     )
 }
