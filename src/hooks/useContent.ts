@@ -257,36 +257,36 @@ export function useContent() {
     },
   ]
 
-  const profil: ProfilInterface = {
-    title: "Profil Desa",
-    date: "29 Juli 2013",
-    author: "Administrator",
-    readTime: "Dibaca 78.187 Kali",
-    content: `            
-            <p>Desa Susut merupakan daerah dataran tinggi, terletak 4 km arah Selatan dari kota kecamatan Susut dan 10 km arah Barat kota Kabupaten Bangli, dengan luas wilayah 4,83 km², dengan sebagian besar lahan digunakan untuk kegiatan pertanian, yakni seluas 216,00 Ha (0,45%).</p>
+  // const profil: ProfilInterface = {
+  //   title: "Profil Desa",
+  //   date: "29 Juli 2013",
+  //   author: "Administrator",
+  //   readTime: "Dibaca 78.187 Kali",
+  //   content: `            
+  //           <p>Desa Susut merupakan daerah dataran tinggi, terletak 4 km arah Selatan dari kota kecamatan Susut dan 10 km arah Barat kota Kabupaten Bangli, dengan luas wilayah 4,83 km², dengan sebagian besar lahan digunakan untuk kegiatan pertanian, yakni seluas 216,00 Ha (0,45%).</p>
 
-            <p>Desa Susut Bangli meliputi 9 Banjar/Pekraman, yaitu: Banjar Pukuh, Banjar Penatahan, Banjar Penglumbaran, Banjar Lebah, Banjar Juwuk Bali, Banjar Manuk, Banjar Tangkas, Banjar Susut Kaja, dan Banjar Susut Kelod.</p>
+  //           <p>Desa Susut Bangli meliputi 9 Banjar/Pekraman, yaitu: Banjar Pukuh, Banjar Penatahan, Banjar Penglumbaran, Banjar Lebah, Banjar Juwuk Bali, Banjar Manuk, Banjar Tangkas, Banjar Susut Kaja, dan Banjar Susut Kelod.</p>
 
-            <h3>Keadaan Umum Desa</h3>
+  //           <h3>Keadaan Umum Desa</h3>
 
-            <h4>Ekonomi</h4>
-            <p>Struktur perekonomian Desa Susut didominasi oleh sektor pertanian. Hal ini terlihat dari persentase penggunaan lahan untuk usaha pertanian sebesar 50%, dengan sebagian besar penduduk menggantungkan hidup dari sektor ini. Sekitar 1.030 jiwa atau 0,17% penduduk bergantung pada sektor pertanian, khususnya pertanian sawah dengan produk unggulan berupa padi dan palawija.</p>
+  //           <h4>Ekonomi</h4>
+  //           <p>Struktur perekonomian Desa Susut didominasi oleh sektor pertanian. Hal ini terlihat dari persentase penggunaan lahan untuk usaha pertanian sebesar 50%, dengan sebagian besar penduduk menggantungkan hidup dari sektor ini. Sekitar 1.030 jiwa atau 0,17% penduduk bergantung pada sektor pertanian, khususnya pertanian sawah dengan produk unggulan berupa padi dan palawija.</p>
 
-            <p>Masyarakat juga mengandalkan sektor peternakan, dengan jenis ternak peliharaan seperti sapi, babi, unggas, dan lainnya. Sistem beternak masih bersifat tradisional, karena diposisikan sebagai usaha sampingan untuk memenuhi kebutuhan konsumsi keluarga. Selain itu, perekonomian desa juga digerakkan oleh sektor perdagangan dan industri kecil/rumah tangga.</p>
+  //           <p>Masyarakat juga mengandalkan sektor peternakan, dengan jenis ternak peliharaan seperti sapi, babi, unggas, dan lainnya. Sistem beternak masih bersifat tradisional, karena diposisikan sebagai usaha sampingan untuk memenuhi kebutuhan konsumsi keluarga. Selain itu, perekonomian desa juga digerakkan oleh sektor perdagangan dan industri kecil/rumah tangga.</p>
 
-            <h4>Sosial dan Budaya</h4>
-            <p>Kondisi sosial budaya masyarakat desa ditentukan oleh empat pilar utama: penduduk, tingkat pendidikan, derajat kesehatan, dan tradisi/budaya masyarakat desa.</p>
+  //           <h4>Sosial dan Budaya</h4>
+  //           <p>Kondisi sosial budaya masyarakat desa ditentukan oleh empat pilar utama: penduduk, tingkat pendidikan, derajat kesehatan, dan tradisi/budaya masyarakat desa.</p>
 
-            <p>Penduduk merupakan modal dasar pembangunan karena menjadi pelaku dan pemanfaat hasil pembangunan. Di sektor pendidikan, pemerintah telah menyediakan berbagai fasilitas mulai dari gedung, tenaga pendidik, hingga pembiayaan melalui program BOS. Hal ini bertujuan untuk pemerataan pendidikan, peningkatan kualitas, serta kapasitas masyarakat.</p>
+  //           <p>Penduduk merupakan modal dasar pembangunan karena menjadi pelaku dan pemanfaat hasil pembangunan. Di sektor pendidikan, pemerintah telah menyediakan berbagai fasilitas mulai dari gedung, tenaga pendidik, hingga pembiayaan melalui program BOS. Hal ini bertujuan untuk pemerataan pendidikan, peningkatan kualitas, serta kapasitas masyarakat.</p>
 
-            <p>Sebagian besar penduduk berpendidikan tamat SD, disusul oleh lulusan SMP, SLTA, D1, dan S1.</p>
+  //           <p>Sebagian besar penduduk berpendidikan tamat SD, disusul oleh lulusan SMP, SLTA, D1, dan S1.</p>
 
-            <p>Dalam bidang kebudayaan, masyarakat Desa Susut memiliki budaya Bali yang kental, dengan nilai-nilai agama Hindu. Filosofi <strong>Tri Hita Karana</strong> menjadi tuntunan hidup dalam menjaga keseimbangan hubungan antara manusia dengan Tuhan, sesama manusia, dan lingkungan. Nilai-nilai <em>paras paros sarpa naya salunglung sabyantaka</em> (kerukunan, keselarasan, dan kepatutan) menjadi pedoman dalam menjaga ketertiban dan kedamaian sosial.</p>
+  //           <p>Dalam bidang kebudayaan, masyarakat Desa Susut memiliki budaya Bali yang kental, dengan nilai-nilai agama Hindu. Filosofi <strong>Tri Hita Karana</strong> menjadi tuntunan hidup dalam menjaga keseimbangan hubungan antara manusia dengan Tuhan, sesama manusia, dan lingkungan. Nilai-nilai <em>paras paros sarpa naya salunglung sabyantaka</em> (kerukunan, keselarasan, dan kepatutan) menjadi pedoman dalam menjaga ketertiban dan kedamaian sosial.</p>
 
-            <h4>Kesehatan dan Kesejahteraan Masyarakat</h4>
-            <p>Pemerintah telah menyediakan sarana dan prasarana kesehatan serta tenaga medis untuk memudahkan akses masyarakat terhadap layanan kesehatan. Di bidang kesejahteraan, berbagai program seperti raskin dan bedah rumah telah diluncurkan, namun masalah kemiskinan tetap menjadi tantangan utama. Jumlah penduduk miskin tercatat sebanyak 286 jiwa.</p>
-          `,
-  }
+  //           <h4>Kesehatan dan Kesejahteraan Masyarakat</h4>
+  //           <p>Pemerintah telah menyediakan sarana dan prasarana kesehatan serta tenaga medis untuk memudahkan akses masyarakat terhadap layanan kesehatan. Di bidang kesejahteraan, berbagai program seperti raskin dan bedah rumah telah diluncurkan, namun masalah kemiskinan tetap menjadi tantangan utama. Jumlah penduduk miskin tercatat sebanyak 286 jiwa.</p>
+  //         `,
+  // }
 
   const sejarah: ProfilInterface = {
     title: "Sejarah Desa",
@@ -586,7 +586,7 @@ export function useContent() {
     news,
     gallery,
     cta,
-    profil,
+    // profil,
     pemerintah,
     budgetPendapatan,
     budgetPelaksanaan,

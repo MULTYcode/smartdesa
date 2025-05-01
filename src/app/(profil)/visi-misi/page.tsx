@@ -1,28 +1,31 @@
+'use client';
+
 import { Footer } from "@/components/template/simple/layout/Footer"
 import { Header } from "@/components/template/simple/layout/Header"
 import APBDSection from "@/components/template/simple/sections/apbd-section"
 import PageContent from "@/components/template/simple/sections/page-content"
-import ProfilSection from "@/components/template/simple/sections/profil-section"
+import ProfilSection from "@/features/profil/components/profil-section"
 import StatisticWidget from "@/components/template/simple/sections/statistic-widget"
-import { useContent } from "@/hooks/useContent"
+import useVisiMisi from "@/features/profil/hooks/useVisiMisi";
 
 export default function Page() {
 
-  const { profil } = useContent()
+  const { data } = useVisiMisi(1)
 
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
       <PageContent>
-        <ProfilSection profil={profil} />
-        
+        {data?.data && (
+          <ProfilSection data={data.data} />
+        )}
         <div className="w-full lg:w-2/4 flex flex-col gap-4">
           <StatisticWidget />
         </div>
-        
+
       </PageContent>
 
-      <APBDSection/>
+      <APBDSection />
 
       <Footer />
     </div>

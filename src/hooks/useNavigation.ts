@@ -10,15 +10,15 @@ export function useNavigation() {
     },
     {
       label: "Profil Desa",
-      href: "/profil",
+      href: "/visi-misi",
       children: [
         {
           label: "Profil Wilayah",
-          href: "/profil",
+          href: "/visi-misi",
         },
         {
           label: "Sejarah",
-          href: "/profil/sejarah",
+          href: "/sejarah",
         },
       ],
     },
@@ -122,7 +122,7 @@ export function useNavigation() {
     },
     {
       label: "Profil Desa",
-      href: "/profil",
+      href: "/visi-misi",
     },
     {
       label: "Pemerintahan",

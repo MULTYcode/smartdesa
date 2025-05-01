@@ -2,7 +2,7 @@ import { Footer } from "@/components/template/simple/layout/Footer"
 import { Header } from "@/components/template/simple/layout/Header"
 import APBDSection from "@/components/template/simple/sections/apbd-section"
 import PageContent from "@/components/template/simple/sections/page-content"
-import ProfilSection from "@/components/template/simple/sections/profil-section"
+import ProfilSection from "@/features/profil/components/profil-section"
 import StatisticWidget from "@/components/template/simple/sections/statistic-widget"
 import { useContent } from "@/hooks/useContent"
 
