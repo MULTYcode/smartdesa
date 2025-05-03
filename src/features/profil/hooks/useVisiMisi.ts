@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchVisiMisi } from "../services/visi-misiApi";
 
-export default function useVisiMisi(page: number, search: string = '') {
+export default function useVisiMisi() {
     return useQuery({
-        queryKey: ['visi-misi', page, search],
-        queryFn: () => fetchVisiMisi(page, search),
+        queryKey: ['visi-misi'],
+        queryFn: fetchVisiMisi,
     })
 }
