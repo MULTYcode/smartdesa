@@ -1,7 +1,7 @@
 import ComponentCard from "@/components/common/ComponentCard";
 import PageBreadcrumb from "@/components/common/PageBreadCrumb";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "@/components/ui/table";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useFetchCreateOrder from "./hooks/useFetchCreateOrder";
 import { CreateOrderType } from "./types/createOrder.type";
 
@@ -9,6 +9,17 @@ export default function CreateOrderPage() {
   const { tableData } = useFetchCreateOrder();
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const [isSelectedRow, setIsSelectedRow] = useState(false);
+
+      const [isClient, setIsClient] = useState(false);
+  
+      useEffect(() => {
+        setIsClient(true);
+      }, []);
+    
+      if (!isClient) {
+        return null; // Render nothing until client-side rendering
+      }
+  
 
   const handleSelectAll = () => {
     const allIds = tableData.map((item) => item.id);
@@ -108,10 +119,10 @@ export default function CreateOrderPage() {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
+                      fillRule="evenodd"
+                      clipRule="evenodd"
                       d="M9.2502 4.99951C9.2502 4.5853 9.58599 4.24951 10.0002 4.24951C10.4144 4.24951 10.7502 4.5853 10.7502 4.99951V9.24971H15.0006C15.4148 9.24971 15.7506 9.5855 15.7506 9.99971C15.7506 10.4139 15.4148 10.7497 15.0006 10.7497H10.7502V15.0001C10.7502 15.4143 10.4144 15.7501 10.0002 15.7501C9.58599 15.7501 9.2502 15.4143 9.2502 15.0001V10.7497H5C4.58579 10.7497 4.25 10.4139 4.25 9.99971C4.25 9.5855 4.58579 9.24971 5 9.24971H9.2502V4.99951Z"
-                      fill=""
+                      fill = "currentColor"
                     ></path>
                   </svg>
                 </button>
@@ -163,9 +174,9 @@ export default function CreateOrderPage() {
                         <path
                           d="M3.8335 5.9165L8.00016 10.0832L12.1668 5.9165"
                           stroke=""
-                          stroke-width="1.2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeWidth="1.2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         ></path>
                       </svg>
                     </span>
@@ -188,10 +199,10 @@ export default function CreateOrderPage() {
                         xmlns="http://www.w3.org/2000/svg"
                       >
                         <path
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
+                          fillRule="evenodd"
+                          clipRule="evenodd"
                           d="M3.04199 9.37363C3.04199 5.87693 5.87735 3.04199 9.37533 3.04199C12.8733 3.04199 15.7087 5.87693 15.7087 9.37363C15.7087 12.8703 12.8733 15.7053 9.37533 15.7053C5.87735 15.7053 3.04199 12.8703 3.04199 9.37363ZM9.37533 1.54199C5.04926 1.54199 1.54199 5.04817 1.54199 9.37363C1.54199 13.6991 5.04926 17.2053 9.37533 17.2053C11.2676 17.2053 13.0032 16.5344 14.3572 15.4176L17.1773 18.238C17.4702 18.5309 17.945 18.5309 18.2379 18.238C18.5308 17.9451 18.5309 17.4703 18.238 17.1773L15.4182 14.3573C16.5367 13.0033 17.2087 11.2669 17.2087 9.37363C17.2087 5.04817 13.7014 1.54199 9.37533 1.54199Z"
-                          fill=""
+                          fill="currentColor"
                         ></path>
                       </svg>
                     </button>
@@ -216,28 +227,28 @@ export default function CreateOrderPage() {
                       <path
                         d="M2.29004 5.90393H17.7067"
                         stroke=""
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       ></path>
                       <path
                         d="M17.7075 14.0961H2.29085"
                         stroke=""
-                        stroke-width="1.5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                       ></path>
                       <path
                         d="M12.0826 3.33331C13.5024 3.33331 14.6534 4.48431 14.6534 5.90414C14.6534 7.32398 13.5024 8.47498 12.0826 8.47498C10.6627 8.47498 9.51172 7.32398 9.51172 5.90415C9.51172 4.48432 10.6627 3.33331 12.0826 3.33331Z"
                         fill=""
                         stroke=""
-                        stroke-width="1.5"
+                        strokeWidth="1.5"
                       ></path>
                       <path
                         d="M7.91745 11.525C6.49762 11.525 5.34662 12.676 5.34662 14.0959C5.34661 15.5157 6.49762 16.6667 7.91745 16.6667C9.33728 16.6667 10.4883 15.5157 10.4883 14.0959C10.4883 12.676 9.33728 11.525 7.91745 11.525Z"
                         fill=""
                         stroke=""
-                        stroke-width="1.5"
+                        strokeWidth="1.5"
                       ></path>
                     </svg>
                     Filter
