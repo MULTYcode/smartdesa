@@ -70,16 +70,18 @@ export default function SignUpForm() {
               </button>
               <button className="inline-flex items-center justify-center gap-3 py-3 text-sm font-normal text-gray-700 transition-colors bg-gray-100 rounded-lg px-7 hover:bg-gray-200 hover:text-gray-800 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10">
                 <svg
-                  width="21"
-                  className="fill-current"
-                  height="20"
-                  viewBox="0 0 21 20"
-                  fill="none"
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path d="M15.6705 1.875H18.4272L12.4047 8.75833L19.4897 18.125H13.9422L9.59717 12.4442L4.62554 18.125H1.86721L8.30887 10.7625L1.51221 1.875H7.20054L11.128 7.0675L15.6705 1.875ZM14.703 16.475H16.2305L6.37054 3.43833H4.73137L14.703 16.475Z" />
+                  <rect width="24" height="24" rx="4" fill="#1877F2" />
+                  <path
+                    d="M15.117 8.667h-1.398c-.243 0-.496.32-.496.758v1.242h1.875l-.273 2.125h-1.602V20h-2.25v-7.208H9.5V10.667h1.473V9.067c0-1.504.892-2.575 2.268-2.575h1.876v2.175z"
+                    fill="white"
+                  />
                 </svg>
-                Sign up with X
+                Sign up with Fb
               </button>
             </div>
             <div className="relative py-3 sm:py-5">

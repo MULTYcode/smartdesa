@@ -32,26 +32,26 @@ export default function TrackingResult({ shipment }: { shipment: Shipment }) {
     <div className="bg-white rounded-lg shadow-lg p-6 max-w-3xl mx-auto">
       <div className="border-b pb-4 mb-4">
         <div className="flex justify-between items-center mb-2">
-          <h2 className="text-xl font-bold">Informasi Pengiriman</h2>
+          <h2 className="text-xl font-bold">Informasi Pesanan</h2>
           <span
             className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(shipment.status)} bg-opacity-10`}
           >
-            {shipment.status === "delivered" && "Terkirim"}
-            {shipment.status === "in_transit" && "Dalam Pengiriman"}
+            {shipment.status === "delivered" && "Selesai"}
+            {shipment.status === "in_transit" && "Sedangn Diproses"}
             {shipment.status === "pending" && "Menunggu"}
           </span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <p className="text-sm text-gray-500">Nomor Resi</p>
+            <p className="text-sm text-gray-500">Nomor Pesanan</p>
             <p className="font-medium">{shipment.trackingNumber}</p>
           </div>
           <div>
-            <p className="text-sm text-gray-500">Tanggal Pengiriman</p>
+            <p className="text-sm text-gray-500">Tanggal Pesanan</p>
             <p className="font-medium">{shipment.shippingDate}</p>
           </div>
           <div>
-            <p className="text-sm text-gray-500">Pengirim</p>
+            <p className="text-sm text-gray-500">Pemesan</p>
             <p className="font-medium">{shipment.sender}</p>
           </div>
           <div>
@@ -59,17 +59,17 @@ export default function TrackingResult({ shipment }: { shipment: Shipment }) {
             <p className="font-medium">{shipment.recipient}</p>
           </div>
           <div>
-            <p className="text-sm text-gray-500">Asal</p>
+            <p className="text-sm text-gray-500">Asal/Paket/Category/Permintaan</p>
             <p className="font-medium">{shipment.origin}</p>
           </div>
           <div>
-            <p className="text-sm text-gray-500">Tujuan</p>
+            <p className="text-sm text-gray-500">Tujuan/Paket/Category/Permintaan</p>
             <p className="font-medium">{shipment.destination}</p>
           </div>
         </div>
       </div>
 
-      <h3 className="text-lg font-semibold mb-4">Riwayat Pengiriman</h3>
+      <h3 className="text-lg font-semibold mb-4">Riwayat Pesanan</h3>
       <div className="space-y-6">
         {shipment.history.map((item, index) => (
           <div key={index} className="flex">

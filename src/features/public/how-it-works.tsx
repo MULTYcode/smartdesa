@@ -4,18 +4,18 @@ export default function HowItWorks() {
   const steps = [
     {
       number: 1,
-      title: "Masukkan Nomor Resi",
-      description: "Masukkan nomor resi pengiriman Anda pada form pelacakan di halaman utama.",
+      title: "Masukkan Nomor Pemesanan",
+      description: "Masukkan nomor pemesanan Anda pada form pelacakan di halaman utama.",
     },
     {
       number: 2,
       title: "Proses Pelacakan",
-      description: "Sistem kami akan memproses permintaan pelacakan dan mencari informasi pengiriman Anda.",
+      description: "Sistem kami akan memproses permintaan pelacakan dan mencari informasi pemesanan Anda.",
     },
     {
       number: 3,
       title: "Lihat Hasil",
-      description: "Lihat informasi detail tentang status dan lokasi pengiriman Anda secara real-time.",
+      description: "Lihat informasi detail tentang status dan pemesanan Anda secara real-time.",
     },
   ]
 
@@ -25,7 +25,7 @@ export default function HowItWorks() {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Cara Kerja</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Lacak pengiriman Anda dengan mudah hanya dalam 3 langkah sederhana.
+            Lacak pesanan Anda dengan mudah hanya dalam 3 langkah sederhana.
           </p>
         </div>
 
@@ -46,8 +46,8 @@ export default function HowItWorks() {
             <div>
               <h3 className="text-2xl font-bold mb-4">Mengapa Memilih Layanan Kami?</h3>
               <p className="text-gray-600 mb-6">
-                Kami menyediakan solusi pelacakan pengiriman yang cepat, akurat, dan mudah digunakan. Dengan teknologi
-                terkini, kami memastikan Anda selalu mendapatkan informasi terbaru tentang pengiriman Anda.
+                Kami menyediakan solusi pelacakan pemesanan yang cepat, akurat, dan mudah digunakan. Dengan teknologi
+                terkini, kami memastikan Anda selalu mendapatkan informasi terbaru tentang pesanan Anda.
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start">
@@ -56,29 +56,29 @@ export default function HowItWorks() {
                   </svg>
                   <span>Pelacakan yang akurat dan real-time</span>
                 </li>
-                <li className="flex items-start">
+                {/* <li className="flex items-start">
                   <svg className="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <span>Dukungan untuk berbagai jasa pengiriman</span>
-                </li>
+                </li> */}
                 <li className="flex items-start">
                   <svg className="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <span>Antarmuka yang mudah digunakan</span>
                 </li>
-                <li className="flex items-start">
+                {/* <li className="flex items-start">
                   <svg className="h-6 w-6 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span>Notifikasi status pengiriman</span>
-                </li>
+                  <span>Notifikasi status pesanan</span>
+                </li> */}
               </ul>
             </div>
             <div className="flex justify-center">
               <Image
-                src="/placeholder.svg?height=300&width=400"
+                src="/images/placeholder.svg?height=300&width=400"
                 alt="Tracking Illustration"
                 width={400}
                 height={300}

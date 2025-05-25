@@ -23,10 +23,10 @@ export default function TrackingHero() {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-10">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            Lacak Pengiriman Anda dengan Mudah
+            Lacak Pesanan Anda dengan Mudah
           </h1>
           <p className="text-lg text-gray-600 mb-8">
-            Masukkan nomor resi pengiriman Anda untuk melacak status dan lokasi paket Anda secara real-time.
+            Masukkan nomor resi pesanan Anda untuk melacak status secara real-time.
           </p>
 
           <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 max-w-xl mx-auto">
@@ -37,7 +37,7 @@ export default function TrackingHero() {
               <input
                 type="text"
                 className="block w-full pl-10 pr-4 py-3 text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Masukkan nomor resi pengiriman"
+                placeholder="Masukkan nomor resi pesanan"
                 value={trackingNumber}
                 onChange={(e) => setTrackingNumber(e.target.value)}
                 required
@@ -92,7 +92,7 @@ export default function TrackingHero() {
               <Search className="h-6 w-6 text-blue-600" />
             </div>
             <h3 className="text-lg font-semibold mb-2">Lacak dengan Mudah</h3>
-            <p className="text-gray-600">Cukup masukkan nomor resi dan dapatkan informasi pengiriman secara instan.</p>
+            <p className="text-gray-600">Cukup masukkan nomor resi dan dapatkan informasi pesanan secara instan.</p>
           </div>
 
           <div className="bg-white p-6 rounded-lg shadow-md text-center">
@@ -100,7 +100,7 @@ export default function TrackingHero() {
               <Truck className="h-6 w-6 text-blue-600" />
             </div>
             <h3 className="text-lg font-semibold mb-2">Pantau Real-time</h3>
-            <p className="text-gray-600">Dapatkan pembaruan lokasi dan status pengiriman Anda secara real-time.</p>
+            <p className="text-gray-600">Dapatkan pembaruan lokasi dan status pesanan Anda secara real-time.</p>
           </div>
 
           <div className="bg-white p-6 rounded-lg shadow-md text-center">
@@ -115,7 +115,7 @@ export default function TrackingHero() {
               </svg>
             </div>
             <h3 className="text-lg font-semibold mb-2">Notifikasi</h3>
-            <p className="text-gray-600">Dapatkan notifikasi saat status pengiriman Anda berubah.</p>
+            <p className="text-gray-600">Dapatkan notifikasi saat status pesanan Anda berubah.</p>
           </div>
         </div>
       </div>

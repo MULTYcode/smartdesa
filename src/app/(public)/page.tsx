@@ -1,4 +1,4 @@
-import Features from "@/features/public/features";
+// import Features from "@/features/public/features";
 import Footer from "@/features/public/footer";
 import Header from "@/features/public/header";
 import HowItWorks from "@/features/public/how-it-works";
@@ -10,7 +10,7 @@ export default function Home() {
       <Header />
       <main className="flex-grow">
         <TrackingHero />
-        <Features />
+        {/* <Features /> */}
         <HowItWorks />
       </main>
       <Footer />

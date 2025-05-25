@@ -322,7 +322,7 @@ export default function OrderPage() {
                                     </TableHeader>
                                     <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
                                         {tableData?.map((order: OrderType, index: number) => (
-                                            <TableRow key={order.id} className="transition-colors duration-200 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-gray-800 dark:hover:text-white">
+                                            <TableRow key={order.id} className="group transition-colors duration-200 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-gray-800 dark:hover:text-white">
                                                 <TableCell className="w-[36px] px-2 py-3 text-start text-theme-xs">
                                                     <div className="relative flex items-center justify-center">
                                                         <input
@@ -347,22 +347,22 @@ export default function OrderPage() {
                                                         )}
                                                     </div>
                                                 </TableCell>
-                                                <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+                                                <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 dark:group-hover:text-gray-200">
                                                     {order.createOrder.number}
                                                 </TableCell>
-                                                <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+                                                <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 dark:group-hover:text-gray-200">
                                                     {order.createOrder.customer.name}
                                                 </TableCell>
-                                                <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+                                                <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 dark:group-hover:text-gray-200">
                                                     {order.createOrder.pickupLocation}
                                                 </TableCell>
-                                                <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+                                                <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 dark:group-hover:text-gray-200">
                                                     {order.createOrder.deliveryLocation}
                                                 </TableCell>
-                                                <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+                                                <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 dark:group-hover:text-gray-200">
                                                     {order.createOrder.deliveryDate}
                                                 </TableCell>
-                                                <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+                                                <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 dark:group-hover:text-gray-200">
                                                     <Badge
                                                         size="sm"
                                                         color={
@@ -376,13 +376,13 @@ export default function OrderPage() {
                                                         {order.status}
                                                     </Badge>
                                                 </TableCell>
-                                                <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+                                                <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 dark:group-hover:text-gray-200">
                                                     {order.createOrder.totalWeight}
                                                 </TableCell>
-                                                <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+                                                <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 dark:group-hover:text-gray-200">
                                                     {order.createOrder.totalVolume}
                                                 </TableCell>
-                                                <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+                                                <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 dark:group-hover:text-gray-200">
                                                     <div className="flex items-center gap-3">
                                                         <div className="w-10 h-10 overflow-hidden rounded-full relative">
                                                             <Image

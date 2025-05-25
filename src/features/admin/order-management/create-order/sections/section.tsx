@@ -2,63 +2,62 @@ import ComponentCard from "@/components/common/ComponentCard";
 import PageBreadcrumb from "@/components/common/PageBreadCrumb";
 import { Table, TableBody, TableCell, TableHeader, TableRow } from "@/components/ui/table";
 import { useEffect, useState } from "react";
-import useFetchCreateOrder from "./hooks/useFetchCreateOrder";
-import { CreateOrderType } from "./types/createOrder.type";
+import useFetchCreateOrder from "../hooks/useFetchCreateOrder";
+import { CreateOrderType } from "../types/createOrder.type";
 
 export default function CreateOrderPage() {
   const { tableData } = useFetchCreateOrder();
-  const [selectedIds, setSelectedIds] = useState<number[]>([]);
-  const [isSelectedRow, setIsSelectedRow] = useState(false);
+  
+  const [selection, setSelection] = useState({
+    selectedIds: [] as number[],
+    isSelectedRow: false,
+  })
 
-      const [isClient, setIsClient] = useState(false);
-  
-      useEffect(() => {
-        setIsClient(true);
-      }, []);
-    
-      if (!isClient) {
-        return null; // Render nothing until client-side rendering
-      }
-  
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null; // Render nothing until client-side rendering
+  }
 
   const handleSelectAll = () => {
     const allIds = tableData.map((item) => item.id);
 
-    setIsSelectedRow(false);
+    setSelection({
+      selectedIds: selection.selectedIds.length === tableData.length ? [] : allIds,
+      isSelectedRow: false,
+    })
 
-    if (selectedIds.length === tableData.length) {
-      setSelectedIds([]);
-    } else {
-      setSelectedIds(allIds);
-    }
   };
 
   const handleSelectRow = (id: number) => {
-    let updatedIds: number[];
+    setSelection((prev) => {
+      const isSelected = prev.selectedIds.includes(id);
+      const updatedIds = isSelected
+        ? prev.selectedIds.filter((itemId) => itemId !== id)
+        : [...prev.selectedIds, id];
 
-    setIsSelectedRow(true);
-
-    if (selectedIds.includes(id)) {
-      updatedIds = selectedIds.filter((itemId) => itemId !== id);
-    } else {
-      updatedIds = [...selectedIds, id];
+      return {
+        ...prev,
+        selectedIds: updatedIds,
+        isSelectedRow: true,
+      };
     }
 
-    setSelectedIds(updatedIds);
+    );
   };
 
   return (
     <div>
-      {/* <PageMeta
-        title="Azza Permata Logistic Solution"
-        description="Your Logistic Partner"
-      /> */}
       <PageBreadcrumb pageTitle="Create Order" />
       <div className="space-y-6">
         <ComponentCard
           title="List of create orders"
           headerRight={
-            selectedIds.length > 0 ? (
+            selection.selectedIds.length > 0 ? (
               <div className="mb-4 flex flex-col gap-2 px-4 py-2 sm:flex-row sm:items-center sm:justify-between">
                 <button className="text-theme-sm shadow-theme-xs inline-flex h-10 items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200">
                   Edit selected
@@ -74,22 +73,7 @@ export default function CreateOrderPage() {
                       d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1.003 1.003 0 0 0 0-1.41l-2.34-2.34a1.003 1.003 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
                     />
                   </svg>
-                </button>
-                {/* <button className="inline-flex items-center gap-2 rounded-lg bg-yellow-600 px-4 py-2.5 text-sm font-medium text-white shadow-theme-xs hover:bg-yellow-700">
-                  Edit Selected
-                  <svg
-                    className="fill-current"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill="currentColor"
-                      d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1.003 1.003 0 0 0 0-1.41l-2.34-2.34a1.003 1.003 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
-                    />
-                  </svg>
-                </button> */}
+                </button>                
                 <button className="inline-flex items-center gap-2 rounded-lg bg-red-600 px-4 py-2.5 text-sm font-medium text-white shadow-theme-xs hover:bg-red-700">
                   Delete Selected
                   <svg
@@ -122,7 +106,7 @@ export default function CreateOrderPage() {
                       fillRule="evenodd"
                       clipRule="evenodd"
                       d="M9.2502 4.99951C9.2502 4.5853 9.58599 4.24951 10.0002 4.24951C10.4144 4.24951 10.7502 4.5853 10.7502 4.99951V9.24971H15.0006C15.4148 9.24971 15.7506 9.5855 15.7506 9.99971C15.7506 10.4139 15.4148 10.7497 15.0006 10.7497H10.7502V15.0001C10.7502 15.4143 10.4144 15.7501 10.0002 15.7501C9.58599 15.7501 9.2502 15.4143 9.2502 15.0001V10.7497H5C4.58579 10.7497 4.25 10.4139 4.25 9.99971C4.25 9.5855 4.58579 9.24971 5 9.24971H9.2502V4.99951Z"
-                      fill = "currentColor"
+                      fill="currentColor"
                     ></path>
                   </svg>
                 </button>
@@ -270,19 +254,18 @@ export default function CreateOrderPage() {
                             className="w-5 h-5 appearance-none cursor-pointer dark:border-gray-700 border border-gray-300 checked:border-transparent rounded-md checked:bg-brand-500 disabled:opacity-60"
                             type="checkbox"
                             checked={
-                              tableData.length > 0 &&
-                              selectedIds.length === tableData.length
+                              selection.isSelectedRow === false && selection.selectedIds.length > 0
                             }
                             onChange={handleSelectAll}
                           />
-                          {selectedIds.length > 0 && !isSelectedRow && (
+                          {selection.isSelectedRow === false && selection.selectedIds.length > 0 && (
                             <svg
                               className="absolute w-3 h-3 text-white pointer-events-none"
                               xmlns="http://www.w3.org/2000/svg"
                               viewBox="0 0 20 20"
                               fill="currentColor"
                             >
-                              <path                              
+                              <path
                                 fillRule="evenodd"
                                 d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
                                 clipRule="evenodd"
@@ -296,6 +279,12 @@ export default function CreateOrderPage() {
                         className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
                       >
                         Number
+                      </TableCell>
+                      <TableCell
+                        isHeader
+                        className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+                      >
+                        Process By
                       </TableCell>
                       <TableCell
                         isHeader
@@ -333,32 +322,20 @@ export default function CreateOrderPage() {
                       >
                         Total Vulome
                       </TableCell>
-                      {/* <TableCell
-                        isHeader
-                        className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
-                      >
-                        Assigned Driver
-                      </TableCell> */}
-                      {/* <TableCell
-                        isHeader
-                        className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
-                      >
-                        Action
-                      </TableCell> */}
                     </TableRow>
                   </TableHeader>
                   <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
                     {tableData?.map((order: CreateOrderType) => (
-                      <TableRow key={order.id} className="transition-colors duration-200 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-gray-800 dark:hover:text-white">
+                      <TableRow key={order.id} className="group transition-colors duration-200 hover:bg-gray-50 dark:hover:bg-white/5 hover:text-gray-800 dark:hover:text-gray-200">
                         <TableCell className="w-[36px] px-2 py-3 text-start text-theme-xs">
                           <div className="relative flex items-center justify-center">
                             <input
                               className="w-5 h-5 appearance-none cursor-pointer dark:border-gray-700 border border-gray-300 checked:border-transparent rounded-md checked:bg-brand-500 disabled:opacity-60"
                               type="checkbox"
-                              checked={selectedIds.includes(order.id)}
+                              checked={selection.selectedIds.includes(order.id)}
                               onChange={() => handleSelectRow(order.id)}
                             />
-                            {selectedIds.includes(order.id) && (
+                            {selection.selectedIds.includes(order.id) && (
                               <svg
                                 className="absolute w-3 h-3 text-white pointer-events-none"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -374,91 +351,30 @@ export default function CreateOrderPage() {
                             )}
                           </div>
                         </TableCell>
-                        {/* <TableCell className="w-[36px] px-2 py-3 text-start text-theme-xs">
-                        <div className="flex items-center justify-center">
-                        <input
-                            className="w-5 h-5 appearance-none cursor-pointer dark:border-gray-700 border border-gray-300 checked:border-transparent rounded-md checked:bg-brand-500 disabled:opacity-60"
-                            type="checkbox"
-                            checked={selectedIds.includes(order.id)}
-                            onChange={() => handleSelectRow(order.id)}
-                          />
-                          {selectedIds.length > 0 && (
-                            <svg
-                              className="absolute w-3 h-3 text-white pointer-events-none"
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 20 20"
-                              fill="currentColor"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                          )}
-                        </div>
-                          
-                        </TableCell> */}
-                        <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
-                          {order.number}
+                        <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 dark:group-hover:text-gray-200">
+                          {order.trackingNumber}
                         </TableCell>
-                        <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
-                          {order.customer.name}
+                        <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 dark:group-hover:text-gray-200">
+                          {order.sender}
                         </TableCell>
-                        <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
-                          {order.pickupAddress}
+                        <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 dark:group-hover:text-gray-200">
+                          {order.recipient}
                         </TableCell>
-                        <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
-                          {order.deliveryAddress}
+                        <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 dark:group-hover:text-gray-200">
+                          {order.origin}
                         </TableCell>
-                        <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
-                          {order.deliveryDateTime}
+                        <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 dark:group-hover:text-gray-200">
+                          {order.destination}
                         </TableCell>
-                        <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
-                          {order.quantity}
+                        <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 dark:group-hover:text-gray-200">
+                          {order.shippingDate}
                         </TableCell>
-                        <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
-                          {order.weightVolume}
+                        <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 dark:group-hover:text-gray-200">
+                          {order.weight}
                         </TableCell>
-                        {/* <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 overflow-hidden rounded-full">
-                              <img
-                                src={`public/images/user/user-${String(
-                                  index + 1
-                                ).padStart(2, "0")}.jpg`}
-                                alt="brand"
-                              />
-                            </div>
-                            <div>
-                              <span className="block font-medium text-gray-800 text-theme-sm dark:text-white/90">
-                                {order.driver.name}
-                              </span>
-                              <span className="block text-gray-500 text-theme-xs dark:text-gray-400">
-                                {order.vehicle.type}
-                              </span>
-                            </div>
-                          </div>
-                        </TableCell> */}
-                        {/* <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
-                          <div className="flex w-full items-center gap-2">
-                            <svg
-                              className="cursor-pointer hover:fill-success-500 dark:hover:fill-success-500 fill-gray-700 dark:fill-gray-400"
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="20"
-                              height="20"
-                              viewBox="0 0 20 20"
-                              fill="none"
-                            >
-                              <path
-                                fill-rule="evenodd"
-                                clip-rule="evenodd"
-                                d="M6 9V4h12v5h1a2 2 0 0 1 2 2v7h-4v3H7v-3H3v-7a2 2 0 0 1 2-2h1zm2-3v3h8V6H8zm8 9H8v4h8v-4z"
-                                fill=""
-                              />
-                            </svg>
-                          </div>
-                        </TableCell> */}
+                        <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400 dark:group-hover:text-gray-200">
+                          {order.dimensions}
+                        </TableCell>
                       </TableRow>
                     ))}
                   </TableBody>

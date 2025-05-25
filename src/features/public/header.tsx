@@ -13,7 +13,7 @@ export default function Header() {
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
             <Package className="h-6 w-6 text-blue-600" />
-            <span className="text-xl font-bold">ShipTrack</span>
+            <span className="text-xl font-bold">OTrack</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -21,13 +21,13 @@ export default function Header() {
             <Link href="/" className="text-gray-700 hover:text-blue-600 font-medium">
               Beranda
             </Link>
-            <Link href="#features" className="text-gray-700 hover:text-blue-600 font-medium">
+            {/* <Link href="#features" className="text-gray-700 hover:text-blue-600 font-medium">
               Fitur
-            </Link>
+            </Link> */}
             <Link href="#how-it-works" className="text-gray-700 hover:text-blue-600 font-medium">
               Cara Kerja
             </Link>
-            <Link href="#" className="text-gray-700 hover:text-blue-600 font-medium">
+            <Link href="#contact" className="text-gray-700 hover:text-blue-600 font-medium">
               Kontak
             </Link>
             <Link
@@ -70,13 +70,13 @@ export default function Header() {
             >
               Beranda
             </Link>
-            <Link
+            {/* <Link
               href="#features"
               className="text-gray-700 hover:text-blue-600 font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
               Fitur
-            </Link>
+            </Link> */}
             <Link
               href="#how-it-works"
               className="text-gray-700 hover:text-blue-600 font-medium"
@@ -85,7 +85,7 @@ export default function Header() {
               Cara Kerja
             </Link>
             <Link
-              href="#"
+              href="#contact"
               className="text-gray-700 hover:text-blue-600 font-medium"
               onClick={() => setIsMenuOpen(false)}
             >

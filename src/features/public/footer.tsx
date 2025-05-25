@@ -3,15 +3,15 @@ import { Package, Mail, Phone, MapPin } from "lucide-react"
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-800 text-white">
+    <footer id="contact" className="bg-gray-800 text-white">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <Package className="h-6 w-6 text-blue-400" />
-              <span className="text-xl font-bold">ShipTrack</span>
+              <span className="text-xl font-bold">OTrack</span>
             </div>
-            <p className="text-gray-300 mb-4">Solusi terbaik untuk melacak pengiriman Anda dengan mudah dan cepat.</p>
+            <p className="text-gray-300 mb-4">Solusi terbaik untuk melacak pesanan Anda dengan mudah dan cepat.</p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-300 hover:text-white">
                 <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -39,33 +39,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Tautan Cepat</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/" className="text-gray-300 hover:text-white">
-                  Beranda
-                </Link>
-              </li>
-              <li>
-                <Link href="#features" className="text-gray-300 hover:text-white">
-                  Fitur
-                </Link>
-              </li>
-              <li>
-                <Link href="#how-it-works" className="text-gray-300 hover:text-white">
-                  Cara Kerja
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-gray-300 hover:text-white">
-                  Tentang Kami
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
+          {/* <div>
             <h3 className="text-lg font-semibold mb-4">Layanan</h3>
             <ul className="space-y-2">
               <li>
@@ -89,7 +63,7 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
-          </div>
+          </div> */}
 
           <div>
             <h3 className="text-lg font-semibold mb-4">Kontak</h3>
@@ -108,10 +82,21 @@ export default function Footer() {
               </li>
             </ul>
           </div>
+
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Kami ingin mendengar pendapat anda</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/" className="text-gray-300 hover:text-white">
+                  Beri kami masukan
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
 
         <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
-          <p>&copy; {new Date().getFullYear()} ShipTrack. Hak Cipta Dilindungi.</p>
+          <p>&copy; {new Date().getFullYear()} OrderTrack. Hak Cipta Dilindungi.</p>
         </div>
       </div>
     </footer>

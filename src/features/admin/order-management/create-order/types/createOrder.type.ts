@@ -1,31 +1,22 @@
 export type CreateOrderType = {
-    id: number;
-    number: string,
-    customer: {
-      id: number,
-      name: string,
-    },
-    pickupAddress: string;
-    pickupDateTime: string;
-    deliveryAddress: string;
-    deliveryDateTime: string;
-    package: {
-      id: number,
-      type: string,
-    },
-    quantity: number;
-    weightVolume: number;
-    specialInstructions: string;
-    vehicle: {
-      id: number,
-      type: string,
-    },
-    driver: {
-      id: number,
-      name: string,      
-    },
-    payment: {
-      id: number,
-      method: string,
-    }
-  }
+  id: number;
+  trackingNumber: string,
+  status: string,
+  sender: string,
+  recipient: string,
+  origin: string,
+  destination: string,
+  shippingDate: string,
+  estimatedDelivery: string,
+  service: string,
+  weight: string,
+  dimensions: string,
+  history: CreateOrderHistoryType[]
+}
+
+export type CreateOrderHistoryType = {
+  date: string,
+  location: string,
+  description: string,
+  status: string,
+}
