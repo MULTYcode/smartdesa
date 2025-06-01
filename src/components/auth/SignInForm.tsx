@@ -6,26 +6,47 @@ import Button from "@/components/ui/button/Button";
 import { ChevronLeftIcon, EyeCloseIcon, EyeIcon } from "@/icons";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { FormEvent, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { signIn } from "next-auth/react";
+import Swal from 'sweetalert2';
 
 export default function SignInForm() {
   const [showPassword, setShowPassword] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
-  const route = useRouter()
+  const router = useRouter()
   const { data: session } = useSession();
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [keepMe, setKeepMe] = useState(false)
+
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
-    
-    route.push('/admin')
+
+    const res = await signIn('credentials', {
+      email,
+      password,
+      redirect: false,
+      callbackUrl: '/admin',
+    })
+
+    if (res?.ok) {
+      router.push('/admin')
+    } else {
+      // alert('Login gagal')
+      Swal.fire({
+        title: 'Failed',
+        text: 'Login failed',
+        icon: 'warning',
+        confirmButtonText: 'OK',
+      });
+    }
   }
 
-    useEffect(() => {
-    if (session) route.push("/admin");
-  }, [session, route]);
-  
+  useEffect(() => {
+    if (session) router.push("/admin");
+  }, [session, router]);
+
   return (
     <div className="flex flex-col flex-1 lg:w-1/2 w-full">
       <div className="w-full max-w-md sm:pt-10 mx-auto mb-5">
@@ -75,7 +96,7 @@ export default function SignInForm() {
                   />
                 </svg>
                 Sign in with Google
-              </button>              
+              </button>
             </div>
             <div className="relative py-3 sm:py-5">
               <div className="absolute inset-0 flex items-center">
@@ -87,13 +108,13 @@ export default function SignInForm() {
                 </span>
               </div>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleLogin}>
               <div className="space-y-6">
                 <div>
                   <Label>
                     Email <span className="text-error-500">*</span>{" "}
                   </Label>
-                  <Input placeholder="info@gmail.com" type="email" />
+                  <Input placeholder="info@gmail.com" type="email" defaultValue={email} onChange={(e) => setEmail(e.target.value)} />
                 </div>
                 <div>
                   <Label>
@@ -102,6 +123,8 @@ export default function SignInForm() {
                   <div className="relative">
                     <Input
                       type={showPassword ? "text" : "password"}
+                      defaultValue={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       placeholder="Enter your password"
                     />
                     <span
@@ -118,7 +141,7 @@ export default function SignInForm() {
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <Checkbox checked={isChecked} onChange={setIsChecked} />
+                    <Checkbox checked={keepMe} onChange={setKeepMe} />
                     <span className="block font-normal text-gray-700 text-theme-sm dark:text-gray-400">
                       Keep me logged in
                     </span>

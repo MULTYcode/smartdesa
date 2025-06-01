@@ -10,6 +10,7 @@ export default function UserDropdown() {
 
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [avatar, setAvatar] = useState("");
 
     useEffect(() => {
     const fetchSession = async () => {
@@ -17,6 +18,7 @@ export default function UserDropdown() {
       if (session) {
         setEmail(session.user?.email || "");
         setName(session.user?.name || "");
+        setAvatar(session.user?.image || "/images/user/default-avatar.png");
       }
     };
 
@@ -40,8 +42,8 @@ export default function UserDropdown() {
         <span className="mr-3 overflow-hidden rounded-full h-11 w-11">
           <Image
             width={44}
-            height={44}
-            src="/images/user/owner.jpg"
+            height={44}            
+            src={avatar || "/images/user/default-avatar.png"}
             alt="User"
           />
         </span>

@@ -6,17 +6,105 @@ import { ChevronLeftIcon, EyeCloseIcon, EyeIcon } from "@/icons";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { FormEvent, useState } from "react";
+import Swal from "sweetalert2";
 
 export default function SignUpForm() {
   const [showPassword, setShowPassword] = useState(false);
+  const [showRePassword, setReShowPassword] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [rePassword, setRePassword] = useState('');
   const route = useRouter()
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-    route.push('/admin')
-  }
+    if (password !== rePassword) {
+      Swal.fire({
+        title: 'Failed',
+        text: 'Password not match',
+        icon: 'warning',
+        confirmButtonText: 'OK',
+      });
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      Swal.fire({
+        title: 'Failed',
+        text: 'Invalid email format',
+        icon: 'warning',
+        confirmButtonText: 'OK',
+      });
+      return;
+    }
+
+    const name = firstName + ' ' + lastName;
+    const nameRegex = /^[A-Za-z\s]+$/;
+    if (!nameRegex.test(name)) {
+      Swal.fire({
+        title: 'Failed',
+        text: 'Invalid name format',
+        icon: 'warning',
+        confirmButtonText: 'OK',
+      });
+      return;
+    }
+
+    const data = {
+      name,
+      email,
+      password,
+      rePassword,
+      terms: isChecked,
+    };
+
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.json();
+
+      // Cek apakah ada message gagal
+      if (!res.ok || result.message?.toLowerCase().includes('used')) {
+        Swal.fire({
+          title: 'Failed',
+          text: result.message || 'Registration failed',
+          icon: 'warning',
+          confirmButtonText: 'OK',
+        });
+        return;
+      }
+
+      // Jika berhasil
+      Swal.fire({
+        title: 'Success',
+        text: 'Account created successfully. Please sign in.',
+        icon: 'success',
+        confirmButtonText: 'OK',
+      });
+
+      route.push('/signin');
+    } catch (error) {
+      console.error('Registration error:', error);
+      Swal.fire({
+        title: 'Error',
+        text: 'Something went wrong. Please try again later.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+    }
+  };
+
 
   return (
     <div className="flex flex-col flex-1 lg:w-1/2 w-full overflow-y-auto no-scrollbar">
@@ -40,7 +128,7 @@ export default function SignUpForm() {
             </p>
           </div>
           <div>
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5">
+            {/* <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5">
               <button className="inline-flex items-center justify-center gap-3 py-3 text-sm font-normal text-gray-700 transition-colors bg-gray-100 rounded-lg px-7 hover:bg-gray-200 hover:text-gray-800 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10">
                 <svg
                   width="20"
@@ -83,14 +171,14 @@ export default function SignUpForm() {
                 </svg>
                 Sign up with Fb
               </button>
-            </div>
+            </div> */}
             <div className="relative py-3 sm:py-5">
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-gray-200 dark:border-gray-800"></div>
               </div>
               <div className="relative flex justify-center text-sm">
                 <span className="p-2 text-gray-400 bg-white dark:bg-gray-900 sm:px-5 sm:py-2">
-                  Or
+                  Your details
                 </span>
               </div>
             </div>
@@ -107,6 +195,7 @@ export default function SignUpForm() {
                       id="fname"
                       name="fname"
                       placeholder="Enter your first name"
+                      onChange={(e) => setFirstName(e.target.value)}
                     />
                   </div>
                   {/* <!-- Last Name --> */}
@@ -119,6 +208,7 @@ export default function SignUpForm() {
                       id="lname"
                       name="lname"
                       placeholder="Enter your last name"
+                      onChange={(e) => setLastName(e.target.value)}
                     />
                   </div>
                 </div>
@@ -132,6 +222,7 @@ export default function SignUpForm() {
                     id="email"
                     name="email"
                     placeholder="Enter your email"
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 {/* <!-- Password --> */}
@@ -143,12 +234,36 @@ export default function SignUpForm() {
                     <Input
                       placeholder="Enter your password"
                       type={showPassword ? "text" : "password"}
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                     <span
                       onClick={() => setShowPassword(!showPassword)}
                       className="absolute z-30 -translate-y-1/2 cursor-pointer right-4 top-1/2"
                     >
                       {showPassword ? (
+                        <EyeIcon className="fill-gray-500 dark:fill-gray-400" />
+                      ) : (
+                        <EyeCloseIcon className="fill-gray-500 dark:fill-gray-400" />
+                      )}
+                    </span>
+                  </div>
+                </div>
+                {/* <!-- RE-Password --> */}
+                <div>
+                  <Label>
+                    Password Match<span className="text-error-500">*</span>
+                  </Label>
+                  <div className="relative">
+                    <Input
+                      placeholder="Enter your password"
+                      type={showRePassword ? "text" : "password"}
+                      onChange={(e) => setRePassword(e.target.value)}
+                    />
+                    <span
+                      onClick={() => setReShowPassword(!showRePassword)}
+                      className="absolute z-30 -translate-y-1/2 cursor-pointer right-4 top-1/2"
+                    >
+                      {showRePassword ? (
                         <EyeIcon className="fill-gray-500 dark:fill-gray-400" />
                       ) : (
                         <EyeCloseIcon className="fill-gray-500 dark:fill-gray-400" />
@@ -176,7 +291,9 @@ export default function SignUpForm() {
                 </div>
                 {/* <!-- Button --> */}
                 <div>
-                  <button className="flex items-center justify-center w-full px-4 py-3 text-sm font-medium text-white transition rounded-lg bg-brand-500 shadow-theme-xs hover:bg-brand-600">
+                  <button disabled={!isChecked} className={`flex items-center justify-center w-full px-4 py-3 text-sm font-medium text-white transition rounded-lg shadow-theme-xs
+    ${isChecked ? 'bg-brand-500 hover:bg-brand-600 cursor-pointer' : 'bg-gray-400 cursor-not-allowed'}
+  `}>
                     Sign Up
                   </button>
                 </div>

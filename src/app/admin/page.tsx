@@ -6,9 +6,9 @@ import MonthlySalesChart from "@/components/ecommerce/MonthlySalesChart";
 import StatisticsChart from "@/components/ecommerce/StatisticsChart";
 import RecentOrders from "@/components/ecommerce/RecentOrders";
 import DemographicCard from "@/components/ecommerce/DemographicCard";
-import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
-import { authOptions } from "../api/auth/[...nextauth]/route";
+// import { getServerSession } from "next-auth";
+// import { redirect } from "next/navigation";
+// import { authOptions } from "../api/auth/[...nextauth]/route";
 
 export const metadata: Metadata = {
   title:
@@ -17,11 +17,11 @@ export const metadata: Metadata = {
 };
 
 export default async function Ecommerce() {
-  const session = await getServerSession(authOptions);
+  // const session = await getServerSession(authOptions);
 
-  if (!session) {
-    redirect("/signin");
-  }
+  // if (!session) {
+  //   redirect("/signin");
+  // }
 
   return (
     <div className="grid grid-cols-12 gap-4 md:gap-6">

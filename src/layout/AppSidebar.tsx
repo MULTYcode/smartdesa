@@ -42,9 +42,8 @@ const navItems: NavItem[] = [
   },
   {
     icon: <ListIcon />,
-    name: "Shipment Tracking",
-    subItems: [{ name: "Track Shipments", path: "/track-shipments" }],
-    pro: true,
+    name: "Order Tracking",
+    subItems: [{ name: "Track Shipments/Orders", path: "/track-shipments" }],
   },
   {
     icon: <ListIcon />,
