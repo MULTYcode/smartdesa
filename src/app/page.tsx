@@ -9,7 +9,7 @@ import { NewsSection } from "@/components/template/simple/sections/news-section"
 // import { GallerySection } from "@/components/template/simple/sections/gallery-section"
 import { CTASection } from "@/components/template/simple/sections/cta-section"
 import { useContent } from "@/hooks/useContent"
-import Chatbot from "@/components/template/simple/sections/chatbot"
+// import Chatbot from "@/components/template/simple/sections/chatbot"
 import { SambutanSection } from "@/components/template/simple/sections/sambutan-section"
 
 export default function Home() {
@@ -29,7 +29,7 @@ export default function Home() {
         <CTASection data={cta} />
       </main>
 
-      <Chatbot />
+      {/* <Chatbot /> */}
 
       <Footer data={footer} />
     </div>
