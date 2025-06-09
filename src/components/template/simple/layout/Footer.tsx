@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { Facebook, Instagram, Mail, MapPin, Phone, Twitter, Youtube } from "lucide-react"
-import { NavItem } from "@/types/Simple";
+import { NavItem, NavLayanan } from "@/types/Simple";
 
 interface FooterProps {
   data?: {
@@ -84,9 +84,9 @@ export function Footer({ data }: FooterProps) {
           <div>
             <h3 className="font-bold text-lg mb-4">Layanan</h3>
             <ul className="space-y-2">
-              {data?.mainNav?.map((service: NavItem) => (
-                <li key={service.order}>
-                  <a href={service.route} className="text-gray-400 hover:text-white">
+              {data?.mainNav?.map((service: NavLayanan) => (
+                <li key={service.link}>
+                  <a href={service.link} className="text-gray-400 hover:text-white">
                     {service.title}
                   </a>
                 </li>

@@ -18,11 +18,15 @@ export interface NavItem {
   icon?: string
   isActive?: boolean
   children?: NavItem[]
-  // label: string
-  // href: string
-  // icon?: string
-  // isActive?: boolean
-  // children?: NavItem[]
+}
+
+export interface NavLayanan {
+  id: number,
+  order: number,
+  title: string,
+  icon: string,
+  link: string,
+  isDefault: boolean
 }
 
 //aparatur Types
@@ -52,7 +56,7 @@ export interface InfoCard {
 export interface NewsItem {
   id: string
   title: string
-  excerpt: string  
+  excerpt: string
   date: string
   readTime: string
   image: string
