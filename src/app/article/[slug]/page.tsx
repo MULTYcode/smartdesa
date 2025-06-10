@@ -31,7 +31,7 @@ export default function page() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="col-span-2">
-            <p>ini dari slug</p>
+            
           </div>
         </div>
       </div>
