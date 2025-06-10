@@ -1,5 +1,5 @@
+import { Meta } from "@/types/meta.type";
 import { CategoryType } from "./category.type";
-import { Meta } from "./meta.type";
 
 export type ArticleType = {
     id: number;

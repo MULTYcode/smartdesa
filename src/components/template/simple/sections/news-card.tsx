@@ -30,10 +30,10 @@ export function NewsCard({ title, excerpt, date, readTime, image, slug, classNam
           <span>{readTime}</span>
         </div>
         <h3 className="text-xl font-bold mb-2 hover:text-[#0d6b3f] transition-colors">
-          <Link href={`/berita/${slug}`}>{title}</Link>
+          <Link href={`/article/${slug}`}>{title}</Link>
         </h3>
         <p className="text-gray-600 mb-4 line-clamp-3">{excerpt}</p>
-        <Link href={`/berita/${slug}`} className="text-[#0d6b3f] font-medium flex items-center hover:underline">
+        <Link href={`/article/${slug}`} className="text-[#0d6b3f] font-medium flex items-center hover:underline">
           Baca Selengkapnya
           <ChevronRight className="h-4 w-4 ml-1" />
         </Link>

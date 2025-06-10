@@ -1,12 +1,7 @@
 import Link from "next/link"
 import { NewsCard } from "@/components/template/simple/sections/news-card"
 import { ChevronRight } from "lucide-react"
-// import type { NewsItem } from "@/types/Simple"
-import useArticle from "@/features/news/hooks/useArticle";
-
-// interface NewsSectionProps {
-//   news: NewsItem[]
-// }
+import useArticle from "@/features/article/hooks/useArticle";
 
 export function NewsSection() {
   const { data } = useArticle({ "page_size": 6 });
@@ -19,7 +14,7 @@ export function NewsSection() {
             <h2 className="text-3xl font-bold text-gray-800 mb-2">Berita Terbaru</h2>
             <p className="text-gray-600">Informasi dan berita terkini dari Desa</p>
           </div>
-          <Link href="/berita" className="text-[#0d6b3f] font-medium flex items-center hover:underline">
+          <Link href="/article" className="text-[#0d6b3f] font-medium flex items-center hover:underline">
             Lihat Semua
             <ChevronRight className="h-4 w-4 ml-1" />
           </Link>
@@ -35,7 +30,7 @@ export function NewsSection() {
               date={item.published_at ?? Date.now().toString()}
               // readTime={item.readTime}
               image={item.thumbnail ?? "/images/placeholder.svg"}
-              slug={item.slug}
+              slug={item.slug}              
             />
           ))}
         </div>

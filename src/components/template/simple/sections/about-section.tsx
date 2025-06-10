@@ -13,7 +13,7 @@ export function AboutSection({ data }: AboutSectionProps) {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push('/visi-misi');
+    router.push('/tour');
   };
 
   return (
