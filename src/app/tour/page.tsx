@@ -1,13 +1,9 @@
 "use client"
-import Link from "next/link"
 import { NewsCard } from "@/components/template/simple/sections/news-card"
-import { ChevronRight } from "lucide-react"
 import useTour from "@/features/tour/hooks/useList";
-import { useState } from "react";
 
-export default function TourPage() {
-    const [search, setSearch] = useState('');
-    const { data } = useTour({ "search": search, 'page_size': 6 });
+export default function TourPage() {    
+    const { data } = useTour({ "search": '', 'page_size': 6 });
     const allTour = data?.pages?.flatMap(page => page?.data) || [];
 
     return (

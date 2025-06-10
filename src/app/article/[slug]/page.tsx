@@ -3,18 +3,19 @@ import type { Metadata } from "next"
 import ArticleService from '@/features/article/services/article.service';
 import { ArticleType } from '@/features/article/types/article.type';
 import { formatMetadata } from '@/lib/generate-seo';
+import ArticleDetail from '@/features/article/components/articleDetail';
 
-interface DynamicPageProps {
-  params: { slug?: string };
+interface PageProps {
+  params: { slug: string };
 }
 
 let article: ArticleType;
 
-export async function generateMetadata({ params }: DynamicPageProps): Promise<Metadata> {
-  const { slug } = await params || {};
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+   const { slug } = await params
   try {
     const articleResponse = await ArticleService.getOne(slug ?? '', { with: "user,category" })
-     article = articleResponse.data
+    article = await articleResponse.data
 
     return formatMetadata({ ...article, type: "article" }, { siteName: "Website Desa" })
   } catch {
@@ -25,16 +26,22 @@ export async function generateMetadata({ params }: DynamicPageProps): Promise<Me
   }
 }
 
-export default function page() {
-  return (
-    <section className="py-16 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="col-span-2">
-            
-          </div>
-        </div>
-      </div>
-    </section>
-  )
+// export async function generateMetadata(
+//   { params }: { params: { slug: string } }
+// ): Promise<Metadata> {
+//   const slug = params.slug;
+
+//   // Lakukan fetch data artikel berdasarkan slug
+//   const res = await ArticleService.getOne(slug ?? '', { with: "user,category" })
+//   const article = await res.data
+
+//   return {
+//     title: article.title,
+//     description: article.excerpt,
+//   };
+// }
+
+export default async function page({ params }: PageProps) {
+  const { slug } = await params
+  return <ArticleDetail slug={slug} />
 }

@@ -52,11 +52,15 @@ export function Header({ data }: HeaderProps) {
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center space-x-3">
             <Image
-              src={data?.logo || "/images/placeholder.svg"}
-              alt={`${data?.regionEntity} Logo`}
-              width={60}
-              height={60}
-              className="rounded-full bg-transparent"
+              className="h-1"
+              src={data?.logo ?? '/images/logo/enim.png'}
+              alt="Logo"
+              width={500}
+              height={300}
+              style={{
+                width: "38px",
+                height: "auto",
+              }}
             />
             <div>
               <h1 className="font-bold text-xl text-[#0d6b3f]">{data?.regionEntity}</h1>

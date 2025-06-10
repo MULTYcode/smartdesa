@@ -83,7 +83,7 @@ export function useContent() {
   }
 
   const header = {
-    logo: logoData?.value?.imageUrl  ?? "/images/logo/enim.png?height=60&width=60",
+    logo: logoData?.value?.imageUrl  ?? "/images/logo/enim.png",
     regionEntity: logoData?.value?.regionEntity  ?? "",
     regionDescription: logoData?.value?.regionDescription  ?? "",
     menus: menuData?.value ?? [],    

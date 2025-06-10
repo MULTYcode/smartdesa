@@ -41,11 +41,15 @@ export function Footer({ data }: FooterProps) {
           <div>
             <div className="flex items-center space-x-3 mb-6">
               <Image
-                src={data?.logo ?? "/images/placeholder.svg"}
-                alt='Logo'
-                width={60}
-                height={60}
-                className="rounded-full bg-transparent"
+                className="h-1"
+                src={data?.logo ?? '/images/logo/enim.png'}
+                alt="Logo"
+                width={500}
+                height={300}
+                style={{
+                  width: "38px",
+                  height: "auto",
+                }}
               />
               <div>
                 <h3 className="font-bold text-xl">{data?.regionEntity}</h3>
