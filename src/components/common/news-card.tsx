@@ -17,10 +17,11 @@ export interface NewsCardProps {
   isDetail?: boolean
   content?: string
   category?: string
+  showCategory?: boolean
   author?: string
 }
 
-export function NewsCard({ title, excerpt, date, readTime, image, slug, className, content, category, author, isDetail = false }: NewsCardProps) {
+export function NewsCard({ title, excerpt, date, readTime, image, slug, className, content, category, author, showCategory = false, isDetail = false }: NewsCardProps) {
   return (
     <CustomCard className={cn("overflow-hidden", className)}>
       <div className={`relative ${isDetail ? 'h-90' : 'h-48'}`}>
@@ -42,7 +43,7 @@ export function NewsCard({ title, excerpt, date, readTime, image, slug, classNam
             <span>{readTime}</span>
             <span className="mx-2">•</span>
             <span>{category}</span>
-          </div> : <span className="font-semibold text-red-500 text-xs">[{category}]</span>
+          </div> : showCategory && <span className="font-semibold text-red-500 text-xs">[{category}]</span>
         }
         {/* <div className="flex items-center text-sm text-gray-500 mb-3">
           <Calendar className="h-4 w-4 mr-1" />

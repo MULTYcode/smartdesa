@@ -32,6 +32,7 @@ export function NewsSection() {
               image={item.thumbnail ?? "/images/placeholder.svg"}
               slug={item.slug}              
               category={item.category?.name}
+              showCategory={true}
             />
           ))}
         </div>
