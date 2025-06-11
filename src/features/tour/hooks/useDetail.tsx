@@ -1,6 +1,6 @@
-import TourService from "@/services/controlers/tour/tour.service";
-import { TourData } from "@/services/controlers/tour/type";
 import { useQuery } from "@tanstack/react-query";
+import TourService from "../services/tour.service";
+import { TourData } from "../types/tour.type";
 
 function useTourDetail(params: Record<string, string | number> = {}, slug: string ) {
     const {

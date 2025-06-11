@@ -8,8 +8,6 @@ import Link from 'next/link'
 export default function ArtikelPopuler() {
     const { data } = useArticle();
 
-console.log("Artikel Populer Data:", data);
-
     return (
         <div className='w-full md:w-1/5 lg:w-1/5'>
             <h2 className='text-xl font-bold mb-4'>Artikel Populer</h2>

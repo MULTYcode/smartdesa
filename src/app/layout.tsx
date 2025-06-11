@@ -1,10 +1,10 @@
 "use client"
 
-import { Outfit } from 'next/font/google';
+import { Geist, Geist_Mono } from "next/font/google";
 import './globals.css';
 
 import { SidebarProvider } from '@/context/SidebarContext';
-// import { ThemeProvider } from '@/context/ThemeContext';
+import { ThemeProvider } from '@/context/ThemeContext';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 // import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -12,8 +12,18 @@ import { useState } from 'react';
 import Chatbot from '@/components/chatbot/chatbot';
 import LayoutInner from './layoutInner';
 
-const outfit = Outfit({
-  subsets: ['latin'],
+// const outfit = Outfit({
+//   subsets: ['latin'],
+// });
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
 });
 
 export default function RootLayout({
@@ -25,15 +35,15 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${outfit.className} dark:bg-gray-900`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <QueryClientProvider client={queryClient}>
-          {/* <ThemeProvider> */}
+          <ThemeProvider>
             <SidebarProvider>
               <LayoutInner>{children}</LayoutInner>              
               {/* <ReactQueryDevtools initialIsOpen={false} /> */}
               
             </SidebarProvider>
-          {/* </ThemeProvider> */}
+          </ThemeProvider>
         </QueryClientProvider>
         <Chatbot />
       </body>
