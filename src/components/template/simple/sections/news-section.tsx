@@ -31,6 +31,7 @@ export function NewsSection() {
               // readTime={item.readTime}
               image={item.thumbnail ?? "/images/placeholder.svg"}
               slug={item.slug}              
+              category={item.category?.name}
             />
           ))}
         </div>

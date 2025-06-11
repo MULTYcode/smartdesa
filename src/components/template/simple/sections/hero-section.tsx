@@ -13,11 +13,11 @@ export function HeroSection({ data }: HeroSectionProps) {
   const router = useRouter();
 
   const handleClickProfil = () => {
-    router.push('/visi-misi');
+    router.push('/profil');
   };
 
   const handleClickLayanan = () => {
-    router.push('/layanan');
+    router.push('#info-layanan');
   };
 
   return (
