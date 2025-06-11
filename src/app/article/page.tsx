@@ -1,5 +1,5 @@
 "use client"
-import { NewsCard } from '@/components/template/simple/sections/news-card'
+import { NewsCard } from '@/components/common/news-card'
 import useArticle from '@/features/article/hooks/useArticle';
 import React from 'react'
 

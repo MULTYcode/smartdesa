@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { NewsCard } from "@/components/template/simple/sections/news-card"
+import { NewsCard } from "@/components/common/news-card"
 import { ChevronRight } from "lucide-react"
 import useArticle from "@/features/article/hooks/useArticle";
 
@@ -20,7 +20,7 @@ export function NewsSection() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {data?.pages[0].data.slice(0, 6).map((item) => (
             <NewsCard
               key={item.id}

@@ -24,7 +24,7 @@ export function AboutSection({ data }: AboutSectionProps) {
             <div className="inline-block px-3 py-1 bg-[#0d6b3f]/10 text-[#0d6b3f] font-medium rounded-full text-sm mb-4">
               {data.badge}
             </div>
-            <h2 className="text-3xl font-bold text-gray-800 mb-6">{data.title}</h2>            
+            <h2 className="text-3xl font-bold text-gray-800 mb-6">{data.title}</h2>
             {data.description.map((paragraph, index) => (
               <p key={index} className="text-gray-600 mb-4">
                 {paragraph}
@@ -36,7 +36,13 @@ export function AboutSection({ data }: AboutSectionProps) {
             </CustomButton>
           </div>
           <div className="relative h-[400px] rounded-lg overflow-hidden shadow-lg">
-            <Image src={data.image || "/placeholder.svg"} alt={data.title} fill className="object-cover" />
+            <Image
+              src={data.image || "/placeholder.svg"}
+              alt={data.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
           </div>
         </div>
       </div>

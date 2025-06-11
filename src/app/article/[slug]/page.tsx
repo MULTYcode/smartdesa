@@ -2,15 +2,14 @@ import { formatMetadata } from '@/lib/generate-seo'
 import ArticleDetail from '@/features/article/components/articleDetail'
 import { getArticle } from '@/features/article/libs/getArticle';
 import { Metadata } from 'next';
-import { PageProps } from '../../../../.next/types/app/article/page';
 
-type DynamicPageProps = {
+type PageProps = {
   params: {
     slug: string;
   };
 };
 
-export async function generateMetadata({ params }: DynamicPageProps & PageProps ): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps ): Promise<Metadata> {
   const { slug } = params;
   try {
     const article = await getArticle(slug);
@@ -23,7 +22,7 @@ export async function generateMetadata({ params }: DynamicPageProps & PageProps 
   }
 }
 
-export default async function Page({ params }: DynamicPageProps & PageProps ) {
+export default async function Page({ params }: PageProps ) {
   const { slug } = params;
   const article = await getArticle(slug);
   return <ArticleDetail slug={slug} article={article} />;

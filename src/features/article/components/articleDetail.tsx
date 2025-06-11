@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react'
-import { NewsCard } from '@/components/template/simple/sections/news-card';
+import { NewsCard } from '@/components/common/news-card';
 import ArtikelIklan from './artikelIklan';
 import ArtikelPopuler from './artikelPopuler';
 import { ArticleType } from '../types/article.type';

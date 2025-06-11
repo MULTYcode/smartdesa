@@ -24,7 +24,13 @@ export function NewsCard({ title, excerpt, date, readTime, image, slug, classNam
   return (
     <CustomCard className={cn("overflow-hidden", className)}>
       <div className={`relative ${isDetail ? 'h-90' : 'h-48'}`}>
-        <Image src={image || "/placeholder.svg"} alt={title} fill className='object cover' />
+        <Image
+          src={image || "/placeholder.svg"}
+          alt={title}
+          fill
+          className='object cover'
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
       </div>
       <div className="p-6">
         <div className="flex items-center text-sm text-gray-500 mb-3">
@@ -36,7 +42,7 @@ export function NewsCard({ title, excerpt, date, readTime, image, slug, classNam
           <span className="mx-2">•</span>
           <span>{category}</span>
         </div>
-        <h3 className={`text-xl font-bold mb-2 transition-colors ${!isDetail ? 'hover:text-[#0d6b3f]' : ''
+        <h3 className={`font-bold mb-2 transition-colors ${!isDetail ? 'hover:text-[#0d6b3f]' : ''
           }`}>
           {
             !isDetail ? <Link href={`/article/${slug}`}>{title}</Link>
@@ -54,7 +60,7 @@ export function NewsCard({ title, excerpt, date, readTime, image, slug, classNam
         {
           isDetail && <p className="self-start align-baseline text-base font-semibold text-black my-5">({author})</p>
         }
-      </div>      
+      </div>
     </CustomCard>
   )
 }

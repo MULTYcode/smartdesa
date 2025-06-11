@@ -1,5 +1,5 @@
 "use client"
-import { NewsCard } from "@/components/template/simple/sections/news-card"
+import { NewsCard } from "@/components/common/news-card"
 import useTour from "@/features/tour/hooks/useList";
 
 export default function TourPage() {    

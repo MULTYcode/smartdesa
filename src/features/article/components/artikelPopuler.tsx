@@ -15,9 +15,9 @@ export default function ArtikelPopuler() {
                 {data?.pages[0].data.slice(0, 3).map((item) => (
                     <CustomCard key={item.id} className='shadow-sm hover:shadow-md transition-shadow'>
                         <div className='relative h-35'>
-                            <Image src={item.thumbnail ?? "/images/placeholder.svg"} alt='thumbnail' fill className='object cover' />
+                            <Image src={item.thumbnail ?? "/images/placeholder.svg"} alt='thumbnail' fill className='object cover' sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
                         </div>
-                        <Link href={`/article/${item.slug}`} className='text-lg font-semibold mt-2 block hover:text-[#0d6b3f]'>
+                        <Link href={`/article/${item.slug}`} className='font-medium mt-2 block hover:text-[#0d6b3f]'>
                             {item.title}
                         </Link>
                     </CustomCard>
