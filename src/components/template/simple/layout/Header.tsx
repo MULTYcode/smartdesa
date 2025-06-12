@@ -24,21 +24,21 @@ export function Header({ data }: HeaderProps) {
         "title": "Home",
         "route": "/",
         "staticPage": null,
-        "child": null
+        "child": []
       },
       {
         "order": 2,
         "title": "Artikel",
         "route": "/article",
         "staticPage": null,
-        "child": null
+        "child": []
       },
       {
         "order": 3,
         "title": "Wisata",
         "route": "/tour",
         "staticPage": null,
-        "child": null
+        "child": []
       }
     ]
 

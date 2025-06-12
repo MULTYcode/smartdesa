@@ -14,7 +14,7 @@ export interface NavItem {
   title: string
   route: string
   staticPage: string | null
-  child: string | null
+  child: NavItem[]
   icon?: string
   isActive?: boolean
   children?: NavItem[]
@@ -207,3 +207,5 @@ export interface MetaDataPDF {
   field: string;
   translation: string;
 }
+
+export type MenuWithContent = NavItem[];

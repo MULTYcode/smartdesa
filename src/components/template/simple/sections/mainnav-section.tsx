@@ -2,10 +2,13 @@ import { NavItem } from "@/types/Simple"
 
 
 export const MainNav = ({ items }: { items: NavItem[] }) => {
+
+    const sortedMenuItems = [...items].sort((a, b) => a.order - b.order)
+
     return (
 
         <nav className="hidden md:flex items-center gap-x-6">
-            {items.map((item) => (
+            {sortedMenuItems.map((item) => (
                 <div key={item.title} className="relative group">
                     <a
                         href={item.route || "#"}
@@ -14,7 +17,7 @@ export const MainNav = ({ items }: { items: NavItem[] }) => {
                             : "text-gray-700 hover:text-[#0d6b3f]"
                             }`}
                     >
-                        {item.icon === "home" && (
+                        {item.route === "/" && (
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="w-4 h-4 mr-1 shrink-0"
@@ -27,7 +30,7 @@ export const MainNav = ({ items }: { items: NavItem[] }) => {
                             </svg>
                         )}
                         <span>{item.title}</span>
-                        {item.children && (
+                        {item.child && (
                             <svg
                                 className="w-3 h-3 ml-1 shrink-0"
                                 fill="none"
@@ -41,12 +44,12 @@ export const MainNav = ({ items }: { items: NavItem[] }) => {
                     </a>
 
                     {/* Submenu */}
-                    {item.children && (
+                    {item.child && (
                         <div className="absolute left-0 top-full z-50 hidden group-hover:flex flex-col bg-white shadow-lg border rounded-md min-w-[180px] py-2 pointer-events-auto">
-                            {item.children.map((sub) => (
+                            {item.child.map((sub) => (
                                 <a
                                     key={sub.route}
-                                    href={sub.route}
+                                    href={sub.staticPage || 'no content'}
                                     className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#0d6b3f] whitespace-nowrap"
                                 >
                                     {sub.title}
