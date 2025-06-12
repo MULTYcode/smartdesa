@@ -45,15 +45,6 @@ export function NewsCard({ title, excerpt, date, readTime, image, slug, classNam
             <span>{category}</span>
           </div> : showCategory && <span className="font-semibold text-red-500 text-xs">[{category}]</span>
         }
-        {/* <div className="flex items-center text-sm text-gray-500 mb-3">
-          <Calendar className="h-4 w-4 mr-1" />
-          <span>{date}</span>
-          <span className="mx-2">•</span>
-          <Eye className="h-4 w-4 mr-1" />
-          <span>{readTime}</span>
-          <span className="mx-2">•</span>
-          <span>{category}</span>
-        </div> */}
         <h3 className={`font-bold mb-2 transition-colors ${!isDetail ? 'hover:text-[#0d6b3f]' : ''
           }`}>
           {

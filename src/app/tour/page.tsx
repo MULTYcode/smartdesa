@@ -1,5 +1,5 @@
 "use client"
-import { NewsCard } from "@/components/common/news-card"
+import { TourCard } from "@/components/common/tour-card";
 import useTour from "@/features/tour/hooks/useList";
 
 export default function TourPage() {    
@@ -11,7 +11,7 @@ export default function TourPage() {
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {allTour.map((item) => (
-                        <NewsCard
+                        <TourCard
                             key={item.id}
                             id={item.id}
                             title={item.title}

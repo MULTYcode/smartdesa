@@ -13,7 +13,7 @@ export function HeroSection({ data }: HeroSectionProps) {
   const router = useRouter();
 
   const handleClickProfil = () => {
-    router.push('/profil');
+    router.push('/article');
   };
 
   const handleClickLayanan = () => {
