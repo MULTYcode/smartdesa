@@ -5,8 +5,6 @@ export const MainNav = ({ items }: { items: NavItem[] }) => {
 
     const sortedMenuItems = [...items].sort((a, b) => a.order - b.order)
 
-    console.log("Sorted Menu Items:", sortedMenuItems)
-
     return (
 
         <nav className="hidden md:flex items-center gap-x-6">
