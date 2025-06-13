@@ -5,13 +5,15 @@ export const MainNav = ({ items }: { items: NavItem[] }) => {
 
     const sortedMenuItems = [...items].sort((a, b) => a.order - b.order)
 
+    console.log("Sorted Menu Items:", sortedMenuItems)
+
     return (
 
         <nav className="hidden md:flex items-center gap-x-6">
             {sortedMenuItems.map((item) => (
                 <div key={item.route} className="relative group">
                     <a
-                        href={item.route || "#"}
+                        href={item.child === null ? item.route : "#"}
                         className={`font-medium inline-flex items-center whitespace-nowrap px-3 py-2 rounded-md transition-colors ${item.isActive
                             ? "text-[#0d6b3f]"
                             : "text-gray-700 hover:text-[#0d6b3f]"
