@@ -3,6 +3,7 @@
 import RichTextContent from '@/components/common/RichTextContent';
 import ArtikelIklan from '@/features/article/components/artikelIklan';
 import ArtikelPopuler from '@/features/article/components/artikelPopuler';
+import StaticPageSkeleton from '@/components/common/skeleton/StaticPageSkeleton';
 import useStaticPage from '@/hooks/useStaticPage';
 import React, { use } from 'react';
 
@@ -10,28 +11,14 @@ interface PageProps {
     params: Promise<{ slug?: string }>;
 }
 
+export const dynamic = 'force-dynamic';
 
-export default function Page({ params }: PageProps) {
+export default function PageStatic({ params }: PageProps) {
     const unwrappedParams = use(params);
-    const slug = unwrappedParams.slug ?? '';    
+    const slug = unwrappedParams.slug ?? '';
     const { data, isLoading, isError } = useStaticPage({}, slug || "");
 
-    if (isLoading) return <>
-        <div className="animate-pulse space-y-4 p-6">
-            <div className="h-8 w-3/4 bg-gray-200 rounded"></div>
-            <div className="flex space-x-4">
-                <div className="h-4 w-1/4 bg-gray-200 rounded"></div>
-                <div className="h-4 w-1/6 bg-gray-200 rounded"></div>
-            </div>
-            <div className="h-56 w-full bg-gray-200 rounded"></div>
-            <div className="space-y-2">
-                <div className="h-4 w-full bg-gray-200 rounded"></div>
-                <div className="h-4 w-5/6 bg-gray-200 rounded"></div>
-                <div className="h-4 w-4/5 bg-gray-200 rounded"></div>
-                <div className="h-4 w-3/4 bg-gray-200 rounded"></div>
-            </div>
-        </div>
-    </>;
+    if (isLoading) return <StaticPageSkeleton />;
 
     if (isError) return <p>Page Not Found</p>;
 

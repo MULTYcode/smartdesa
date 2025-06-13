@@ -12,7 +12,7 @@ interface ArticleDetailProps {
 }
 
 const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug, article }) => {
-    return (
+    return (        
         <div className="container mx-auto px-4 py-8 max-w-8xl">
             <div className='box-border flex flex-wrap gap-5 justify-between'>
                 <div className='w-full md:w-1/5 lg:w-3/5'>

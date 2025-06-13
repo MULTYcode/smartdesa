@@ -1,10 +1,13 @@
 "use client"
+import TourPageSkeleton from "@/components/common/skeleton/TourPageSkeleton";
 import { TourCard } from "@/components/common/tour-card";
 import useTour from "@/features/tour/hooks/useList";
 
 export default function TourPage() {    
-    const { data } = useTour({ "search": '', 'page_size': 6 });
+    const { data, isLoading } = useTour({ "search": '', 'page_size': 6 });
     const allTour = data?.pages?.flatMap(page => page?.data) || [];
+
+    if (isLoading) return <TourPageSkeleton />;
 
     return (
         <section className="py-16 bg-gray-50">

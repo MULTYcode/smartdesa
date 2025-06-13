@@ -207,5 +207,3 @@ export interface MetaDataPDF {
   field: string;
   translation: string;
 }
-
-export type MenuWithContent = NavItem[];

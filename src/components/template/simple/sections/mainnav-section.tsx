@@ -9,7 +9,7 @@ export const MainNav = ({ items }: { items: NavItem[] }) => {
 
         <nav className="hidden md:flex items-center gap-x-6">
             {sortedMenuItems.map((item) => (
-                <div key={item.title} className="relative group">
+                <div key={item.route} className="relative group">
                     <a
                         href={item.route || "#"}
                         className={`font-medium inline-flex items-center whitespace-nowrap px-3 py-2 rounded-md transition-colors ${item.isActive
@@ -49,7 +49,7 @@ export const MainNav = ({ items }: { items: NavItem[] }) => {
                             {item.child.map((sub) => (
                                 <a
                                     key={sub.route}
-                                    href={sub.staticPage || 'no content'}
+                                    href= { sub.staticPage !== null ? `/static/${sub.staticPage || '#'}` : sub.route }
                                     className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#0d6b3f] whitespace-nowrap"
                                 >
                                     {sub.title}

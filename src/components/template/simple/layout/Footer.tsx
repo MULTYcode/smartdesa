@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { Facebook, Instagram, Mail, MapPin, Phone, Twitter, Youtube } from "lucide-react"
 import { NavItem, NavLayanan } from "@/types/Simple";
+import FooterSkeleton from "../../../common/skeleton/footerSkeleton";
 
 interface FooterProps {
   data?: {
@@ -17,6 +18,8 @@ interface FooterProps {
 }
 
 export function Footer({ data }: FooterProps) {
+
+  if(!data) return <FooterSkeleton />
 
   // Function to render the correct social icon
   const renderSocialIcon = (platform: string) => {

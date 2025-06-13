@@ -4,9 +4,12 @@ import React from 'react'
 import Image from 'next/image'
 import useArticle from '../hooks/useArticle'
 import Link from 'next/link'
+import ArticlePopulerSkeleton from '@/components/common/skeleton/ArticlePopulerSkeleton'
 
 export default function ArtikelPopuler() {
-    const { data } = useArticle();
+    const { data, isLoading } = useArticle();
+
+    if (isLoading) return <ArticlePopulerSkeleton />;
 
     return (
         <div className='w-full md:w-1/5 lg:w-1/5'>

@@ -1,10 +1,14 @@
 "use client"
 import { NewsCard } from '@/components/common/news-card'
+import PageArticleSkeleton from '@/components/common/skeleton/PageArticleSkeleton';
 import useArticle from '@/features/article/hooks/useArticle';
 import React from 'react'
 
-export default function PageTour() {
-  const { data } = useArticle({ "page_size": 6 });
+export default function PageArticle() {
+  const { data, isLoading } = useArticle({ "page_size": 6 });
+
+  if (isLoading) return <PageArticleSkeleton />;
+
   return (
     // <body className="bg-white py-4 shadow-sm sticky top-0 z-50">
       <div className="container mx-auto px-4 flex justify-between items-center mb-10 mt-10">
