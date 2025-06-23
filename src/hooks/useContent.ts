@@ -10,6 +10,7 @@ export function useContent() {
   const { data: footerData } = useSetting(`footer-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
   const { data: menuData } = useSetting(`menu-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
   const { data: tourData } = useSetting(`tour-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
+  const { data: heroData } = useSetting(`hero-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
 
   const email = logoData?.value?.contactUs?.email || "desaku@example.com"
   const subject = encodeURIComponent("Pesan dari pengunjung")
@@ -18,7 +19,7 @@ export function useContent() {
   const hero: HeroSection = {
     title: `${logoData?.value?.regionEntity ?? ""}`,
     description: `${logoData?.value?.regionDescription ?? ""}`,
-    image: "https://sekolahgurupemimpin.s3.ap-southeast-1.amazonaws.com/ckeditor/hO0PBGqWYawQlVzkpQKPc8l0aGfdVmMGvdva5L7c.mp4",
+    image: `${heroData?.value?.videoUrl ?? "/images/placeholder.svg"}`,
     buttons: {
       primary: {
         text: "Berita terbaru dari desa",
@@ -70,15 +71,15 @@ export function useContent() {
   }
 
   const footer = {
-    logo: logoData?.value?.imageUrl  ?? "/images/logo/enim.png?height=60&width=60",
-    regionEntity: logoData?.value?.regionEntity  ?? "",
-    regionDescription: logoData?.value?.regionDescription  ?? "",
-    address: footerData?.value?.contactUs?.address ?? "",
-    phone: footerData?.value?.contactUs?.phone ?? "",
-    email: footerData?.value?.contactUs?.email ?? "",
+    logo: logoData?.value?.imageUrl ?? "/images/logo/enim.png?height=60&width=60",
+    regionEntity: logoData?.value?.regionEntity ?? "[nama desa belum diatur]",
+    regionDescription: logoData?.value?.regionDescription ?? "[keterangan belum diatur]",
+    address: footerData?.value?.contactUs?.address ?? "[alamat belum diatur]",
+    phone: footerData?.value?.contactUs?.phone ?? "[phone belum diatur]",
+    email: footerData?.value?.contactUs?.email ?? "[email belum diatur]",
     socialMedia: footerData?.value?.socialMedia ?? [],
     mainNav: serviceData?.value ?? [],
-    quickLinks: menuData?.value ?? [],    
+    quickLinks: menuData?.value ?? [],
   }
 
   const header = {

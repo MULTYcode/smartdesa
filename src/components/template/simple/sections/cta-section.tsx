@@ -20,21 +20,42 @@ export function CTASection({ data }: CTASectionProps) {
   }
 
   return (
-    <section className="py-16 bg-[#0d6b3f]">
-      <div className="container mx-auto px-4 text-center">
-        <h2 className="text-3xl font-bold text-white mb-6">{data.title}</h2>
-        <p className="text-white/90 max-w-2xl mx-auto mb-8">{data.description}</p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <CustomButton className="bg-white text-[#0d6b3f] hover:bg-gray-100" onClick={() => window.open(data.buttons.primary.url, '_blank')}>            
-            {renderIcon(data.buttons.primary.icon)}
-            {data.buttons.primary.text}
-          </CustomButton>
-          <CustomButton variant="outline" className="border-white text-white hover:bg-white/20" onClick={() => window.open(data.buttons.secondary.url, '_blank')}>
-            {renderIcon(data.buttons.secondary.icon)}
-            {data.buttons.secondary.text}
-          </CustomButton>
+
+    data.buttons.primary.url.indexOf('undefined') !== -1 ? (
+      <section className="py-16 bg-[#0d6b3f]">
+        <div className="container mx-auto px-4 text-center animate-pulse">
+          {/* Title Skeleton */}
+          <div className="h-8 w-1/2 bg-white/30 rounded mx-auto mb-6"></div>
+
+          {/* Description Skeleton */}
+          <div className="h-5 w-2/3 bg-white/20 rounded mx-auto mb-2"></div>
+          <div className="h-5 w-1/2 bg-white/20 rounded mx-auto mb-8"></div>
+
+          {/* Button Skeletons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="h-12 w-48 bg-white/40 rounded"></div>
+            <div className="h-12 w-48 border border-white/50 rounded"></div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    ) : (
+      <section className="py-16 bg-[#0d6b3f]">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold text-white mb-6">{data.title}</h2>
+          <p className="text-white/90 max-w-2xl mx-auto mb-8">{data.description}</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <CustomButton className="bg-white text-[#0d6b3f] hover:bg-gray-100" onClick={() => window.open(data.buttons.primary.url, '_blank')}>
+              {renderIcon(data.buttons.primary.icon)}
+              {data.buttons.primary.text}
+            </CustomButton>
+            <CustomButton variant="outline" className="border-white text-white hover:bg-white/20" onClick={() => window.open(data.buttons.secondary.url, '_blank')}>
+              {renderIcon(data.buttons.secondary.icon)}
+              {data.buttons.secondary.text}
+            </CustomButton>
+          </div>
+        </div>
+      </section>
+    )
+
   )
 }

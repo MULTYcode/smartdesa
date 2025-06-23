@@ -30,10 +30,17 @@ export function AboutSection({ data }: AboutSectionProps) {
                 {paragraph}
               </p>
             ))}
-            <CustomButton className="bg-[#0d6b3f] hover:bg-[#0a5733]" onClick={handleClick}>
-              {data.button.text}
-              <ChevronRight className="h-4 w-4 ml-1" />
-            </CustomButton>
+            {
+              data.title.indexOf('[') ? (
+                <SkeletonButton />
+              ) : (
+                <CustomButton className="bg-[#0d6b3f] hover:bg-[#0a5733]" onClick={handleClick}>
+                  {data.button.text}
+                  <ChevronRight className="h-4 w-4 ml-1" />
+                </CustomButton>
+              )
+            }
+
           </div>
           <div className="relative h-[400px] rounded-lg overflow-hidden shadow-lg">
             <Image
@@ -47,5 +54,14 @@ export function AboutSection({ data }: AboutSectionProps) {
         </div>
       </div>
     </section>
+  )
+}
+
+const SkeletonButton = () => {
+  return (
+    <div className="h-10 w-40 bg-white/30 rounded-md animate-pulse flex items-center justify-center">
+      <div className="h-4 w-24 bg-white/50 rounded mr-2" />
+      <div className="h-4 w-4 bg-white/50 rounded" />
+    </div>
   )
 }

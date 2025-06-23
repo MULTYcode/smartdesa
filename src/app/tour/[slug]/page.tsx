@@ -17,8 +17,6 @@ export default function Page() {
     mapsUrl = `https://www.google.com/maps/embed/v1/streetview?key=${gmapsApiKey}&location=${data?.latitude},${data?.longitude}&heading=0&pitch=0`
   }
 
-  console.log("data tour:", data);
-
   return (
     <div className="container mx-auto px-4 py-8 max-w-8xl">
       <div className='box-border flex flex-wrap gap-5'>
