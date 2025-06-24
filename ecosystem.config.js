@@ -1,7 +1,7 @@
 module.exports = {
   apps : [{
     name: "smartdesa-template-2",
-    script: "npm",
+    script: "npm run start",
     args: "start",
     cwd: "/smartdesa",
     autorestart: true,
