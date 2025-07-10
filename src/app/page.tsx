@@ -9,13 +9,13 @@ import { useContent } from "@/hooks/useContent"
 import { SambutanSection } from "@/components/template/simple/sections/sambutan-section"
 
 export default function Home() {
-  const { hero, infoCards, about, cta, infoWellcome } = useContent()
+  const { hero, infoCards, about, cta, infoWellcome, infoProgram } = useContent()
 
   return (
     <div className="flex min-h-screen flex-col">
       <main>
         <HeroSection data={hero} />
-        <SambutanSection data={infoWellcome} />
+        <SambutanSection data={{ wellcome: infoWellcome, program: infoProgram }} />
         <InfoSection cards={infoCards} />
         <AboutSection data={about} />
         <NewsSection />

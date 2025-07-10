@@ -33,7 +33,7 @@ export function NewsCard({ title, excerpt, date, readTime, image, slug, classNam
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
-      <div className="p-6">
+      <div className="py-6 flex flex-col justify-between h-1/2">
         {
           isDetail ? <div className="flex items-center text-sm text-gray-500 mb-3">
             <Calendar className="h-4 w-4 mr-1" />

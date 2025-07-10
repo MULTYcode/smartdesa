@@ -1,10 +1,8 @@
 "use client"
 import Image from "next/image"
-import { CustomButton } from "@/components/ui/simple/CustomButton"
 import { MobileNav } from "../sections/mobilnav-section"
 import { MainNav } from "../sections/mainnav-section"
 import Topbar from "@/features/header/components/topbar"
-import { Key } from "lucide-react"
 
 interface HeaderProps {
   data?: {
@@ -100,9 +98,6 @@ export function Header({ data }: HeaderProps) {
             <div className="flex items-center justify-between">
               <MainNav items={mainNav} />
               <MobileNav items={mainNav} />
-              <CustomButton variant="primary" size="icon" className="border-gray-300" onClick={() => window.open('http://localhost:3003', '_blank')}>
-                <Key className="h-4 w-4" />
-              </CustomButton>
             </div>
           )
         } 

@@ -13,7 +13,6 @@ export function NewsSection() {
           <div className="flex justify-between items-center mb-12">
             <div>
               <h2 className="text-3xl font-bold text-gray-800 mb-2">Berita Terbaru</h2>
-              <p className="text-gray-600">Informasi dan berita terkini dari Desa</p>
             </div>
             <Link href="/article" className="text-[#0d6b3f] font-medium flex items-center hover:underline">
               Lihat Semua

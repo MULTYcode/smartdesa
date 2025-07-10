@@ -6,10 +6,12 @@ import useStaticPage from "./useStaticPage";
 export function useContent() {
   const { data: logoData } = useSetting(`logo-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
   const { data: serviceData } = useSetting(`service-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
-  const { data: welcomeData } = useStaticPage({}, `wellcome-message-${process.env.NEXT_PUBLIC_VILLAGE_ID}`);  
+  const { data: welcomeData } = useStaticPage({}, `wellcome-message-${process.env.NEXT_PUBLIC_VILLAGE_ID}`); 
+  const { data: programData } = useStaticPage({}, `village-program-${process.env.NEXT_PUBLIC_VILLAGE_ID}`); 
   const { data: footerData } = useSetting(`footer-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
   const { data: menuData } = useSetting(`menu-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
   const { data: tourData } = useSetting(`tour-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
+  const { data: articleData } = useSetting(`article-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
   const { data: heroData } = useSetting(`hero-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
 
   const email = logoData?.value?.contactUs?.email || "desaku@example.com"
@@ -17,12 +19,12 @@ export function useContent() {
   const body = encodeURIComponent("Halo, saya ingin mengirim pesan kepada Desa.")
 
   const hero: HeroSection = {
-    title: `${logoData?.value?.regionEntity ?? ""}`,
-    description: `${logoData?.value?.regionDescription ?? ""}`,
+    title: `${heroData?.value?.title ?? ""}`,
+    description: `${heroData?.value?.description ?? ""}`,
     image: `${heroData?.value?.videoUrl ?? "/images/placeholder.svg"}`,
     buttons: {
       primary: {
-        text: "Berita terbaru dari desa",
+        text: "Berita terbaru",
         url: "/profil",
       },
       secondary: {
@@ -46,6 +48,7 @@ export function useContent() {
   }
 
   const infoWellcome: string = welcomeData?.content ?? "[Kata sambutan tidak tersedia]";
+  const infoProgram: string = programData?.content ?? "[Program tidak tersedia]";
 
   const gallery: GalleryItem[] = Array.from({ length: 8 }, (_, i) => ({
     id: String(i + 1),
@@ -54,16 +57,16 @@ export function useContent() {
   }))
 
   const cta: CTASection = {
-    title: "Hubungi Kami",
-    description: `Untuk informasi lebih lanjut tentang Desa ${logoData?.value?.regionEntity ?? ""} atau layanan yang tersedia, silakan hubungi kami melalui kontak di bawah ini.`,
+    title: "Hubungi kami",
+    description: `Untuk informasi lebih lanjut tentang ${logoData?.value?.regionEntity?.toLowerCase?.() ?? "kami"} atau layanan yang tersedia, silakan hubungi kami melalui kontak di bawah ini.`,
     buttons: {
       primary: {
-        text: "Hubungi Kami",
+        text: "hubungi kami",
         url: `https://wa.me/62${footerData?.value?.contactUs?.phone}?text=Halo%2C%20saya%20ingin%20bertanya%20mengenai%20layanan%20desa`,
         icon: "phone",
       },
       secondary: {
-        text: "Kirim Pesan",
+        text: "kirim pesan",
         url: `mailto:${email}?subject=${subject}&body=${body}`,
         icon: "mail",
       },
@@ -96,7 +99,9 @@ export function useContent() {
     gallery,
     cta,
     infoWellcome,
+    infoProgram,
     footer,
-    header
+    header,
+    articleData
   }
 }

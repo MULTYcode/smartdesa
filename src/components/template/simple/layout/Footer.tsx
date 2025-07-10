@@ -1,6 +1,7 @@
 import Image from "next/image"
-import { Facebook, Instagram, Mail, MapPin, Phone, Twitter, Youtube } from "lucide-react"
+import { Mail, MapPin, Phone } from "lucide-react"
 import { NavItem, NavLayanan } from "@/types/Simple";
+import Sosmed from "@/features/header/components/sosmed";
 
 interface FooterProps {
   data?: {
@@ -19,22 +20,6 @@ interface FooterProps {
 export function Footer({ data }: FooterProps) {
 
   const hasBrackets = /[\[\]]/.test(data?.regionEntity ?? '');
-
-  // Function to render the correct social icon
-  const renderSocialIcon = (platform: string) => {
-    switch (platform) {
-      case "facebook":
-        return <Facebook className="h-5 w-5" />
-      case "twitter":
-        return <Twitter className="h-5 w-5" />
-      case "instagram":
-        return <Instagram className="h-5 w-5" />
-      case "youtube":
-        return <Youtube className="h-5 w-5" />
-      default:
-        return null
-    }
-  }
 
   return (
     <footer className="bg-gray-900 text-white pt-16 pb-8">
@@ -80,18 +65,7 @@ export function Footer({ data }: FooterProps) {
                   </div>
                 </div>
                 <div className="flex space-x-4">
-                  {
-                    data?.socialMedia ? Object.entries(data?.socialMedia).map(([platform, data]) => (
-                      <a
-                        key={platform}
-                        href={data && typeof data === 'object' && data !== null && 'profileUrl' in data ? (data as { profileUrl: string }).profileUrl : '#'}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {renderSocialIcon(platform.toLowerCase())}
-                      </a>
-                    )) : <p className="text-black text-center text-md dark:text-green-100">[Sosial Media belum di atur]</p>
-                  }
+                 <Sosmed/>
                 </div>
               </div>
             )

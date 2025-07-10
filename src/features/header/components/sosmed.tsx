@@ -1,6 +1,6 @@
 // import { useNavigation } from '@/hooks/useNavigation'
 import useSetting from '@/hooks/useSettings';
-import { Facebook, Instagram, Twitter, Youtube } from 'lucide-react'
+import { FaFacebook, FaInstagram, FaXTwitter, FaLinkedin, FaThreads, FaTiktok, FaYoutube, FaQuestion } from "react-icons/fa6";
 import React from 'react'
 
 export default function Sosmed() {
@@ -8,17 +8,23 @@ export default function Sosmed() {
     const { data: setting } = useSetting(`footer-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
 
     const renderSocialIcon = (platform: string) => {
-        switch (platform) {
+        switch (platform.toLowerCase()) {
             case "facebook":
-                return <Facebook className="h-4 w-4" />
+            return <FaFacebook className="h-4 w-4" />
             case "twitter":
-                return <Twitter className="h-4 w-4" />
+            return <FaXTwitter className="h-4 w-4" />
             case "instagram":
-                return <Instagram className="h-4 w-4" />
+            return <FaInstagram className="h-4 w-4" />
             case "youtube":
-                return <Youtube className="h-4 w-4" />
+            return <FaYoutube className="h-4 w-4" />
+            case "linkedin":
+            return <FaLinkedin className="h-4 w-4" />
+            case "threads":
+            return <FaThreads className="h-4 w-4" />
+            case "tiktok":
+            return <FaTiktok className="h-4 w-4" />
             default:
-                return null
+            return <FaQuestion className="h-4 w-4" />
         }
     }
 
