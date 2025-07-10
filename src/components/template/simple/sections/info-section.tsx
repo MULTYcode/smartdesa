@@ -1,6 +1,7 @@
 import { FeatureCard } from "@/components/ui/simple/feature-card"
 import type { InfoCard } from "@/types/Simple"
 
+import type { LucideIcon } from "lucide-react"
 import Icons from "@/icons/icons"
 
 interface InfoSectionProps {
@@ -22,20 +23,21 @@ export function InfoSection({ cards }: InfoSectionProps) {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {cards.map((card) => {
-              const IconComponent = Icons[card.icon] ?? Icons.FaQuestion
-            return (
-            <FeatureCard
-              key={card.id}
-              title={card.title}
-              description={`Semua informasi tentang ${card.title} dapat kamu lihat disini.`}
-              icon={IconComponent}
-              link={
-                typeof card.link === "string"
-                  ? { text: "Selengkapnya", url: card.link }
-                  : card.link
-              }
-            />
-          )})}
+              const IconComponent = Icons[card.icon] as LucideIcon
+              return (
+                <FeatureCard
+                  key={card.id}
+                  title={card.title}
+                  description={`Semua informasi tentang ${card.title} dapat kamu lihat disini.`}
+                  icon={IconComponent}
+                  link={
+                    typeof card.link === "string"
+                      ? { text: "Selengkapnya", url: card.link }
+                      : card.link
+                  }
+                />
+              )
+          })}
         </div>
       </div>
     </section>
