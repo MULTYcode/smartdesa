@@ -18,7 +18,7 @@ export function AboutSection({ data }: AboutSectionProps) {
 
   return (
     <section className="py-16">
-      <div className="container mx-auto px-4">
+      <div className="px-6 sm:px-12 ">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <div className="inline-block px-3 py-1 bg-[#0d6b3f]/10 text-[#0d6b3f] font-medium rounded-full text-sm mb-4">
@@ -30,16 +30,11 @@ export function AboutSection({ data }: AboutSectionProps) {
                 {paragraph}
               </p>
             ))}
-            {
-              data.title.indexOf('[') ? (
-                <SkeletonButton />
-              ) : (
-                <CustomButton className="bg-[#0d6b3f] hover:bg-[#0a5733]" onClick={handleClick}>
-                  {data.button.text}
-                  <ChevronRight className="h-4 w-4 ml-1" />
-                </CustomButton>
-              )
-            }
+
+             <CustomButton className="bg-[#0d6b3f] hover:bg-[#0a5733]" onClick={handleClick}>
+                {data.button.text}
+                <ChevronRight className="h-4 w-4 ml-1" />
+              </CustomButton>
 
           </div>
           <div className="relative h-[400px] rounded-lg overflow-hidden shadow-lg">
@@ -54,14 +49,5 @@ export function AboutSection({ data }: AboutSectionProps) {
         </div>
       </div>
     </section>
-  )
-}
-
-const SkeletonButton = () => {
-  return (
-    <div className="h-10 w-40 bg-white/30 rounded-md animate-pulse flex items-center justify-center">
-      <div className="h-4 w-24 bg-white/50 rounded mr-2" />
-      <div className="h-4 w-4 bg-white/50 rounded" />
-    </div>
   )
 }

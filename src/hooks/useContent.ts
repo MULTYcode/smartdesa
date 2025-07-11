@@ -6,6 +6,7 @@ import useStaticPage from "./useStaticPage";
 export function useContent() {
   const { data: logoData } = useSetting(`logo-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
   const { data: serviceData } = useSetting(`service-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
+  const { data: appData } = useSetting(`app-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
   const { data: welcomeData } = useStaticPage({}, `wellcome-message-${process.env.NEXT_PUBLIC_VILLAGE_ID}`); 
   const { data: programData } = useStaticPage({}, `village-program-${process.env.NEXT_PUBLIC_VILLAGE_ID}`); 
   const { data: footerData } = useSetting(`footer-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
@@ -14,7 +15,7 @@ export function useContent() {
   const { data: articleData } = useSetting(`article-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
   const { data: heroData } = useSetting(`hero-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
 
-  const email = logoData?.value?.contactUs?.email || "desaku@example.com"
+  const email = footerData?.value?.contactUs?.email || "desaku@example.com"
   const subject = encodeURIComponent("Pesan dari pengunjung")
   const body = encodeURIComponent("Halo, saya ingin mengirim pesan kepada Desa.")
 
@@ -47,6 +48,11 @@ export function useContent() {
     },
   }
 
+  const service = {
+    title: appData?.value?.title ?? "[judul layanan belum diatur]",
+    subTittle: appData?.value?.subTitle ?? "[Sub judul layanan belum diatur]"
+  }
+
   const infoWellcome: string = welcomeData?.content ?? "[Kata sambutan tidak tersedia]";
   const infoProgram: string = programData?.content ?? "[Program tidak tersedia]";
 
@@ -71,6 +77,11 @@ export function useContent() {
         icon: "mail",
       },
     },
+  }
+
+  const article = {
+    title: articleData?.value?.title ?? "[Judul artikel belum diatur]",
+    imageUrl: articleData?.value?.imageUrl ?? "/images/placeholder.svg",
   }
 
   const footer = {
@@ -102,6 +113,7 @@ export function useContent() {
     infoProgram,
     footer,
     header,
-    articleData
+    article,
+    service
   }
 }

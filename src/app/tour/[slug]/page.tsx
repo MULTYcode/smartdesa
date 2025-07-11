@@ -18,7 +18,7 @@ export default function Page() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-8xl">
+    <div className="px-6 sm:px-12  py-8 max-w-8xl">
       <div className='box-border flex flex-wrap gap-5'>
 
         <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 p-6 bg-white rounded-2xl shadow-lg">

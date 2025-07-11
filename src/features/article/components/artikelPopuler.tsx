@@ -12,7 +12,7 @@ export default function ArtikelPopuler() {
     if (isLoading) return <ArticlePopulerSkeleton />;
 
     return (
-        <div className='w-full md:w-1/5 lg:w-1/5'>
+        <div className='w-full '>
             <h2 className='text-xl font-bold mb-4'>Artikel Populer</h2>
             <ul className='space-y-4'>
                 {data?.pages[0].data.slice(0, 3).map((item) => (

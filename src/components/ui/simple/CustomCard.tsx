@@ -132,7 +132,7 @@ export function CustomCard({
           {description && <CardDescription>{description}</CardDescription>}
         </CardHeader>
       )}
-      <CardContent className={cn("pt-0", !title && !description && !Icon && "h-full", contentClassName)}>
+      <CardContent className={cn("pt-0", !title && !description && !Icon && "pt-4 h-full", contentClassName)}>
         {children}
       </CardContent>
       {footer && <CardFooter className={cn(footerClassName)}>{footer}</CardFooter>}

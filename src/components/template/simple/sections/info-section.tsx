@@ -3,21 +3,22 @@ import type { InfoCard } from "@/types/Simple"
 
 import type { LucideIcon } from "lucide-react"
 import Icons from "@/icons/icons"
+import { useContent } from "@/hooks/useContent"
 
 interface InfoSectionProps {
   cards: InfoCard[]
 }
 
 export function InfoSection({ cards }: InfoSectionProps) {
-  // Function to get the correct icon component
+  const { service } = useContent();
 
   return (
     <section id="info-layanan" className="py-16 bg-gray-50">
-      <div className="container mx-auto px-4">
+      <div className="px-6 sm:px-12 ">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">Informasi dan Layanan</h2>
+          <h2 className="text-3xl font-bold text-gray-800 mb-4">{service.title}</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Kenali lebih dekat tentang potensi, dan keunggulan kami
+            {service.subTittle}
           </p>
         </div>
 

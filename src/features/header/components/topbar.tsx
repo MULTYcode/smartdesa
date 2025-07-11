@@ -14,9 +14,9 @@ export default function Topbar() {
 
     isLoading || !setting ? (
       <div className="bg-[#0d6b3f] text-white py-2">
-        <div className="container mx-auto px-4 flex justify-between items-center">
+        <div className="px-6 sm:px-12 flex-col sm:flex-row gap-2 flex justify-between items-start sm:items-center">
           {/* Left Side - Phone & Email */}
-          <div className="flex items-center space-x-4 text-sm">
+          <div className="flex flex-col sm:flex-row  items-start sm:items-center gap-2 space-x-4 text-sm">
             {/* Phone */}
             <div className="flex items-center space-x-1">
               <Skeleton className="h-4 w-4 rounded-full bg-green-800" />
@@ -39,8 +39,8 @@ export default function Topbar() {
       </div>
     ) : (
       <div className="bg-[#0d6b3f] text-white py-2">
-        <div className="container mx-auto px-4 flex justify-between items-center">
-          <div className="flex items-center space-x-4 text-sm">
+        <div className="px-6 sm:px-12 flex-col sm:flex-row gap-2 flex justify-between items-start sm:items-center">
+          <div className="flex flex-col sm:flex-row  items-start sm:items-center space-x-4 text-sm">
             <div className="flex items-center">
               <Phone className="h-4 w-4 mr-1" />
               <span>{setting?.value?.contactUs?.phone}</span>

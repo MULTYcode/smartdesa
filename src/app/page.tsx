@@ -9,7 +9,7 @@ import { useContent } from "@/hooks/useContent"
 import { SambutanSection } from "@/components/template/simple/sections/sambutan-section"
 
 export default function Home() {
-  const { hero, infoCards, about, cta, infoWellcome, infoProgram } = useContent()
+  const { hero, infoCards, about, cta, infoWellcome, infoProgram } = useContent();
 
   return (
     <div className="flex min-h-screen flex-col">

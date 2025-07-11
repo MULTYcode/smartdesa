@@ -13,7 +13,7 @@ export function SambutanSection({ data }: WellcomeSectionProps) {
 
   return (
     <section className="py-16">
-      <div className="container mx-auto px-4">
+      <div className="px-6 sm:px-12 ">
         <div className="items-center">
           <div>
             <div className="flex space-x-4 border-b">

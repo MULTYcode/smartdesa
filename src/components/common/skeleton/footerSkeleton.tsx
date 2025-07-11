@@ -3,7 +3,7 @@ import React from "react";
 export default function FooterSkeleton() {
   return (
     <footer className="bg-gray-900 text-white pt-16 pb-8 animate-pulse">
-      <div className="container mx-auto px-4">
+      <div className="px-6 sm:px-12 ">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo dan Social Media */}
           <div>

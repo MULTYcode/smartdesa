@@ -8,10 +8,12 @@ export default function TourPage() {
     const allTour = data?.pages?.flatMap(page => page?.data) || [];
 
     if (isLoading) return <TourPageSkeleton />;
+    
+    if (allTour.length === 0) return <div className="h-full w-full flex items-center justify-center"><p className="text-center">Tidak ada data</p></div>;
 
     return (
         <section className="py-16 bg-gray-50">
-            <div className="container mx-auto px-4">
+            <div className="px-6 sm:px-12 ">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {allTour.map((item) => (
                         <TourCard

@@ -1,20 +1,9 @@
-"use client"
-
 import { Geist, Geist_Mono } from "next/font/google";
 import './globals.css';
+import RootLayoutClient from "./rootLayout";
+import SettingService from "@/shared/services/setting.service";
 
-import { SidebarProvider } from '@/context/SidebarContext';
-import { ThemeProvider } from '@/context/ThemeContext';
-
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-// import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { useState } from 'react';
-import Chatbot from '@/components/chatbot/chatbot';
-import LayoutInner from './layoutInner';
-
-// const outfit = Outfit({
-//   subsets: ['latin'],
-// });
+export const metadata = await generateMetadata(); 
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,22 +20,29 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [queryClient] = useState(() => new QueryClient());  
 
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <QueryClientProvider client={queryClient}>
-          <ThemeProvider>
-            <SidebarProvider>
-              <LayoutInner>{children}</LayoutInner>              
-              {/* <ReactQueryDevtools initialIsOpen={false} /> */}
-              
-            </SidebarProvider>
-          </ThemeProvider>
-        </QueryClientProvider>
-        <Chatbot />
+        <RootLayoutClient>{children}</RootLayoutClient>
       </body>
     </html>
   );
+}
+async function generateMetadata()  {
+  try {
+    const logoResponse = await SettingService.getSetting (`logo-${process.env.NEXT_PUBLIC_VILLAGE_ID}`)
+    return {
+      title: process.env.NEXT_PUBLIC_VILLAGE_NAME || "Desa Muara Enim",
+      icons: {
+        icon: [
+          new URL(logoResponse?.data?.value?.imageUrl)
+        ]
+      },
+    }
+  } catch {
+     return {
+      title: process.env.NEXT_PUBLIC_VILLAGE_NAME || "Desa Muara Enim",
+    }
+  }
 }

@@ -23,8 +23,8 @@ export function Footer({ data }: FooterProps) {
 
   return (
     <footer className="bg-gray-900 text-white pt-16 pb-8">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="px-6 sm:px-12 ">
+        <div className="grid grid-cols-1 xl:grid-cols-4 gap-2">
 
           {
             hasBrackets ? (
@@ -144,15 +144,15 @@ export function Footer({ data }: FooterProps) {
                 <h3 className="font-bold text-lg mb-4">Kontak</h3>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <MapPin className="h-5 w-5 mr-3 mt-0.5 text-green-100" />
+                    <MapPin className="min-h-4 min-w-4 mr-3 mt-0.5 text-green-100" />
                     <span className="text-green-100">{data?.address}</span>
                   </li>
                   <li className="flex items-center">
-                    <Phone className="h-5 w-5 mr-3 text-green-100" />
+                    <Phone className="min-h-4 min-w-4 mr-3 text-green-100" />
                     <span className="text-green-100">{data?.phone}</span>
                   </li>
                   <li className="flex items-center">
-                    <Mail className="h-5 w-5 mr-3 text-green-100" />
+                    <Mail className="min-h-4 min-w-4 mr-3 text-green-100" />
                     <span className="text-green-100">{data?.email}</span>
                   </li>
                 </ul>

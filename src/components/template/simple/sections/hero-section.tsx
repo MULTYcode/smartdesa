@@ -36,7 +36,7 @@ export function HeroSection({ data }: HeroSectionProps) {
   };
 
   return (
-    <section className="relative h-[500px] md:h-[600px]">
+    <section className="relative h-screen sm:h-[600px]">
       <div className="absolute inset-0">
         {/* <Image src={data.image || "/placeholder.svg"} alt="Hero Image" fill className="object-cover" priority /> */}
         {isClient && data?.image?.endsWith(".mp4") && (
@@ -59,7 +59,7 @@ export function HeroSection({ data }: HeroSectionProps) {
         data?.title === "" ? (
           <SkeletonHeroContent />
         ) : (
-          <div className="relative container mx-auto px-4 h-full flex flex-col items-center justify-center">
+          <div className="relative px-6 sm:px-12 h-full flex flex-col items-center justify-center">
             <div className="max-w-4xl text-white">
               <h1 className="text-3xl md:text-5xl font-bold mb-4 text-center">{data.title}</h1>
               <p className="text-lg md:text-xl mb-6 text-center">{data.description}</p>
@@ -84,7 +84,7 @@ export function HeroSection({ data }: HeroSectionProps) {
 
 export default function SkeletonHeroContent() {
   return (
-    <div className="relative container mx-auto px-4 h-full flex flex-col justify-center">
+    <div className="relative px-6 sm:px-12  h-full flex flex-col justify-center">
       <div className="max-w-2xl text-white">
         {/* Title */}
         <Skeleton className="h-10 md:h-14 w-3/4 mb-4 bg-white/20" />

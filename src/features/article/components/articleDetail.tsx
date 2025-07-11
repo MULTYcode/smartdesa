@@ -13,9 +13,9 @@ interface ArticleDetailProps {
 
 const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug, article }) => {
     return (        
-        <div className="container mx-auto px-4 py-8 max-w-8xl">
-            <div className='box-border flex flex-wrap gap-5 justify-between'>
-                <div className='w-full md:w-1/5 lg:w-3/5'>
+        <div className="px-6 sm:px-12 py-8 max-w-8xl">
+            <div className='box-border grid grid-cols-12 gap-5 justify-between'>
+                <div className='w-full col-span-12 lg:col-span-9'>
                     <NewsCard
                         key={article?.id}
                         id={article?.id}
@@ -31,11 +31,10 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug, article }) => {
                         author={article?.user?.name || 'Admin'}
                     />
                 </div>
-
-                <ArtikelPopuler />
-
-                <ArtikelIklan />
-
+                <div className='flex flex-col col-span-12 lg:col-span-3 gap-6 w-full'>    
+                    <ArtikelPopuler />
+                    <ArtikelIklan />
+                </div>
             </div>
         </div>
     );
