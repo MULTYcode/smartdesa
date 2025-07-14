@@ -40,7 +40,11 @@ export default function Sosmed() {
                     >
                         {renderSocialIcon(platform.toLowerCase())}
                     </a>
-                )) : <p className="text-black text-center text-md dark:text-gray-400">[Sosial Media belum di atur]</p>
+                )) : <div className="flex space-x-4">
+                        {[...Array(4)].map((_, i) => (
+                            <div key={i} className="w-8 h-8 bg-gray-200 rounded-full" />
+                        ))}
+                    </div>
             }
         </div>
     )

@@ -22,9 +22,9 @@ export function AboutSection({ data }: AboutSectionProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <div className="inline-block px-3 py-1 bg-[#0d6b3f]/10 text-[#0d6b3f] font-medium rounded-full text-sm mb-4">
-              {data.badge}
+              {data.title}
             </div>
-            <h2 className="text-3xl font-bold text-gray-800 mb-6">{data.title}</h2>
+            <h2 className="text-3xl font-bold text-gray-800 mb-6">{data.subTittle}</h2>
             {data.description.map((paragraph, index) => (
               <p key={index} className="text-gray-600 mb-4">
                 {paragraph}

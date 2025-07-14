@@ -7,6 +7,7 @@ import { NewsSection } from "@/components/template/simple/sections/news-section"
 import { CTASection } from "@/components/template/simple/sections/cta-section"
 import { useContent } from "@/hooks/useContent"
 import { SambutanSection } from "@/components/template/simple/sections/sambutan-section"
+import { InfografisSection } from "@/components/template/simple/sections/infografis-section"
 
 export default function Home() {
   const { hero, infoCards, about, cta, infoWellcome, infoProgram } = useContent();
@@ -19,6 +20,7 @@ export default function Home() {
         <InfoSection cards={infoCards} />
         <AboutSection data={about} />
         <NewsSection />
+        <InfografisSection/>
         <CTASection data={cta} />
       </main>
     </div>

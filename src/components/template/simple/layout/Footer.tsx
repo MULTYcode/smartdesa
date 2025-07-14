@@ -87,13 +87,15 @@ export function Footer({ data }: FooterProps) {
               <div>
                 <h3 className="font-bold text-lg mb-4">Tautan Cepat</h3>
                 <ul className="space-y-2">
-                  {data?.quickLinks?.map((link: NavItem) => (
-                    <li key={link.route}>
-                      <a href={link.route} className="text-green-100 hover:text-white">
-                        {link.title}
-                      </a>
-                    </li>
-                  ))}
+                  {data?.quickLinks
+                    ?.filter((link: NavItem) => link.child === null)
+                    .map((link: NavItem) => (
+                      <li key={link.route}>
+                        <a href={link.route} className="text-green-100 hover:text-white">
+                          {link.title}
+                        </a>
+                      </li>
+                    ))}
                 </ul>
               </div>
             )

@@ -2,7 +2,7 @@
 import { TourCard } from '@/components/common/tour-card'
 import useTourDetail from '@/features/tour/hooks/useDetail';
 import StreetViewChecker from '@/lib/checkStreetView';
-import { Globe, Info, Landmark, Mail, MapIcon, MapPin } from 'lucide-react';
+import { Globe, Info, Landmark, Mail, MapPin } from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import React from 'react'
@@ -27,10 +27,7 @@ export default function Page() {
             <TourCard
               key={data?.id}
               id={data?.id}
-              // title={data?.slug}
-              excerpt={data?.slug ?? "Deskripsi tidak tersedia"}
-              // date={data?.published_at ?? Date.now().toString()}
-              // readTime={data?.readTime}
+              excerpt={data?.title ?? "Judul tidak tersedia"}
               image={data?.thumbnail ?? "/images/placeholder.svg"}
               slug={data?.slug}
               isDetail={true}
@@ -38,7 +35,7 @@ export default function Page() {
           </div>
 
           {/* Kolom Informasi */}
-          <div className="flex flex-col justify-center gap-4">
+          <div className="flex flex-col justify-start gap-4">
 
             <div className="flex items-center gap-3">
               <Landmark className="text-green-700 w-6 h-6 mt-1" />
@@ -47,44 +44,48 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="flex items-center gap-3">
-              <Info className="text-green-700 w-6 h-6 mt-1" />
-              <p className="text-gray-600">
-                {data?.description}
-              </p>
-            </div>
+            {
+              data?.description &&
+              <div className="flex items-center gap-3">
+                <Info className="text-green-700 w-6 h-6 mt-1" />
+                <p className="text-gray-600">
+                  {data?.description}
+                </p>
+              </div>
+            }
 
-            <div className="flex items-center gap-3">
-              <MapPin className="text-green-700 w-6 h-6 mt-1" />
-              <p className="text-gray-600">
-                {data?.title}
-              </p>
-            </div>
+            { data?.link.email &&
+              <div className="flex items-center gap-3">
+                <Mail className="text-green-700 w-6 h-6 mt-1" />
+                <p className="text-gray-600">
+                  {data?.link.email}
+                </p>
+              </div>
+            }
 
-            <div className="flex items-center gap-3">
-              <Mail className="text-green-700 w-6 h-6 mt-1" />
-              <p className="text-gray-600">
-                {data?.link.email}
-              </p>
-            </div>
+            {
+              data?.link.website &&
+              <div className="flex items-center gap-3">
+                <Globe className="text-green-700 w-6 h-6 mt-1" />
+                <p className="text-gray-600">
+                  <Link href={data?.link.website ?? ""} target='_blank' className="text-blue-500 hover:underline">
+                    {data?.link.website}
+                  </Link>
+                </p>
+              </div>
+            }
 
-            <div className="flex items-center gap-3">
-              <Globe className="text-green-700 w-6 h-6 mt-1" />
-              <p className="text-gray-600">
-                <Link href={data?.link.website ?? ""} target='_blank' className="text-blue-500 hover:underline">
-                  {data?.link.website}
-                </Link>
-              </p>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <MapIcon className="text-green-700 w-6 h-6 mt-1" />
-              <p className="text-gray-600">
-                <Link href={data?.link.gmap ?? ""} target='_blank' className="text-blue-500 hover:underline">
-                  {data?.link.gmap}
-                </Link>
-              </p>
-            </div>
+            {
+              data?.link.gmap &&
+              <div className="flex items-center gap-3">
+                <MapPin className="text-green-700 w-6 h-6 mt-1" />
+                <p className="text-gray-600">
+                  <Link href={data?.link.gmap ?? ""} target='_blank' className="text-blue-500 hover:underline">
+                    {data?.link.gmap}
+                  </Link>
+                </p>
+              </div>
+            }
 
           </div>
         </div>

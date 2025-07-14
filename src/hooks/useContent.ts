@@ -38,8 +38,8 @@ export function useContent() {
   const infoCards = serviceData?.value ?? [];
 
   const about: AboutSection = {
-    badge: tourData?.value?.title ?? "[Judul wisata belum diatur]",
-    title: tourData?.value?.subTitle ?? "[sub title wisata belum diatur]",
+    title: tourData?.value?.title ?? "[Judul wisata belum diatur]",
+    subTittle: tourData?.value?.subTitle ?? "[Sub judul wisata belum diatur]",
     description: [tourData?.value?.description ?? "[Deskripsi wisata belum diatur]"],
     image: tourData?.value?.imageUrl ?? "/images/placeholder.svg",
     button: {

@@ -1,7 +1,7 @@
 export default function PageArticleSkeleton() {
   return (
-    <div className="px-6 sm:px-12  flex justify-between items-center mb-10 mt-10">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+    <div className="px-6 sm:px-12 col-span-1 md:col-span-4 xl:col-span-4 flex justify-between items-center mb-10 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-8 w-full">
         {Array.from({ length: 6 }).map((_, index) => (
           <div key={index} className="w-full animate-pulse space-y-2">
             {/* Thumbnail */}

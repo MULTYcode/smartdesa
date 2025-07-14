@@ -10,6 +10,7 @@ function useTour(params: Record<string, string | number> = {} ) {
         fetchNextPage,
         hasNextPage,
         isFetching,
+        isFetchingNextPage,
         refetch,
       }  = useInfiniteQuery<ListTour, Error>({
         initialPageParam: null,
@@ -40,6 +41,7 @@ function useTour(params: Record<string, string | number> = {} ) {
       fetchNextPage,
       refetch,
       isError,
+      isFetchingNextPage
     };
   }
   
