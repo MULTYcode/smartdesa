@@ -11,7 +11,7 @@ interface ArticleDetailProps {
     article: ArticleType;
 }
 
-const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug, article }) => {
+const ArticleDetail: React.FC<ArticleDetailProps> = ({ article }) => {
     return (        
         <div className="px-6 sm:px-12 py-8 max-w-8xl">
             <div className='box-border grid grid-cols-12 gap-5 justify-between'>
@@ -19,7 +19,7 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ slug, article }) => {
                     <NewsCard
                         key={article?.id}
                         id={article?.id}
-                        title={slug ?? "Artikel Tidak Ditemukan"}
+                        title={article?.title ?? "Artikel Tidak Ditemukan"}
                         // excerpt={item.excerpt}
                         date={article?.published_at ?? ""}
                         readTime={article?.views?.toString() ?? "0"}

@@ -21,7 +21,7 @@ export interface NewsCardProps {
   author?: string
 }
 
-export function NewsCard({ title, excerpt, date, readTime, image, slug, className, content, category, author, showCategory = false, isDetail = false }: NewsCardProps) {
+export function NewsCard({ title, excerpt, date, readTime, image, slug, className, content, category, author, isDetail = false }: NewsCardProps) {
   return (
     <CustomCard className={cn("overflow-hidden", className)}>
       <div className={`relative ${isDetail ? 'h-90' : 'h-48'}`}>
@@ -34,17 +34,20 @@ export function NewsCard({ title, excerpt, date, readTime, image, slug, classNam
         />
       </div>
       <div className="py-6 flex flex-col justify-between h-1/2">
-        {
-          isDetail ? <div className="flex items-center text-sm text-gray-500 mb-3">
+        <div className="flex items-center text-sm text-gray-500 mb-3">
+            <span className="font-semibold text-red-500 text-xs">[{category}]</span>
+            <span className="mx-2">•</span>
             <Calendar className="h-4 w-4 mr-1" />
             <span>{date}</span>
-            <span className="mx-2">•</span>
-            <Eye className="h-4 w-4 mr-1" />
-            <span>{readTime}</span>
-            <span className="mx-2">•</span>
-            <span>{category}</span>
-          </div> : showCategory && <span className="font-semibold text-red-500 text-xs">[{category}]</span>
-        }
+            
+           {
+            isDetail &&  <>
+                        <span className="mx-2">•</span>
+                        <Eye className="h-4 w-4 mr-1" />
+                        <span>{readTime}</span>
+                        </>
+          }
+          </div>
         <h3 className={`font-bold mb-2 transition-colors ${!isDetail ? 'hover:text-[#0d6b3f]' : ''
           }`}>
           {

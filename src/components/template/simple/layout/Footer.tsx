@@ -60,8 +60,8 @@ export function Footer({ data }: FooterProps) {
                     }}
                   />
                   <div>
-                    <h3 className="font-bold text-xl">{data?.regionEntity}</h3>
-                    <p className="text-sm text-green-100">{data?.regionDescription}</p>
+                    <h3 className="font-bold text-2xl leading-5">{data?.regionEntity}</h3>
+                    <p className="text-xs font-semibold text-white">{data?.regionDescription}</p>
                   </div>
                 </div>
                 <div className="flex space-x-4">

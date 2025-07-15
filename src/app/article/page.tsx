@@ -2,11 +2,15 @@
 "use client"
 import { NewsCard } from '@/components/common/news-card'
 import useArticle from '@/features/article/hooks/useArticle';
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 export default function PageArticle() {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage } = useArticle({ "page_size": 8 });
+  const [searchValue, setSearchValue] = useState('');
+  const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage } = useArticle({ "page_size": 8 , "search": searchValue});
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setSearchValue(e.target.value);
+  };
   const articleImportData = data?.pages.flatMap(
     (page: any) => page?.data
   );
@@ -36,7 +40,17 @@ export default function PageArticle() {
   }, [isLoading, hasNextPage, fetchNextPage]);
 
   return (
-     <div className="px-6 sm:px-12 flex justify-between items-center mb-10 mt-10">
+     <div className="px-6 sm:px-12 flex justify-between flex-col items-center mb-10 mt-10">
+       <div className="w-full flex justify-between items-center mb-12">
+          <div className="relative w-full col-span-6">
+              <input id="search-dropdown" type='search' value={searchValue} onChange={handleChange} className="block py-3 px-5 pe-12 w-full rounded-sm text-sm text-gray-900 bg-gray-100 placeholder:text-black border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Cari artikel ..." />
+              <span className="absolute top-0 end-0 py-3 px-5 sm:ms-4 text-sm font-medium h-full text-white focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                  <svg className="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                      <path stroke="black" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                  </svg>
+              </span>
+          </div>
+        </div>
         <div className="w-full grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4 lg:gap-8">
           { 
             (!isLoading) && (!articleImportData || articleImportData.length === 0) ? <div className="h-36 col-span-1 md:col-span-4 xl:col-span-4 w-full flex items-center justify-center"><p className="text-center">Tidak ada artikel</p></div> :
@@ -44,6 +58,7 @@ export default function PageArticle() {
               <NewsCard
                 key={item.id}
                 id={item.id}
+                category={item.category?.name}
                 title={item.title}
                 date={item.published_at ?? Date.now().toString()}
                 image={item.thumbnail ?? "/images/placeholder.svg"}

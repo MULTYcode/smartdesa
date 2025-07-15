@@ -7,7 +7,7 @@ import Link from 'next/link'
 import ArticlePopulerSkeleton from '@/components/common/skeleton/ArticlePopulerSkeleton'
 
 export default function ArtikelPopuler() {
-    const { data, isLoading } = useArticle();
+    const { data, isLoading } = useArticle({ "page_size": 4 , 'order': 'desc', 'by':'views'});
 
     if (isLoading) return <ArticlePopulerSkeleton />;
 

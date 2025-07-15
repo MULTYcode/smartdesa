@@ -53,8 +53,8 @@ export function Header({ data }: HeaderProps) {
                   />
                   <div>
                     <div>
-                      <h1 className="font-bold text-xl text-[#0d6b3f]">{data?.regionEntity}</h1>
-                      <p className="text-sm text-gray-600">{data?.regionDescription}</p>
+                      <h1 className="font-bold text-2xl leading-5 text-[#0d6b3f]">{data?.regionEntity}</h1>
+                      <p className="text-xs font-semibold text-gray-600">{data?.regionDescription}</p>
                     </div>
                   </div>
                 </>
