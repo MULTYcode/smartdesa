@@ -3,7 +3,7 @@ import React from 'react'
 export default function ArtikelPopulerSkeleton() {
   return (
     <div className='w-full'>
-      <h2 className='text-xl font-bold mb-4'>Artikel Populer</h2>
+      <h2 className='text-xl font-bold mb-4'>Berita Populer</h2>
       <ul className='space-y-4'>
         {Array.from({ length: 3 }).map((_, i) => (
           <li key={i} className="shadow-sm animate-pulse rounded-md overflow-hidden">

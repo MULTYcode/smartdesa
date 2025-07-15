@@ -38,7 +38,7 @@ export default function Page() {
           <div className="flex flex-col justify-start gap-4">
 
             <div className="flex items-center gap-3">
-              <Landmark className="text-green-700 w-6 h-6 mt-1" />
+              <Landmark className="text-green-700 min-w-6 min-h-6 mt-1" />
               <div>
                 <h2 className="text-xl font-bold text-gray-800">{data?.title}</h2>
               </div>
@@ -47,7 +47,7 @@ export default function Page() {
             {
               data?.description &&
               <div className="flex items-center gap-3">
-                <Info className="text-green-700 w-6 h-6 mt-1" />
+                <Info className="text-green-700 min-w-6 min-h-6 mt-1" />
                 <p className="text-gray-600">
                   {data?.description}
                 </p>
@@ -56,7 +56,7 @@ export default function Page() {
 
             { data?.link.email &&
               <div className="flex items-center gap-3">
-                <Mail className="text-green-700 w-6 h-6 mt-1" />
+                <Mail className="text-green-700 min-w-6 min-h-6 mt-1" />
                 <p className="text-gray-600">
                   {data?.link.email}
                 </p>
@@ -66,7 +66,7 @@ export default function Page() {
             {
               data?.link.website &&
               <div className="flex items-center gap-3">
-                <Globe className="text-green-700 w-6 h-6 mt-1" />
+                <Globe className="text-green-700 min-w-6 min-h-6 mt-1" />
                 <p className="text-gray-600">
                   <Link href={data?.link.website ?? ""} target='_blank' className="text-blue-500 hover:underline">
                     {data?.link.website}
@@ -78,10 +78,10 @@ export default function Page() {
             {
               data?.link.gmap &&
               <div className="flex items-center gap-3">
-                <MapPin className="text-green-700 w-6 h-6 mt-1" />
+                <MapPin className="text-green-700 min-w-6 min-h-6 mt-1" />
                 <p className="text-gray-600">
                   <Link href={data?.link.gmap ?? ""} target='_blank' className="text-blue-500 hover:underline">
-                    {data?.link.gmap}
+                    Lihat lokasi
                   </Link>
                 </p>
               </div>

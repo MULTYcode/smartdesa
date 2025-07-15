@@ -12,8 +12,8 @@ export default function ArtikelPopuler() {
     if (isLoading) return <ArticlePopulerSkeleton />;
 
     return (
-        <div className='w-full '>
-            <h2 className='text-xl font-bold mb-4'>Artikel Populer</h2>
+        <div className='w-full'>
+            <h2 className='text-xl font-bold mb-4'>Berita Populer</h2>
             <ul className='space-y-4'>
                 {data?.pages[0].data.slice(0, 3).map((item) => (
                     <CustomCard key={item.id} className='shadow-sm hover:shadow-md transition-shadow'>

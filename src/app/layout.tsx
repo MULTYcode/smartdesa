@@ -33,7 +33,7 @@ async function generateMetadata()  {
   try {
     const logoResponse = await SettingService.getSetting (`logo-${process.env.NEXT_PUBLIC_VILLAGE_ID}`)
     return {
-      title: process.env.NEXT_PUBLIC_VILLAGE_NAME || "Desa Muara Enim",
+      title: process.env.NEXT_PUBLIC_VILLAGE_NAME || "Pemerintah Kabupaten Muara Enim",
       icons: {
         icon: [
           new URL(logoResponse?.data?.value?.imageUrl)

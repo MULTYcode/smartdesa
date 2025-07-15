@@ -2,7 +2,6 @@
 
 import React from 'react'
 import { NewsCard } from '@/components/common/news-card';
-import ArtikelIklan from './artikelIklan';
 import ArtikelPopuler from './artikelPopuler';
 import { ArticleType } from '../types/article.type';
 
@@ -33,7 +32,6 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ article }) => {
                 </div>
                 <div className='flex flex-col col-span-12 lg:col-span-3 gap-6 w-full'>    
                     <ArtikelPopuler />
-                    <ArtikelIklan />
                 </div>
             </div>
         </div>

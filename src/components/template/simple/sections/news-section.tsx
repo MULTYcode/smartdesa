@@ -26,7 +26,7 @@ export function NewsSection() {
             {
               isLoading ?   <PageArticleSkeleton /> :
               data?.pages[0].data.length === 0 ? <div className="h-36 w-full col-span-1 md:col-span-3 xl:col-span-4  flex items-center justify-center"><p className="text-center">Tidak ada artikel</p></div> :
-              data?.pages[0].data.slice(0, 6).map((item) => (
+              data?.pages[0].data.slice(0, 8).map((item) => (
               <NewsCard
                 key={item.id}
                 id={item.id}
