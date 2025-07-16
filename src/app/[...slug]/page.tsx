@@ -51,6 +51,7 @@ export default function PageStatic({ params }: DynamicPageProps & PageProps) {
     if (isError) return <p>Page Not Found</p>;
 
     return (
+      
         <div className="px-6 sm:px-12  flex justify-between mb-10 mt-10">
               <div className='box-border grid grid-cols-12 gap-5 justify-between'>
                 <div className='w-full col-span-12 lg:col-span-9'>
@@ -58,18 +59,7 @@ export default function PageStatic({ params }: DynamicPageProps & PageProps) {
                 </div>
                 <div className='flex flex-col col-span-12 lg:col-span-3 gap-6 w-full'>    
                     <ArtikelPopuler />
-                    <div>
-                      <h2 className="text-xl font-bold text-blue-500 mb-4 pb-2 border-gray-300 border-b">Infografis</h2>
-                      <div className="relative">
-                         <section className="relative w-full flex justify-center items-center">
-                          <div className="max-w-full w-full grid grid-cols-9 gap-2 dark:bg-gray-700 dark:border-gray-600">
-                                <div className="col-span-9 max-w-full w-full justify-center overflow-hidden dark:bg-gray-800 dark:border-gray-700">                  
-                                  <SliderCard slideToShow={1} />
-                              </div>
-                          </div>
-                        </section>
-                      </div>
-                    </div>
+                    <SliderCard slideToShow={1} />
                 </div>
             </div>
         </div>

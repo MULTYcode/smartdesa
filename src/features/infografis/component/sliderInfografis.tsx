@@ -1,13 +1,12 @@
 "use client";
-
 import Slider from "react-slick";
 import PropTypes from "prop-types";
 import Image from "next/image";
 import { CSSProperties, useState } from "react"
 import React from "react";
 import LightboxImage from "./Lightbox";
-import { Infografis } from "../types/type";
 import useInfografis from "../hooks/useInfografies";
+import { Infografis } from "../types/type";
 
 interface SliderCardProps {
     useButton?: boolean;

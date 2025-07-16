@@ -4,6 +4,7 @@ import React from 'react'
 import { NewsCard } from '@/components/common/news-card';
 import ArtikelPopuler from './artikelPopuler';
 import { ArticleType } from '../types/article.type';
+import SliderCard from '@/features/infografis/component/sliderInfografis';
 
 interface ArticleDetailProps {
     slug: string;
@@ -32,6 +33,7 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ article }) => {
                 </div>
                 <div className='flex flex-col col-span-12 lg:col-span-3 gap-6 w-full'>    
                     <ArtikelPopuler />
+                    <SliderCard slideToShow={1} />
                 </div>
             </div>
         </div>

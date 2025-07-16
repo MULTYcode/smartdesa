@@ -53,7 +53,7 @@ export function Header({ data }: HeaderProps) {
                     }}
                   />
                    <div className="flex flex-col justify-center">
-                      <h1 className="font-bold text-2xl leading-5 text-[#0d6b3f]">{data?.regionEntity}</h1>
+                      <h1 className="font-bold text-lg leading-5 text-[#0d6b3f]">{data?.regionEntity}</h1>
                       <p className="text-xs font-semibold text-gray-600">{data?.regionDescription}</p>
                     </div>
                 </Link>
