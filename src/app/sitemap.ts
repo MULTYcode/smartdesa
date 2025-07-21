@@ -63,7 +63,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
                 const updatedAt = new Date(article.updated_at);
 
                 return  {
-                    url: `${domainUrl}/articles/${article.slug}`,
+                    url: `${domainUrl}/article/${article.slug}`,
                     lastModified: isNaN(updatedAt.getTime()) ? new Date() : updatedAt,
                     changeFrequency: "weekly" as const,
                     priority: 0.8,
