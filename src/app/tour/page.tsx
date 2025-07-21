@@ -38,8 +38,8 @@ export default function TourPage() {
       }, [isLoading, hasNextPage, fetchNextPage]);
 
     return (
-        <section className="py-16 bg-gray-50">
-            <div className="px-6 sm:px-12 flex flex-col items-center mb-10 mt-1 ">
+        <section className="bg-gray-50 flex justify-center">
+            <div className="w-full px-6 sm:px-0 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl flex flex-col items-center my-10">
                 <div className="w-full flex justify-between items-center mb-12">
                   <div className="relative w-full col-span-6">
                       <input id="search-dropdown" type='search' value={searchValue} onChange={handleChange} className="block py-3 px-5 pe-12 w-full rounded-sm text-sm text-gray-900 bg-gray-100 placeholder:text-black border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Cari wisata ..." />

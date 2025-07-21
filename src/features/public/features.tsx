@@ -3,7 +3,7 @@ import { Shield, Clock, Globe, Smartphone, TrendingUp, Headphones } from "lucide
 export default function Features() {
   return (
     <section id="features" className="py-16 bg-white">
-      <div className="px-6 sm:px-12 ">
+      <div className="px-6 lg:px-10 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl 2xl:px-0 ">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Fitur Unggulan Kami</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">

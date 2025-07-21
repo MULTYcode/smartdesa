@@ -34,8 +34,10 @@ export default function RootLayout({
 async function generateMetadata()  {
   try {
     const logoResponse = await SettingService.getSetting (`logo-${process.env.NEXT_PUBLIC_VILLAGE_ID}`)
+    const heroResponse = await SettingService.getSetting (`hero-${process.env.NEXT_PUBLIC_VILLAGE_ID}`)
     return {
       title: logoResponse?.data?.value?.regionEntity || "Pemerintah Kabupaten Muara Enim",
+      description: heroResponse?.data?.value?.title + heroResponse?.data?.value?.description || "Pemerintah Kabupaten Muara Enim",
       icons: {
         icon: [
           new URL(logoResponse?.data?.value?.imageUrl)
@@ -45,6 +47,7 @@ async function generateMetadata()  {
   } catch {
      return {
       title: process.env.NEXT_PUBLIC_VILLAGE_NAME || "Pemerintah Kabupaten Muara Enim",
+      description: "Pemerintah Kabupaten Muara Enim",
     }
   }
 }

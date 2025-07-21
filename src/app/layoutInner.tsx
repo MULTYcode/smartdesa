@@ -10,7 +10,7 @@ export default function LayoutInner({ children }: { children: React.ReactNode })
   return (
     <>
       <Header data={header} />
-      <div className='min-h-screen'>
+      <div className='min-h-screen w-full justify-center'>
         {children}
       </div>
       <Footer data={footer} />

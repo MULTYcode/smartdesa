@@ -1,12 +1,38 @@
 import ArticleService from "@/features/article/services/article.service";
 import { ArticleType } from "@/features/article/types/article.type";
+import SettingService from "@/shared/services/setting.service";
+import { MenuItem } from "@/types/menu";
 import type { MetadataRoute } from "next"
 const domainUrl = process.env.NEXT_PUBLIC_DOMAIN_URL
+
+function generateStaticPagePaths(menu: MenuItem[], parentPath: string = ""): string[] {
+    let paths: string[] = [];
+    
+    for (const item of menu) {
+        let currentPath = parentPath;
+        if (item.route) {
+            currentPath = item.route.startsWith("/")
+                ? `${parentPath}${item.route}`
+                : `${parentPath}/${item.route}`;
+        }
+        
+        if (item.staticPage && item.route) {
+            paths.push(currentPath);
+        }
+        
+        if (item.child && Array.isArray(item.child)) {
+            paths = [...paths, ...generateStaticPagePaths(item.child, currentPath)];
+        }
+    }
+    
+    return paths;
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     if(domainUrl){
         let articleEntries = [];
+        let menuEntries = [];
         let articles = []
         try {
             const { data } = await ArticleService.getAll();
@@ -14,6 +40,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         } catch (error) {
             if (error) {
                 console.warn("Articles not found");
+                articles = []; 
+            } else {
+                throw error; 
+            }
+        }
+
+        try {
+            const { data } = await SettingService.getSetting(`menu-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
+            menuEntries = data.value || []; 
+        } catch (error) {
+            if (error) {
+                console.warn("Menu not found");
                 articles = []; 
             } else {
                 throw error; 
@@ -31,6 +69,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
                     priority: 0.8,
                 }
             });
+        }
+
+        let staticPageEntries: Array<{
+            url: string;
+            lastModified: Date;
+            changeFrequency: "monthly";
+            priority: number;
+        }> = [];
+
+        if(menuEntries.length > 0) {
+            const staticPagePaths = generateStaticPagePaths(menuEntries);
+            staticPageEntries = staticPagePaths.map((path) => ({
+                url: `${domainUrl}${path}`,
+                lastModified: new Date(),
+                changeFrequency: "monthly" as const,
+                priority: 0.7,
+            }));
         }
 
         const staticPages = [
@@ -54,7 +109,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             },
         ]
 
-        return [...staticPages, ...articleEntries]
+        return [...staticPages, ...articleEntries, ...staticPageEntries]
     }
 
     return []

@@ -228,7 +228,6 @@ function NestedSubmenu({ submenu, parentPath, level }: NestedSubmenuProps) {
                 <DisclosureButton
                     className={classNames(
                     "flex justify-between text-start items-center w-full py-1.5 px-3 text-sm font-medium rounded-md transition-all duration-200",
-                    "ml-2", 
                     pathname.startsWith(parentPath)
                         ? "bg-gray-100 text-black"
                         : "text-gray-700 hover:bg-gray-50 hover:text-black",

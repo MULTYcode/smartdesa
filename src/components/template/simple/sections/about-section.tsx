@@ -17,8 +17,8 @@ export function AboutSection({ data }: AboutSectionProps) {
   };
 
   return (
-    <section className="py-16">
-      <div className="px-6 sm:px-12 ">
+    <section className="py-16 flex justify-center">
+      <div className="w-full  px-6 sm:px-0 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <div className="inline-block px-3 py-1 bg-[#0d6b3f]/10 text-[#0d6b3f] font-medium rounded-full text-sm mb-4">

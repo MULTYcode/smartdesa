@@ -12,8 +12,8 @@ export function SambutanSection({ data }: WellcomeSectionProps) {
   const [activeTab, setActiveTab] = useState("kata sambutan");
 
   return (
-    <section className="py-16">
-      <div className="px-6 sm:px-12 ">
+    <section className="py-16 flex justify-center">
+      <div className="w-full px-6 sm:px-0 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl ">
         <div className="items-center">
           <div>
             <div className="flex space-x-4 border-b">

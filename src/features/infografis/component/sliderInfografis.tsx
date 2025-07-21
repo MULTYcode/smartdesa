@@ -76,7 +76,7 @@ settings = {
     }
   )
 };
-height = "50vh"
+height = "35vh"
 
 if(slideToShow > 1){
   settings = {
@@ -131,7 +131,7 @@ if(slideToShow > 1){
       }
     )
   }
-  height = "68vh"
+  height = "30vh"
 }
 
 SamplePrevArrow.propTypes = {

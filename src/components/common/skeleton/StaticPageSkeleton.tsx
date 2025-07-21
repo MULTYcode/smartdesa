@@ -1,8 +1,8 @@
 export default function StaticPageSkeleton() {
   return (
     
-    <div className="px-6 sm:px-12 w-full flex justify-between mb-10 mt-10">
-       <div className="px-6 sm:px-12  flex justify-between mb-10 mt-10">
+    <div className="px-6 lg:px-10 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl 2xl:px-0 w-full flex justify-between mb-10 mt-10">
+       <div className="px-6 lg:px-10 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl 2xl:px-0  flex justify-between mb-10 mt-10">
           <div className='box-border grid grid-cols-12 gap-5 justify-between'>
             <div className='w-full col-span-12 lg:col-span-9'>
                 <div className="h-96 bg-gray-200 rounded w-96 animate-pulse" />

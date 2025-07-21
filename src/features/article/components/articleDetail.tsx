@@ -1,10 +1,12 @@
 "use client"
 
 import React from 'react'
-import { NewsCard } from '@/components/common/news-card';
 import ArtikelPopuler from './artikelPopuler';
 import { ArticleType } from '../types/article.type';
 import SliderCard from '@/features/infografis/component/sliderInfografis';
+import Image from 'next/image';
+import { Calendar, Eye } from 'lucide-react';
+import RichTextContent from '@/components/common/RichTextContent';
 
 interface ArticleDetailProps {
     slug: string;
@@ -13,30 +15,39 @@ interface ArticleDetailProps {
 
 const ArticleDetail: React.FC<ArticleDetailProps> = ({ article }) => {
     return (        
-        <div className="px-6 sm:px-12 py-8 max-w-8xl">
-            <div className='box-border grid grid-cols-12 gap-5 justify-between'>
-                <div className='w-full col-span-12 lg:col-span-9'>
-                    <NewsCard
-                        key={article?.id}
-                        id={article?.id}
-                        title={article?.title ?? "Artikel Tidak Ditemukan"}
-                        // excerpt={item.excerpt}
-                        date={article?.published_at ?? ""}
-                        readTime={article?.views?.toString() ?? "0"}
-                        image={article?.thumbnail ?? "/images/placeholder.svg"}
-                        slug={article?.slug}
-                        isDetail={true}
-                        content={article?.content || ''}
-                        category={article?.category?.name || 'Umum'}
-                        author={article?.user?.name || 'Admin'}
-                    />
-                </div>
-                <div className='flex flex-col col-span-12 lg:col-span-3 gap-6 w-full'>    
-                    <ArtikelPopuler />
-                    <SliderCard slideToShow={1} />
+       <div className='flex justify-center'>
+            <div className="w-full px-6 sm:px-0 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl py-8 max-w-8xl">
+                <div className='box-border grid grid-cols-12 gap-5 xl:gap-12 justify-between'>
+                    <div className='w-full col-span-12 md:col-span-7 lg:col-span-8 gap-y-8'>
+                        <h3 className={`font-normal text-4xl text-gray-800 transition-colors`}>{article?.title ?? "Artikel Tidak Ditemukan"} </h3>
+                        <div className="flex items-center text-sm text-gray-500 my-4">
+                            <span className="font-semibold text-red-500 text-xs">[{article?.category?.name || 'Umum'}]</span>
+                            <span className="mx-2">•</span>
+                            <Calendar className="h-4 w-4 mr-1" />
+                            <span>{article?.published_at ?? ""}</span>
+                            <span className="mx-2">•</span>
+                            <Eye className="h-4 w-4 mr-1" />
+                            <span>{article?.views?.toString() ?? "0"}</span>
+                        </div>
+                        <div className={`relative h-90 mb-4`}>
+                            <Image
+                                src={article?.thumbnail ?? "/images/placeholder.svg"}
+                                alt={article?.title ?? "Artikel Tidak Ditemukan"}
+                                fill
+                                className='object cover'
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            />
+                        </div>
+                        <RichTextContent content={article?.content || ''}/>
+                        <p className="self-start align-baseline text-base font-semibold text-black my-5">({article?.user?.name || 'Admin'})</p>
+                    </div>
+                    <div className='flex flex-col col-span-12 md:col-span-5 lg:col-span-4 gap-6 w-full'>    
+                        <ArtikelPopuler />
+                        <SliderCard slideToShow={1} />
+                    </div>
                 </div>
             </div>
-        </div>
+       </div>
     );
 };
 

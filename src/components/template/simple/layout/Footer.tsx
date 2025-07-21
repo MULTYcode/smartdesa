@@ -22,8 +22,8 @@ export function Footer({ data }: FooterProps) {
   const hasBrackets = /[\[\]]/.test(data?.regionEntity ?? '');
 
   return (
-    <footer className="bg-gray-900 text-white pt-16 pb-8">
-      <div className="px-6 sm:px-12 ">
+    <footer className="bg-gray-900 text-white pt-16 pb-8 flex justify-center">
+      <div className="w-full px-6 sm:px-0 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
         <div className="grid grid-cols-1 xl:grid-cols-4 gap-2">
 
           {

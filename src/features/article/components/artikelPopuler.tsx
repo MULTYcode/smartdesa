@@ -1,5 +1,4 @@
 "use client"
-import { CustomCard } from '@/components/ui/simple/CustomCard'
 import React from 'react'
 import Image from 'next/image'
 import useArticle from '../hooks/useArticle'
@@ -7,23 +6,33 @@ import Link from 'next/link'
 import ArticlePopulerSkeleton from '@/components/common/skeleton/ArticlePopulerSkeleton'
 
 export default function ArtikelPopuler() {
-    const { data, isLoading } = useArticle({ "page_size": 4 , 'order': 'desc', 'by':'views'});
+    const { data, isLoading } = useArticle({ "page_size": 5 , 'order': 'desc', 'by':'views'});
 
     if (isLoading) return <ArticlePopulerSkeleton />;
 
     return (
         <div className='w-full'>
-            <h2 className='text-xl font-bold mb-4'>Berita Populer</h2>
+            <h2 className='text-lg uppercase font-bold mb-4'>Berita Populer</h2>
             <ul className='space-y-4'>
-                {data?.pages[0].data.slice(0, 3).map((item) => (
-                    <CustomCard key={item.id} className='shadow-sm hover:shadow-md transition-shadow'>
-                        <div className='relative h-35'>
-                            <Image src={item.thumbnail ?? "/images/placeholder.svg"} alt='thumbnail' fill className='object cover' sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+                {data?.pages[0].data.map((item) => (
+                    <Link key={item.id} href={`/article/${item.slug}`}>
+                      <li className="flex my-4">
+                        <div className="max-w-40 mr-4 md:mr-0 min-w-40 md:max-w-32 md:min-w-32 w-full relative group">
+                            <Image
+                                className="max-w-40 md:max-w-28 max-h-20 h-full w-full shadow-lg object-cover"
+                                src={item.thumbnail || ""}
+                                alt="Article Thumbnail"
+                                width={1200}
+                                height={720}
+                                priority 
+                                />
+                            <div className="absolute w-40 md:w-28  inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out" />
                         </div>
-                        <Link href={`/article/${item.slug}`} className='font-medium mt-2 block hover:text-[#0d6b3f]'>
-                            {item.title}
-                        </Link>
-                    </CustomCard>
+                        <h5 className="text-sm line-clamp-4 font-normal hover:text-green-700 ">
+                          {item.title}
+                        </h5>
+                      </li>
+                    </Link>
                 ))}                
             </ul>
         </div>

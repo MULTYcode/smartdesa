@@ -25,8 +25,8 @@ export function Header({ data }: HeaderProps) {
       <Topbar />
 
       {/* Header */}
-      <header className="bg-white py-4 shadow-sm sticky top-0 z-50">
-        <div className="px-6 sm:px-12 w-full flex justify-between items-center">
+      <header className="bg-white py-4 shadow-sm sticky top-0 z-50 flex justify-center">
+        <div className="px-6 sm:px-0 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl w-full flex justify-between items-center">
           <div className="flex items-center space-x-3">
 
             {
@@ -135,7 +135,7 @@ export function Header({ data }: HeaderProps) {
             {/* <CustomButton variant="ghost" size="icon" className="md:hidden">
             <Menu className="h-6 w-6" />
           </CustomButton> */}
-          </div>
+        </div>
       </header>
     </>
   )

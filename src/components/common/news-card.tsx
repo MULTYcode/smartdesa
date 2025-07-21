@@ -51,8 +51,8 @@ export function NewsCard({ title, excerpt, date, readTime, image, slug, classNam
         <h3 className={`font-bold mb-2 transition-colors ${!isDetail ? 'hover:text-[#0d6b3f]' : ''
           }`}>
           {
-            !isDetail ? <Link href={`/article/${slug}`}>{title}</Link>
-              : title
+            !isDetail ? <Link href={`/article/${slug}`}><p className="line-clamp-4">{title}</p></Link>
+              : title 
           }
         </h3>
         <p className="text-gray-600 mb-4 line-clamp-3">{excerpt}</p>

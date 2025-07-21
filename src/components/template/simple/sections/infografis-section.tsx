@@ -15,8 +15,8 @@ export function InfografisSection() {
     };
   
   return (
-      <section id="article" className="py-16 bg-gray-50">
-        <div className="px-6 sm:px-12 ">
+      <section id="infografis" className="py-16 bg-gray-50 flex justify-center">
+        <div className="w-full  px-6 sm:px-0 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
           <div className="flex justify-between items-center mb-12">
             <div className="relative w-full col-span-6">
                 <input id="search-dropdown" type='search' value={searchValue} onChange={handleChange} className="block py-3 px-5 pe-12 w-full rounded-sm text-sm text-gray-900 bg-gray-100 placeholder:text-black border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Cari infografis ..." />
@@ -28,7 +28,7 @@ export function InfografisSection() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-2 md:gap-4 lg:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-1 gap-y-4 md:gap-2 lg:gap-4">
                {isInfografisLoading || isInfografisFetching && (!infografis || infografis.length === 0) ? (
                     Array.from({ length: 4 }).map((_, index) => (
                         <div

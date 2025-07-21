@@ -23,7 +23,7 @@ export function CTASection({ data }: CTASectionProps) {
 
     data.buttons.primary.url.indexOf('undefined') !== -1 ? (
       <section className="py-16 bg-[#0d6b3f]">
-        <div className="px-6 sm:px-12  text-center animate-pulse">
+        <div className="px-6 lg:px-10 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl 2xl:px-0  text-center animate-pulse">
           {/* Title Skeleton */}
           <div className="h-8 w-1/2 bg-white/30 rounded mx-auto mb-6"></div>
 
@@ -40,7 +40,7 @@ export function CTASection({ data }: CTASectionProps) {
       </section>
     ) : (
       <section className="py-16 bg-[#0d6b3f]">
-        <div className="px-6 sm:px-12  text-center">
+        <div className="px-6 lg:px-10 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl 2xl:px-0  text-center">
           <h2 className="text-3xl font-bold text-white mb-6">{data.title}</h2>
           <p className="text-white/90 max-w-2xl mx-auto mb-8">{data.description}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

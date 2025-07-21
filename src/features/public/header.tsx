@@ -9,7 +9,7 @@ export default function Header() {
 
   return (
     <header className="bg-white shadow-sm">
-      <div className="px-6 sm:px-12  py-4">
+      <div className="px-6 lg:px-10 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl 2xl:px-0  py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-2">
             <Package className="h-6 w-6 text-blue-600" />
