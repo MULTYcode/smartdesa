@@ -50,18 +50,14 @@ export function InfografisSection() {
                                 <div className="" key={infografis.slug} onClick={() => {setIsOpen(true); setCurrentIndex(index)}}>
                                   <div className="relative shadow-sm col-span-1 md:col-span-4 xl:col-span-4 bg-white min-h-full p-1 group border-2 border-white hover:border-green-600 rounded-2xl transition duration-300 ease-in-out ">
                                     <div className="relative flex justify-center overflow-hidden w-full rounded-t-2xl shadow-lg">
-                                      <div className="relative flex justify-center overflow-hidden w-full group rounded-t-2xl">
+                                     <div className="relative flex justify-center overflow-hidden w-full group rounded-t-2xl aspect-[4/5]">
                                         <Image
-                                            className="h-full w-full min-w-full object-cover"
-                                            src={infografis.link?.startsWith("https:/") ?  infografis.link : '/images/not-fuound-image.jpg'}
-                                            alt="Tour Banner"
-                                            width={500}
-                                            height={300}
-                                            style={{
-                                              width: "auto",
-                                              height: "50vh"
-                                            }}
-                                          />
+                                          className="w-full object-contain"
+                                          src={infografis.link?.startsWith("https:/") ? infografis.link : '/images/not-found-image.jpg'}
+                                          alt="Tour Banner"
+                                          width={500}
+                                          height={889}
+                                        />
                                       </div>
                                     </div>
                                     <div className="p-3 md:p-6  text-black bg-white rounded-b-2xl">

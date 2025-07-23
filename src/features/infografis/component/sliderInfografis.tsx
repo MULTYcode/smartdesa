@@ -48,7 +48,7 @@ function SamplePrevArrow(props: SliderButtonProps) {
       );
 }  
     
-let settings, height : string;
+let settings
   
 settings = {
   dots: false,
@@ -76,7 +76,6 @@ settings = {
     }
   )
 };
-height = "35vh"
 
 if(slideToShow > 1){
   settings = {
@@ -131,7 +130,6 @@ if(slideToShow > 1){
       }
     )
   }
-  height = "30vh"
 }
 
 SamplePrevArrow.propTypes = {
@@ -165,18 +163,14 @@ return (
                       return (
                         <div key={card.slug} tabIndex={1}  onClick={()=> {setIsOpen(true); setCurrentIndex(index)}}>
                           <div className="relative px-1 lg:px-2 group hover:scale-100 focus:scale-100 transition duration-300 ease-in-out"> 
-                              <div className="relative flex justify-center overflow-hidden w-full h-full group rounded-2xl">
+                              <div className="relative flex justify-center overflow-hidden w-full group rounded-t-2xl aspect-[4/5]">
                                 <Image
-                                    className="h-full w-full min-w-full md:min-h-96 object-cover transform group-hover:scale-110 group-focus:scale-110 transition duration-300 ease-in-out"
-                                    src={card.link?.startsWith("https:/") ?  card.link : '/images/not-fuound-image.jpg'}
-                                    alt="Tour Banner"
-                                    width={500}
-                                    height={300}
-                                    style={{
-                                      width: "auto",
-                                      height: height,
-                                    }}
-                                  />
+                                  className="w-full object-contain"
+                                  src={card.link?.startsWith("https:/") ? card.link : '/images/not-found-image.jpg'}
+                                  alt="Tour Banner"
+                                  width={500}
+                                  height={889}
+                                />
                               </div>
                               <div className="flex flex-col gap-2 px-2 mt-2 w-full h-full text-start items-end"> 
                                 <h5 className="text-lg text-start font-bold w-full mx-2 tracking-tighter text-gray-700 dark:text-white line-clamp-3">{card.title}</h5>

@@ -24,16 +24,16 @@ export interface NewsCardProps {
 export function NewsCard({ title, excerpt, date, readTime, image, slug, className, content, category, author, isDetail = false }: NewsCardProps) {
   return (
     <CustomCard className={cn("overflow-hidden", className)}>
-      <div className={`relative ${isDetail ? 'h-90' : 'h-48'}`}>
+     <div className="relative w-full mb-4 aspect-[16/9]">
         <Image
           src={image || "/placeholder.svg"}
           alt={title}
           fill
-          className='object cover'
+          className="object-contain"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
-      <div className="py-6 flex flex-col justify-between h-1/2">
+      <div className="py-3 flex flex-col justify-between ">
         <div className="flex items-center text-sm text-gray-500 mb-3">
             <span className="font-semibold text-red-500 text-xs">[{category}]</span>
             <span className="mx-2">•</span>

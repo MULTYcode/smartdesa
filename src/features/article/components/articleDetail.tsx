@@ -29,15 +29,15 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ article }) => {
                             <Eye className="h-4 w-4 mr-1" />
                             <span>{article?.views?.toString() ?? "0"}</span>
                         </div>
-                        <div className={`relative h-90 mb-4`}>
+                       <div className="relative w-full mb-4 aspect-[16/9]">
                             <Image
                                 src={article?.thumbnail ?? "/images/placeholder.svg"}
                                 alt={article?.title ?? "Artikel Tidak Ditemukan"}
                                 fill
-                                className='object cover'
+                                className="object-contain"
                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             />
-                        </div>
+                         </div>
                         <RichTextContent content={article?.content || ''}/>
                         <p className="self-start align-baseline text-base font-semibold text-black my-5">({article?.user?.name || 'Admin'})</p>
                     </div>

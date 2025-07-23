@@ -37,15 +37,15 @@ export function AboutSection({ data }: AboutSectionProps) {
               </CustomButton>
 
           </div>
-          <div className="relative h-[400px] rounded-lg overflow-hidden shadow-lg">
-            <Image
-              src={data.image || "/placeholder.svg"}
-              alt={data.title}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
-          </div>
+        <div className="relative w-full rounded-lg overflow-hidden shadow-lg aspect-[16/9]">
+          <Image
+            src={data.image || "/placeholder.svg"}
+            alt={data.title}
+            fill
+            className="object-contain"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        </div>
         </div>
       </div>
     </section>
