@@ -20,6 +20,9 @@ const CustomDatePicker: React.FC<DatePickerProps> = ({ setDate }) => {
                 .join(",");
                 setDate(formatted);
             }
+            if(dates.length === 0){
+                setDate('');
+            }
             }}
           placeholder="Pilih tanggal"
         />

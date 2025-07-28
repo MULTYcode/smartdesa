@@ -55,10 +55,10 @@ export default function PageArticle() {
                     </svg>
                 </span>
             </div>
-            <div className="relative w-full col-span-2">
+            <div className="relative w-full col-span-6 md:col-span-2">
                  <SelectCategory setCategoryId={setCategoryId}/>
             </div>
-            <div className="relative w-full col-span-4">
+            <div className="relative w-full col-span-6 md:col-span-4">
               <DatePicker setDate={setRangeDate} />
             </div>
           </div>
