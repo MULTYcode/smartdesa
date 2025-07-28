@@ -58,7 +58,7 @@ export default function TourPage() {
                             key={item.id}
                             id={item.id}
                             title={item.title}
-                            // excerpt={item.excerpt}
+                            excerpt={item.description || "Deskripsi tidak tersedia"}
                             date={item.published_at ?? Date.now().toString()}
                             // readTime={item.readTime}
                             image={item.thumbnail ?? "/images/placeholder.svg"}

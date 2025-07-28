@@ -47,7 +47,7 @@ export default function Page() {
 
               {
                 data?.description &&
-                <div className="flex items-center gap-3">
+                <div className="flex items-start justify-center gap-3">
                   <Info className="text-green-700 min-w-6 min-h-6 mt-1" />
                   <p className="text-gray-600">
                     {data?.description}

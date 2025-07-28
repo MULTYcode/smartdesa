@@ -142,15 +142,15 @@ export function Footer({ data }: FooterProps) {
                 <h3 className="font-bold text-lg mb-4">Kontak</h3>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <MapPin className="min-h-4 min-w-4 mr-3 mt-0.5 text-green-100" />
+                    <MapPin className="min-h-6 min-w-6 mr-3 mt-0.5 text-green-100" />
                     <span className="text-green-100">{data?.address}</span>
                   </li>
                   <li className="flex items-center">
-                    <Phone className="min-h-4 min-w-4 mr-3 text-green-100" />
+                    <Phone className="min-h-6 min-w-6 mr-3 text-green-100" />
                     <span className="text-green-100">{data?.phone}</span>
                   </li>
                   <li className="flex items-center">
-                    <Mail className="min-h-4 min-w-4 mr-3 text-green-100" />
+                    <Mail className="min-h-6 min-w-6 mr-3 text-green-100" />
                     <span className="text-green-100">{data?.email}</span>
                   </li>
                 </ul>

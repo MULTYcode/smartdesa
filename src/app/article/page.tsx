@@ -1,13 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
 import { NewsCard } from '@/components/common/news-card'
+import DatePicker from '@/components/form/form-elements/DatePicker';
+import SelectCategory from '@/components/form/form-elements/selectCategory';
 import useArticle from '@/features/article/hooks/useArticle';
 import React, { useEffect, useRef, useState } from 'react'
 
 export default function PageArticle() {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [searchValue, setSearchValue] = useState('');
-  const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage } = useArticle({ "page_size": 8 , "search": searchValue});
+  const [categoryId, setCategoryId] = useState(0);
+  const [dateRange, setRangeDate] = useState('');
+  const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage } = useArticle({ "page_size": 8 , "search": searchValue, "date": dateRange}, categoryId);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setSearchValue(e.target.value);
   };
@@ -42,7 +46,7 @@ export default function PageArticle() {
   return (
      <div className='flex justify-center'>
         <div className="w-full px-6 sm:px-0 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl flex justify-between flex-col items-center my-10 gap-4">
-          <div className="w-full flex justify-between items-center">
+          <div className="w-full grid grid-cols-6 justify-between items-center gap-4">
             <div className="relative w-full col-span-6">
                 <input id="search-dropdown" type='search' value={searchValue} onChange={handleChange} className="block py-3 px-5 pe-12 w-full rounded-sm text-sm text-gray-900 bg-gray-100 placeholder:text-black border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="Cari artikel ..." />
                 <span className="absolute top-0 end-0 py-3 px-5 sm:ms-4 text-sm font-medium h-full text-white focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -50,6 +54,12 @@ export default function PageArticle() {
                         <path stroke="black" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                     </svg>
                 </span>
+            </div>
+            <div className="relative w-full col-span-2">
+                 <SelectCategory setCategoryId={setCategoryId}/>
+            </div>
+            <div className="relative w-full col-span-4">
+              <DatePicker setDate={setRangeDate} />
             </div>
           </div>
           <div className="w-full grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-1 gap-y-4 md:gap-2 lg:gap-4">

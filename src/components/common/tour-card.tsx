@@ -24,7 +24,7 @@ export interface TourCardProps {
 export function TourCard({ title, image, slug, className, excerpt, isDetail = false }: TourCardProps) {
   return (
     <CustomCard className={cn("overflow-hidden", className)}>
-      <div className={`relative ${isDetail ? 'h-90' : 'h-48'}`}>
+      <div className={`relative aspect-[3/2]`}>
         <Image
           src={image || "/placeholder.svg"}
           alt={title || "Tour Image"}
@@ -33,14 +33,17 @@ export function TourCard({ title, image, slug, className, excerpt, isDetail = fa
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
-      <div className="p-6">        
-        <h3 className={`font-bold mb-2 transition-colors ${!isDetail ? 'hover:text-[#0d6b3f]' : ''
+      <div className="mt-6">        
+        <h3 className={`font-bold mb-2 text-md transition-colors ${!isDetail ? 'hover:text-[#0d6b3f]' : ''
           }`}>
           {
             !isDetail ? <Link href={`/tour/${slug}`}>{title}</Link>
               : title
           }
         </h3>    
+         {
+          !isDetail &&  <p className="text-gray-600 mb-4 text-md line-clamp-3">{excerpt}</p>
+        } 
         {
           !isDetail ? <Link href={`/tour/${slug}`} className="text-[#0d6b3f] font-medium flex items-center hover:underline">
             Baca Selengkapnya
