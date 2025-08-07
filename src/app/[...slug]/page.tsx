@@ -72,11 +72,11 @@ export default async function PageStatic({ params }: DynamicPageProps & PageProp
     return (
      <div className='flex justify-center'>
          <div className="w-full px-6 sm:px-0 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl flex justify-between mb-10 mt-10">
-            <div className="box-border grid grid-cols-12 gap-5 xl:gap-12 justify-between">
+            <div className="box-border grid grid-cols-12 gap-4 xl:gap-12 justify-between">
               <div className="w-full col-span-12 md:col-span-7 lg:col-span-8">
                 <RichTextContent content={data?.content || ''} />
               </div>
-              <div className="flex flex-col col-span-12 md:col-span-5 lg:col-span-4 gap-6 w-full">
+              <div className="md:sticky md:top-24 md:self-start h-fit flex flex-col col-span-12 md:col-span-5 lg:col-span-4 gap-6 w-full">
                 <ArtikelPopuler />
                 <SliderCard slideToShow={1} />
               </div>

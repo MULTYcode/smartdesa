@@ -40,18 +40,16 @@ export function SambutanSection({ data }: WellcomeSectionProps) {
             </div>
             <div className="mt-4">
               {activeTab === "kata sambutan" && 
-              <div className="mt-4">
+              <div className="mt-4 min-h-52 flex items-center justify-center">
                   <RichTextContent
                     content={data.wellcome}
-                    className="px-4 py-4 md:px-16"
                   />
                 </div>
                 }
               {activeTab === "program" && 
-              <div className="mt-4">
+              <div className="mt-4 min-h-52 flex items-center justify-center">
                 <RichTextContent
                   content={data.program}
-                  className="px-4 py-4 md:px-16"
                 />
               </div>}
             </div>

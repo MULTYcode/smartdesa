@@ -199,7 +199,7 @@ function NestedSubmenu({ submenu, parentPath, level }: NestedSubmenuProps) {
                 <Link href={parentPath}>
                     <DisclosureButton
                         className={classNames(
-                        "flex justify-between text-start items-center w-full py-1.5 px-3 text-sm font-medium rounded-md transition-all duration-200",
+                        "flex justify-between text-start items-center w-full py-2 px-3 text-sm font-medium rounded-md transition-all duration-200",
                         "ml-2", 
                         pathname.startsWith(parentPath)
                             ? "bg-gray-100 text-black"
@@ -227,7 +227,7 @@ function NestedSubmenu({ submenu, parentPath, level }: NestedSubmenuProps) {
             ) : (
                 <DisclosureButton
                     className={classNames(
-                    "flex justify-between text-start items-center w-full py-1.5 px-3 text-sm font-medium rounded-md transition-all duration-200",
+                    "flex justify-between text-start items-center w-full py-2 px-3 text-sm font-medium rounded-md transition-all duration-200",
                     pathname.startsWith(parentPath)
                         ? "bg-gray-100 text-black"
                         : "text-gray-700 hover:bg-gray-50 hover:text-black",
@@ -267,7 +267,7 @@ function NestedSubmenu({ submenu, parentPath, level }: NestedSubmenuProps) {
                         <Link
                             href={fullChildPath}
                             className={classNames(
-                            "block rounded-md px-3 py-1.5 text-xs font-medium transition-colors duration-200",
+                            "block rounded-md px-3 py-2 text-xs font-medium transition-colors duration-200",
                             pathname === fullChildPath
                                 ? "bg-gray-100 text-black"
                                 : "text-gray-700 hover:bg-gray-50 hover:text-black",

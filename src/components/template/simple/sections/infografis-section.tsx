@@ -52,7 +52,7 @@ export function InfografisSection() {
                                     <div className="relative flex justify-center overflow-hidden w-full rounded-t-2xl shadow-lg">
                                      <div className="relative flex justify-center overflow-hidden w-full group rounded-t-2xl aspect-[4/5]">
                                         <Image
-                                          className="w-full object-contain"
+                                          className="w-full object-cover"
                                           src={infografis.link?.startsWith("https:/") ? infografis.link : '/images/not-found-image.jpg'}
                                           alt="Tour Banner"
                                           width={500}

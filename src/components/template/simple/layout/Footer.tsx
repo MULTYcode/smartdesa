@@ -29,16 +29,13 @@ export function Footer({ data }: FooterProps) {
           {
             hasBrackets ? (
               <div className="animate-pulse">
-                {/* Logo dan region info */}
                 <div className="flex items-center space-x-3 mb-6">
-                  <div className="w-[38px] h-[38px] bg-gray-200 rounded-md" /> {/* Logo placeholder */}
+                  <div className="w-[38px] h-[38px] bg-gray-200 rounded-md" /> 
                   <div>
-                    <div className="h-5 w-40 bg-gray-200 rounded-md mb-2" /> {/* regionEntity */}
-                    <div className="h-3 w-32 bg-gray-100 rounded-md" /> {/* regionDescription */}
+                    <div className="h-5 w-40 bg-gray-200 rounded-md mb-2" />
+                    <div className="h-3 w-32 bg-gray-100 rounded-md" /> 
                   </div>
                 </div>
-
-                {/* Sosial media icons */}
                 <div className="flex space-x-4">
                   {[...Array(4)].map((_, i) => (
                     <div key={i} className="w-8 h-8 bg-gray-200 rounded-full" />
@@ -66,69 +63,68 @@ export function Footer({ data }: FooterProps) {
               </div>
             )
           }
-
+            <div className="col-span-2 flex flex-row gap-8 w-full justify-baseline xl:justify-evenly">
+              {
+                hasBrackets ? (
+                  <div className="animate-pulse">
+                    <div className="h-5 w-32 bg-gray-300 rounded mb-4" />
+                    <ul className="space-y-2">
+                      {[...Array(5)].map((_, i) => (
+                        <li key={i}>
+                          <div className="h-4 w-40 bg-gray-200 rounded" />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : (
+                  <div>
+                    <h3 className="font-bold text-lg mb-4">Tautan Cepat</h3>
+                    <ul className="space-y-2">
+                      {data?.quickLinks
+                        ?.filter((link: NavItem) => link.child === null)
+                        .map((link: NavItem) => (
+                          <li key={link.route}>
+                            <a href={link.route} className="text-green-100 hover:text-white">
+                              {link.title}
+                            </a>
+                          </li>
+                        ))}
+                    </ul>
+                  </div>
+                )
+              }
+              {
+                hasBrackets ? (
+                  <div className="animate-pulse">
+                    <div className="h-5 w-32 bg-gray-300 rounded mb-4" />
+                    <ul className="space-y-2">
+                      {[...Array(5)].map((_, i) => (
+                        <li key={i}>
+                          <div className="h-4 w-40 bg-gray-200 rounded" />
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : (
+                  <div>
+                    <h3 className="font-bold text-lg mb-4">Layanan</h3>
+                    <ul className="space-y-2">
+                      {data?.mainNav?.map((service: NavLayanan) => (
+                        <li key={service.link}>
+                          <a href={service.link} className="text-green-100 hover:text-white">
+                            {service.title}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )
+              }
+            </div>
           {
             hasBrackets ? (
               <div className="animate-pulse">
-                <div className="h-5 w-32 bg-gray-300 rounded mb-4" /> {/* Judul "Tautan Cepat" */}
-                <ul className="space-y-2">
-                  {[...Array(5)].map((_, i) => (
-                    <li key={i}>
-                      <div className="h-4 w-40 bg-gray-200 rounded" />
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : (
-              <div>
-                <h3 className="font-bold text-lg mb-4">Tautan Cepat</h3>
-                <ul className="space-y-2">
-                  {data?.quickLinks
-                    ?.filter((link: NavItem) => link.child === null)
-                    .map((link: NavItem) => (
-                      <li key={link.route}>
-                        <a href={link.route} className="text-green-100 hover:text-white">
-                          {link.title}
-                        </a>
-                      </li>
-                    ))}
-                </ul>
-              </div>
-            )
-          }
-
-          {
-            hasBrackets ? (
-              <div className="animate-pulse">
-                <div className="h-5 w-32 bg-gray-300 rounded mb-4" /> {/* Judul "Tautan Cepat" */}
-                <ul className="space-y-2">
-                  {[...Array(5)].map((_, i) => (
-                    <li key={i}>
-                      <div className="h-4 w-40 bg-gray-200 rounded" />
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : (
-              <div>
-                <h3 className="font-bold text-lg mb-4">Layanan</h3>
-                <ul className="space-y-2">
-                  {data?.mainNav?.map((service: NavLayanan) => (
-                    <li key={service.link}>
-                      <a href={service.link} className="text-green-100 hover:text-white">
-                        {service.title}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )
-          }
-
-          {
-            hasBrackets ? (
-              <div className="animate-pulse">
-                <div className="h-5 w-32 bg-gray-300 rounded mb-4" /> {/* Judul "Tautan Cepat" */}
+                <div className="h-5 w-32 bg-gray-300 rounded mb-4" />
                 <ul className="space-y-2">
                   {[...Array(5)].map((_, i) => (
                     <li key={i}>

@@ -165,9 +165,9 @@ return (
                           <div className="relative px-1 lg:px-2 group hover:scale-100 focus:scale-100 transition duration-300 ease-in-out"> 
                               <div className="relative flex justify-center overflow-hidden w-full group rounded-t-2xl aspect-[4/5]">
                                 <Image
-                                  className="w-full object-contain"
+                                  className="w-full object-cover"
                                   src={card.link?.startsWith("https:/") ? card.link : '/images/not-found-image.jpg'}
-                                  alt="Tour Banner"
+                                  alt={`Infografis ${card.title}`}
                                   width={500}
                                   height={889}
                                 />

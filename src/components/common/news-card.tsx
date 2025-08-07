@@ -29,7 +29,7 @@ export function NewsCard({ title, excerpt, date, readTime, image, slug, classNam
           src={image || "/placeholder.svg"}
           alt={title}
           fill
-          className="object-contain"
+          className="object-cover"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
@@ -48,7 +48,7 @@ export function NewsCard({ title, excerpt, date, readTime, image, slug, classNam
                         </>
           }
           </div>
-        <h3 className={`font-bold mb-2 transition-colors ${!isDetail ? 'hover:text-[#0d6b3f]' : ''
+        <h3 className={`font-bold mb-2 transition-colors ${!isDetail ? 'hover:text-[#0d6b3f] md:min-h-24' : ''
           }`}>
           {
             !isDetail ? <Link href={`/article/${slug}`}><p className="line-clamp-4">{title}</p></Link>

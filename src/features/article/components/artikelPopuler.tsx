@@ -17,7 +17,7 @@ export default function ArtikelPopuler() {
                 {data?.pages[0].data.map((item) => (
                     <Link key={item.id} href={`/article/${item.slug}`}>
                       <li className="flex my-4">
-                        <div className="max-w-40 mr-4 md:mr-0 min-w-40 md:max-w-32 md:min-w-32 w-full relative group">
+                        <div className="max-w-40 mr-4 md:mr-0 min-w-36 md:max-w-32 md:min-w-32 w-full relative group">
                             <Image
                                 className="max-w-40 md:max-w-28 max-h-20 h-full w-full shadow-lg object-cover"
                                 src={item.thumbnail || ""}
@@ -26,7 +26,7 @@ export default function ArtikelPopuler() {
                                 height={720}
                                 priority 
                                 />
-                            <div className="absolute w-40 md:w-28  inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out" />
+                            <div className="absolute w-36 md:w-28 inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out" />
                         </div>
                         <h5 className="text-sm line-clamp-4 font-normal hover:text-green-700 ">
                           {item.title}

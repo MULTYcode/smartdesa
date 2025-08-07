@@ -13,8 +13,8 @@ type PageProps = {
 
 export async function generateMetadata({ params }: PageProps ): Promise<Metadata> {
   const { slug } = params;
-  const logoResponse = await SettingService.getSetting (`logo-${process.env.NEXT_PUBLIC_VILLAGE_ID}`)
   try {
+    const logoResponse = await SettingService.getSetting (`logo-${process.env.NEXT_PUBLIC_VILLAGE_ID}`)
     const article = await getArticle(slug);
     return formatMetadata({ ...article, type: "article" }, { siteName: logoResponse?.data?.value?.regionEntity || "Pemerintah Kabupaten Muara Enim" });
   } catch {

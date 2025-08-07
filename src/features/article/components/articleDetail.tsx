@@ -17,7 +17,7 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ article }) => {
     return (        
        <div className='flex justify-center'>
             <div className="w-full px-6 sm:px-0 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl py-8 max-w-8xl">
-                <div className='box-border grid grid-cols-12 gap-5 xl:gap-12 justify-between'>
+                <div className='box-border grid grid-cols-12 gap-4 xl:gap-12 justify-between'>
                     <div className='w-full col-span-12 md:col-span-7 lg:col-span-8 gap-y-8'>
                         <h3 className={`font-normal text-4xl text-gray-800 transition-colors`}>{article?.title ?? "Artikel Tidak Ditemukan"} </h3>
                         <div className="flex items-center text-sm text-gray-500 my-4">
@@ -34,14 +34,14 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ article }) => {
                                 src={article?.thumbnail ?? "/images/placeholder.svg"}
                                 alt={article?.title ?? "Artikel Tidak Ditemukan"}
                                 fill
-                                className="object-contain"
+                                className="object-cover"
                                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                             />
                          </div>
                         <RichTextContent content={article?.content || ''}/>
                         <p className="self-start align-baseline text-base font-semibold text-black my-5">({article?.user?.name || 'Admin'})</p>
                     </div>
-                    <div className='flex flex-col col-span-12 md:col-span-5 lg:col-span-4 gap-6 w-full'>    
+                    <div className='md:sticky md:top-24 md:self-start h-fit flex flex-col col-span-12 md:col-span-5 lg:col-span-4 gap-6 w-full'>    
                         <ArtikelPopuler />
                         <SliderCard slideToShow={1} />
                     </div>

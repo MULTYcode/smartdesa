@@ -11,7 +11,7 @@ export default function PageArticle() {
   const [searchValue, setSearchValue] = useState('');
   const [categoryId, setCategoryId] = useState(0);
   const [dateRange, setRangeDate] = useState('');
-  const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage } = useArticle({ "page_size": 8 , "search": searchValue, "date": dateRange}, categoryId);
+  const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage } = useArticle({ "page_size": 8, "search": searchValue, "date": dateRange, 'order': 'desc', 'by':'published_at'}, categoryId);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setSearchValue(e.target.value);
   };
@@ -64,7 +64,7 @@ export default function PageArticle() {
           </div>
           <div className="w-full grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-1 gap-y-4 md:gap-2 lg:gap-4">
             { 
-              (!isLoading) && (!articleImportData || articleImportData.length === 0) ? <div className="h-36 col-span-1 md:col-span-4 xl:col-span-4 w-full flex items-center justify-center"><p className="text-center">Tidak ada artikel</p></div> :
+              (!isLoading) && (!articleImportData || articleImportData.length === 0) ? <div className="h-36 col-span-1 md:col-span-3 xl:col-span-4 w-full flex items-center justify-center"><p className="text-center">Tidak ada artikel</p></div> :
               (articleImportData ?? []).map((item) => (
                 <NewsCard
                   key={item.id}
@@ -77,7 +77,7 @@ export default function PageArticle() {
                 />
               ))}
               {(isLoading || isFetchingNextPage) && (
-                  <div className="w-full col-span-1 md:col-span-4 xl:col-span-4 flex justify-center items-center my-12">
+                  <div className="w-full col-span-1 md:col-span-3 xl:col-span-4 flex justify-center items-center my-12">
                     <div className="flex items-center space-x-3">
                       <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"></div>
                       <span className="text-gray-600 font-medium">Loading...</span>

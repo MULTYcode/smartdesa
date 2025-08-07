@@ -42,7 +42,7 @@ export function AboutSection({ data }: AboutSectionProps) {
             src={data.image || "/placeholder.svg"}
             alt={data.title}
             fill
-            className="object-contain"
+            className="object-cover"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>

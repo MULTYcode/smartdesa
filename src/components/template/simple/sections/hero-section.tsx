@@ -1,9 +1,9 @@
-// import Image from "next/image"
 import { CustomButton } from "@/components/ui/simple/CustomButton"
 import { ChevronRight } from "lucide-react"
 import type { HeroSection as HeroSectionType } from "@/types/Simple"
 import { useRouter } from "next/navigation"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
+import Image from "next/image"
 
 interface HeroSectionProps {
   data: HeroSectionType
@@ -12,12 +12,6 @@ interface HeroSectionProps {
 export function HeroSection({ data }: HeroSectionProps) {
 
   const router = useRouter();
-
-  const [isClient, setIsClient] = useState(false)
-
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
 
   const videoRef = useRef<HTMLVideoElement>(null)
 
@@ -37,23 +31,32 @@ export function HeroSection({ data }: HeroSectionProps) {
 
   return (
     <section className="relative h-screen sm:h-[600px] flex justify-center">
-      <div className="absolute inset-0">
-        {/* <Image src={data.image || "/placeholder.svg"} alt="Hero Image" fill className="object-cover" priority /> */}
-        {isClient && data?.image?.endsWith(".mp4") && (
+      <div className="absolute inset-0 w-full h-full">
+        {data?.image?.match(/\.(mp4|webm|ogg)$/i) && data?.image ? (
           <video
             ref={videoRef}
             autoPlay
             muted
             loop
             playsInline
-            className="absolute w-full h-full object-cover"
+            className="w-full h-full object-cover"
           >
-            <source src={data?.image} type="video/mp4" />
+            <source src={data.image} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
+        ) : (
+          <Image
+            src={data?.image ?? '/images/placeholder.svg'}
+            alt="Hero Background"
+            fill
+            className="object-cover"
+            sizes="100vw"
+            priority
+          />
         )}
         <div className="absolute inset-0 bg-black/40"></div>
       </div>
+
 
       {
         data?.title === "" ? (
@@ -86,13 +89,10 @@ export default function SkeletonHeroContent() {
   return (
     <div className="relative max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl px-0 h-full flex flex-col justify-center">
       <div className="max-w-2xl text-white">
-        {/* Title */}
         <Skeleton className="h-10 md:h-14 w-3/4 mb-4 bg-white/20" />
-        {/* Description */}
         <Skeleton className="h-6 md:h-8 w-full mb-2 bg-white/20" />
         <Skeleton className="h-6 md:h-8 w-5/6 mb-6 bg-white/20" />
 
-        {/* Buttons */}
         <div className="flex flex-col sm:flex-row gap-3">
           <Skeleton className="h-10 w-40 bg-white/30 rounded-md" />
           <Skeleton className="h-10 w-40 bg-white/30 rounded-md" />
