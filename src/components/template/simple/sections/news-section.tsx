@@ -6,7 +6,7 @@ import { useContent } from "@/hooks/useContent";
 import PageArticleSkeleton from "@/components/common/skeleton/PageArticleSkeleton";
 
 export function NewsSection() {
-  const { data, isLoading } = useArticle({ "page_size": 8 });
+  const { data, isLoading } = useArticle({ "page_size": 8, 'order': 'desc', 'by':'published_at' });
   const { article } = useContent();
   
   return (

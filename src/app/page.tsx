@@ -17,9 +17,9 @@ export default function Home() {
         <HeroSection data={hero} />
         <SambutanSection data={{ wellcome: infoWellcome, program: infoProgram }} />
         <InfoSection cards={infoCards} />
-        <AboutSection data={about} />
         <NewsSection />
         <InfografisSection/>
+        <AboutSection data={about} />
       </main>
     </div>
   )

@@ -21,7 +21,6 @@ export function FeatureCard({
   title,
   description,
   icon: Icon,
-  // iconColor = "#0d6b3f",
   accentColor = "#0d6b3f",
   link,
   className,
@@ -37,7 +36,12 @@ export function FeatureCard({
         <h3 className="text-xl font-bold mb-2">{title}</h3>
         <p className="text-gray-600 mb-4">{description}</p>
         {link && (
-          <Link href={link.url} className="text-[#0d6b3f] font-medium flex items-center hover:underline">
+          <Link
+            href={link.url}
+            className="text-[#0d6b3f] font-medium flex items-center hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {link.text}
             <ChevronRight className="h-4 w-4 ml-1" />
           </Link>
