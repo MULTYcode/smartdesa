@@ -2,9 +2,10 @@
 import { TourCard } from '@/components/common/tour-card'
 import useTourDetail from '@/features/tour/hooks/useDetail';
 import StreetViewChecker from '@/lib/checkStreetView';
+import { validateAndRedirect } from '@/lib/shouldRedirect';
 import { Globe, Info, Landmark, Mail, MapPin } from 'lucide-react';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { redirect, useParams } from 'next/navigation';
 import React from 'react'
 
 export default function Page() {
@@ -12,110 +13,120 @@ export default function Page() {
   const { data } = useTourDetail({}, String(slug));
   const gmapsApiKey = process.env.NEXT_PUBLIC_GMAPS_API_KEY
   const isStreetAvailable = StreetViewChecker({ lat: Number(data?.latitude), lng: Number(data?.longitude) });
-  let mapsUrl = `https://www.google.com/maps/embed/v1/place?key=${gmapsApiKey}&q=${data?.latitude},${data?.longitude}`;
-  if (isStreetAvailable) {
-    mapsUrl = `https://www.google.com/maps/embed/v1/streetview?key=${gmapsApiKey}&location=${data?.latitude},${data?.longitude}&heading=0&pitch=0`
-  }
+  
+  if(data){
+    let mapsUrl = `https://www.google.com/maps/embed/v1/place?key=${gmapsApiKey}&q=${data?.latitude},${data?.longitude}`;
+    if (isStreetAvailable) {
+      mapsUrl = `https://www.google.com/maps/embed/v1/streetview?key=${gmapsApiKey}&location=${data?.latitude},${data?.longitude}&heading=0&pitch=0`
+    }
 
-  return (
-   <div className='flex justify-center'>
-       <div className="px-6 sm:px-0 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl py-8 max-w-8xl">
-        <div className='box-border flex flex-wrap gap-5'>
+    return (
+    <div className='flex justify-center'>
+        <div className="w-full px-6 sm:px-0 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl py-8 max-w-8xl">
+          <div className='box-border w-full flex flex-wrap gap-5'>
 
-          <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 p-6 bg-white rounded-2xl shadow-lg">
-            {/* Kolom Gambar */}
-            <div className="w-full h-64 md:h-auto overflow-hidden rounded-xl">
-              <TourCard
-                key={data?.id}
-                id={data?.id}
-                excerpt={data?.title ?? "Judul tidak tersedia"}
-                image={data?.thumbnail ?? "/images/placeholder.svg"}
-                slug={data?.slug}
-                isDetail={true}
-              />
-            </div>
-
-            {/* Kolom Informasi */}
-            <div className="flex flex-col justify-start gap-4">
-
-              <div className="flex items-center gap-3">
-                <Landmark className="text-green-700 min-w-6 min-h-6 mt-1" />
-                <div>
-                  <h2 className="text-xl font-bold text-gray-800">{data?.title}</h2>
-                </div>
+            <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 p-6 bg-white rounded-2xl shadow-lg">
+              <div className="w-full h-64 md:h-auto overflow-hidden rounded-xl">
+                <TourCard
+                  key={data?.id}
+                  id={data?.id}
+                  excerpt={data?.title ?? "Judul tidak tersedia"}
+                  image={data?.thumbnail ?? "/images/placeholder.svg"}
+                  slug={data?.slug}
+                  isDetail={true}
+                />
               </div>
+              <div className="flex flex-col justify-start gap-4">
 
-              {
-                data?.description &&
-                <div className="flex items-start justify-center gap-3">
-                  <Info className="text-green-700 min-w-6 min-h-6 mt-1" />
-                  <p className="text-gray-600">
-                    {data?.description}
-                  </p>
-                </div>
-              }
-
-              { data?.link.email &&
-                <div className="flex items-center gap-3">
-                  <Mail className="text-green-700 min-w-6 min-h-6 mt-1" />
-                  <p className="text-gray-600">
-                    {data?.link.email}
-                  </p>
-                </div>
-              }
-
-              {
-                data?.link.website &&
-                <div className="flex items-center gap-3">
-                  <Globe className="text-green-700 min-w-6 min-h-6 mt-1" />
-                  <p className="text-gray-600">
-                    <Link href={data?.link.website ?? ""} target='_blank' className="text-blue-500 hover:underline">
-                      {data?.link.website}
-                    </Link>
-                  </p>
-                </div>
-              }
-
-              {
-                data?.link.gmap &&
-                <div className="flex items-center gap-3">
-                  <MapPin className="text-green-700 min-w-6 min-h-6 mt-1" />
-                  <p className="text-gray-600">
-                    <Link href={data?.link.gmap ?? ""} target='_blank' className="text-blue-500 hover:underline">
-                      Lihat lokasi
-                    </Link>
-                  </p>
-                </div>
-              }
-
-            </div>
-          </div>
-
-          <div className="h-full w-full flex items-start justify-center">
-            <div className="relative w-full h-full min-h-[300px] lg:min-h-[500px] rounded-xl overflow-hidden">
-              {
-                !data?.latitude && !data?.longitude && !gmapsApiKey ? (
-                  <div className="w-full h-full flex items-center justify-center bg-gray-100 dark:bg-gray-800">
-                    <p className="text-gray-500 dark:text-gray-400">Map location not available</p>
+                <div className="flex items-start gap-3">
+                  <Landmark className="text-green-700 min-w-6 min-h-6 mt-1" />
+                  <div>
+                    <h2 className="text-xl font-bold text-gray-800">{data?.title}</h2>
                   </div>
-                ) : (
-                  <iframe
-                    src={mapsUrl}
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title={`Map of ${data?.title}`}
-                    className="absolute inset-0"
-                  />
-                )
-              }
+                </div>
+
+                {
+                  data?.description &&
+                  <div className="flex items-start gap-3">
+                    <Info className="text-green-700 min-w-6 min-h-6 mt-1" />
+                    <p className="text-gray-600">
+                      {data?.description}
+                    </p>
+                  </div>
+                }
+
+                { data?.link.email &&
+                  <div className="flex items-center gap-3">
+                    <Mail className="text-green-700 min-w-6 min-h-6 mt-1" />
+                    <p className="text-gray-600">
+                      {data?.link.email}
+                    </p>
+                  </div>
+                }
+
+                {
+                  data?.link.website &&
+                  <div className="flex items-center gap-3">
+                    <Globe className="text-green-700 min-w-6 min-h-6 mt-1" />
+                    <p className="text-gray-600">
+                      <Link href={data?.link.website ?? ""} target='_blank' className="text-blue-500 hover:underline">
+                        {data?.link.website}
+                      </Link>
+                    </p>
+                  </div>
+                }
+
+                {
+                  data?.link.gmap &&
+                  <div className="flex items-center gap-3">
+                    <MapPin className="text-green-700 min-w-6 min-h-6 mt-1" />
+                    <p className="text-gray-600">
+                      <Link href={data?.link.gmap ?? ""} target='_blank' className="text-blue-500 hover:underline">
+                        Lihat lokasi
+                      </Link>
+                    </p>
+                  </div>
+                }
+
+              </div>
+            </div>
+
+            <div className="h-full w-full flex items-start justify-center">
+              <div className="relative w-full h-full min-h-[300px] lg:min-h-[500px] rounded-xl overflow-hidden">
+                {
+                  !data?.latitude && !data?.longitude && !gmapsApiKey ? (
+                    <div className="w-full h-full flex items-center justify-center bg-gray-100 dark:bg-gray-800">
+                      <p className="text-gray-500 dark:text-gray-400">Map location not available</p>
+                    </div>
+                  ) : (
+                    <iframe
+                      src={mapsUrl}
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title={`Map of ${data?.title}`}
+                      className="absolute inset-0"
+                    />
+                  )
+                }
+              </div>
             </div>
           </div>
         </div>
-      </div>
-   </div>
-  )
+    </div>
+    )
+  }
+  if(validateAndRedirect([typeof slug === "string" ? slug : "*"])){
+    return redirect('/tour');
+  }
+  return <div className="flex flex-col text-center items-center justify-center h-96 w-full text-gray-700">
+            <h1 className="text-4xl font-bold">404 - Page Not Found</h1>
+            <p className="mt-2 text-lg">Halaman yang kamu cari tidak ditemukan.</p>
+            <Link href="/" className="mt-4 px-6 py-2 bg-green-700 text-white rounded hover:bg-green-800">
+              Kembali ke Beranda
+            </Link>
+          </div>
 }

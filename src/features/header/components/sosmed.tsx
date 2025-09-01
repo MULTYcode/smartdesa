@@ -1,4 +1,3 @@
-// import { useNavigation } from '@/hooks/useNavigation'
 import useSetting from '@/hooks/useSettings';
 import { FaFacebook, FaInstagram, FaXTwitter, FaLinkedin, FaThreads, FaTiktok, FaYoutube, FaQuestion } from "react-icons/fa6";
 import React from 'react'
@@ -11,7 +10,7 @@ export default function Sosmed() {
         switch (platform.toLowerCase()) {
             case "facebook":
             return <FaFacebook className="h-4 w-4" />
-            case "twitter":
+            case "x":
             return <FaXTwitter className="h-4 w-4" />
             case "instagram":
             return <FaInstagram className="h-4 w-4" />

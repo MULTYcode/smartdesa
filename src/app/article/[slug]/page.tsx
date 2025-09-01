@@ -4,6 +4,8 @@ import { getArticle } from '@/features/article/libs/getArticle';
 import { Metadata } from 'next';
 import SettingService from '@/shared/services/setting.service';
 import Link from 'next/link';
+import { validateAndRedirect } from '@/lib/shouldRedirect';
+import { redirect } from 'next/navigation';
 
 type PageProps = {
   params: {
@@ -30,6 +32,9 @@ export default async function Page({ params }: PageProps ) {
     const article = await getArticle(slug);
     return <ArticleDetail slug={slug} article={article} />;
   } catch {
+    if(validateAndRedirect([params.slug])){
+        return redirect('/article');
+      }
     return <div className="flex flex-col text-center items-center justify-center h-96 w-full text-gray-700">
               <h1 className="text-4xl font-bold">404 - Page Not Found</h1>
               <p className="mt-2 text-lg">Halaman yang kamu cari tidak ditemukan.</p>
