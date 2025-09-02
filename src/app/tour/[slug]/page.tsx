@@ -10,10 +10,34 @@ import React from 'react'
 
 export default function Page() {
   const { slug } = useParams();
-  const { data } = useTourDetail({}, String(slug));
+  const { data, isLoading } = useTourDetail({}, String(slug));
   const gmapsApiKey = process.env.NEXT_PUBLIC_GMAPS_API_KEY
   const isStreetAvailable = StreetViewChecker({ lat: Number(data?.latitude), lng: Number(data?.longitude) });
   
+  if (isLoading) {
+    return (
+      <div className='flex justify-center'>
+        <div className="w-full px-6 sm:px-0 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl py-8 max-w-8xl">
+            <div className="box-border w-full flex flex-wrap gap-5">
+            <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 p-6 bg-white rounded-2xl shadow-lg">
+              <div className="w-full h-64 md:h-auto overflow-hidden rounded-xl bg-gray-200"></div>
+              <div className="flex flex-col justify-start gap-4">
+                <div className="h-8 bg-gray-200 rounded w-2/3"></div>
+                <div className="h-6 bg-gray-200 rounded w-full"></div>
+                <div className="h-6 bg-gray-200 rounded w-1/2"></div>
+                <div className="h-6 bg-gray-200 rounded w-1/3"></div>
+                <div className="h-6 bg-gray-200 rounded w-1/4"></div>
+              </div>
+            </div>
+            <div className="h-full w-full flex items-start justify-center">
+              <div className="relative w-full h-full min-h-[300px] lg:min-h-[500px] rounded-xl overflow-hidden bg-gray-200"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if(data){
     let mapsUrl = `https://www.google.com/maps/embed/v1/place?key=${gmapsApiKey}&q=${data?.latitude},${data?.longitude}`;
     if (isStreetAvailable) {
