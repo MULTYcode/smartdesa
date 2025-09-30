@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 export default function TourPage() {   
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
     const [searchValue, setSearchValue] = useState(''); 
-    const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage  } = useTour({"search": searchValue, 'page_size': 6 });
+    const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage  } = useTour({"search": searchValue, 'page_size': 8 });
     const allTour = data?.pages?.flatMap(page => page?.data) || [];
      const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
           setSearchValue(e.target.value);
@@ -50,7 +50,7 @@ export default function TourPage() {
                       </span>
                   </div>
                 </div>
-                <div className="w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <div className="w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-8">
                     {
                         (!isLoading) && (!allTour || allTour.length === 0) ? <div className="h-36 col-span-1 md:col-span-4 xl:col-span-4 w-full flex items-center justify-center"><p className="text-center">Tidak ada wisata</p></div> :
                         allTour.map((item) => (
@@ -60,7 +60,7 @@ export default function TourPage() {
                             title={item.title}
                             excerpt={item.description || "Deskripsi tidak tersedia"}
                             date={item.published_at ?? Date.now().toString()}
-                            // readTime={item.readTime}
+                            className="h-full"
                             image={item.thumbnail ?? "/images/placeholder.svg"}
                             slug={item.slug}
                         />

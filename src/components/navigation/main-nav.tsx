@@ -2,9 +2,9 @@
 
 import { useState } from "react"
 import type { MenuWithContent } from "../../types/menu"
-import { MenuItem } from "./menu-item"
 import { MobileSidebar } from "./mobile-sidebar"
 import { BiDotsHorizontalRounded } from "react-icons/bi"
+import { NavMenu } from "./top-menu"
 
 function classNames(...classes: (string | boolean | undefined)[]) {
   return classes.filter(Boolean).join(" ")
@@ -26,11 +26,7 @@ export function MainNav({ menuData }: MainNavProps) {
 
       <div className="hidden lg:block">
         <ul className="flex items-center space-x-1">
-          {sortedMenuItems.slice(0,5).map((item) => (
-            <li key={`${item.title}-${item.order}`}>
-              <MenuItem item={item} />
-            </li>
-          ))}
+          <NavMenu items={sortedMenuItems.slice(0,5)} />
           {sortedMenuItems.length > 5 && (
             <li className="relative">
               <button

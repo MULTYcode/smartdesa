@@ -31,9 +31,9 @@ export function NewsSection() {
                 key={item.id}
                 id={item.id}
                 title={item.title}
-                // excerpt={item.excerpt}
+                description={item.description}
                 date={item.published_at ?? Date.now().toString()}
-                // readTime={item.readTime}
+                className="h-full"
                 image={item.thumbnail ?? "/images/placeholder.svg"}
                 slug={item.slug}
                 category={item.category?.name}

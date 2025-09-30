@@ -1,9 +1,9 @@
 "use client";
-import { TourCard } from '@/components/common/tour-card'
 import useTourDetail from '@/features/tour/hooks/useDetail';
 import StreetViewChecker from '@/lib/checkStreetView';
 import { validateAndRedirect } from '@/lib/shouldRedirect';
 import { Globe, Info, Landmark, Mail, MapPin } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { redirect, useParams } from 'next/navigation';
 import React from 'react'
@@ -13,6 +13,7 @@ export default function Page() {
   const { data, isLoading } = useTourDetail({}, String(slug));
   const gmapsApiKey = process.env.NEXT_PUBLIC_GMAPS_API_KEY
   const isStreetAvailable = StreetViewChecker({ lat: Number(data?.latitude), lng: Number(data?.longitude) });
+  console.log("isStreetAvailable", data);
   
   if (isLoading) {
     return (
@@ -49,19 +50,19 @@ export default function Page() {
         <div className="w-full px-6 sm:px-0 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl py-8 max-w-8xl">
           <div className='box-border w-full flex flex-wrap gap-5'>
 
-            <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 p-6 bg-white rounded-2xl shadow-lg">
-              <div className="w-full h-64 md:h-auto overflow-hidden rounded-xl">
-                <TourCard
-                  key={data?.id}
-                  id={data?.id}
-                  excerpt={data?.title ?? "Judul tidak tersedia"}
-                  image={data?.thumbnail ?? "/images/placeholder.svg"}
-                  slug={data?.slug}
-                  isDetail={true}
-                />
+            <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6 p-6 bg-white rounded-2xl shadow-lg">
+              <div className="w-full h-64 md:h-auto overflow-hidden">
+                <div className={`relative aspect-[3/2]`}>
+                    <Image
+                      src={data?.thumbnail ?? "/images/placeholder.svg"}
+                      alt={data?.title ?? "Judul tidak tersedia"}
+                      fill
+                      className='object-cover rounded-xl'
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  </div>
               </div>
               <div className="flex flex-col justify-start gap-4">
-
                 <div className="flex items-start gap-3">
                   <Landmark className="text-green-700 min-w-6 min-h-6 mt-1" />
                   <div>
@@ -70,9 +71,21 @@ export default function Page() {
                 </div>
 
                 {
+                  data?.address && data?.link.gmap &&
+                  <div className="flex items-start gap-3">
+                    <MapPin className="text-green-700 min-w-6 min-h-6" />
+                    <p className="text-blue-500 hover:underline">
+                      <Link href={data?.link.gmap ?? ""} target='_blank'>
+                             {data?.address || "Lihat Lokasi"}
+                      </Link>
+                    </p>
+                  </div>
+                }
+
+                {
                   data?.description &&
                   <div className="flex items-start gap-3">
-                    <Info className="text-green-700 min-w-6 min-h-6 mt-1" />
+                    <Info className="text-green-700 min-w-6 min-h-6" />
                     <p className="text-gray-600">
                       {data?.description}
                     </p>
@@ -100,23 +113,11 @@ export default function Page() {
                   </div>
                 }
 
-                {
-                  data?.link.gmap &&
-                  <div className="flex items-center gap-3">
-                    <MapPin className="text-green-700 min-w-6 min-h-6 mt-1" />
-                    <p className="text-gray-600">
-                      <Link href={data?.link.gmap ?? ""} target='_blank' className="text-blue-500 hover:underline">
-                        Lihat lokasi
-                      </Link>
-                    </p>
-                  </div>
-                }
-
               </div>
             </div>
 
             <div className="h-full w-full flex items-start justify-center">
-              <div className="relative w-full h-full min-h-[300px] lg:min-h-[500px] rounded-xl overflow-hidden">
+              <div className="relative w-full h-full min-h-[300px] md:min-h-[500px] rounded-xl overflow-hidden">
                 {
                   !data?.latitude && !data?.longitude && !gmapsApiKey ? (
                     <div className="w-full h-full flex items-center justify-center bg-gray-100 dark:bg-gray-800">

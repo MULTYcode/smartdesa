@@ -120,7 +120,7 @@ export function CustomCard({
   }
 
   return (
-    <Card className={cn(getCardStyles(), className)}>
+    <Card className={cn(getCardStyles(), "transform transition duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg", className)}>
       {(title || description || Icon) && (
         <CardHeader className={cn(headerClassName)}>
           {Icon && (
@@ -132,7 +132,7 @@ export function CustomCard({
           {description && <CardDescription>{description}</CardDescription>}
         </CardHeader>
       )}
-      <CardContent className={cn("pt-0", !title && !description && !Icon && "pt-4 h-full", contentClassName)}>
+      <CardContent className={cn("pt-0", !title && !description && !Icon && "h-full", contentClassName)}>
         {children}
       </CardContent>
       {footer && <CardFooter className={cn(footerClassName)}>{footer}</CardFooter>}

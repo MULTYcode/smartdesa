@@ -12,6 +12,7 @@ export default function PageArticle() {
   const [categoryId, setCategoryId] = useState(0);
   const [dateRange, setRangeDate] = useState('');
   const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage } = useArticle({ "page_size": 8, "search": searchValue, "date": dateRange, 'order': 'desc', 'by':'published_at'}, categoryId);
+  console.log("data article", data);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       setSearchValue(e.target.value);
   };
@@ -70,6 +71,7 @@ export default function PageArticle() {
                   key={item.id}
                   id={item.id}
                   category={item.category?.name}
+                  description={item.description}
                   title={item.title}
                   date={item.published_at ?? Date.now().toString()}
                   image={item.thumbnail ?? "/images/placeholder.svg"}

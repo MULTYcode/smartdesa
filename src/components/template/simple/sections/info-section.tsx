@@ -22,13 +22,14 @@ export function InfoSection({ cards }: InfoSectionProps) {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-8">
           {cards.map((card) => {
               const IconComponent = Icons[card.icon] as LucideIcon
               return (
                 <FeatureCard
                   key={card.id}
                   title={card.title}
+                  className="px-4 pb-4"
                   description={`Semua informasi tentang ${card.title} dapat kamu lihat disini.`}
                   icon={IconComponent}
                   link={

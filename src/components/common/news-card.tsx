@@ -1,4 +1,6 @@
-import { Calendar, ChevronRight, Eye } from "lucide-react"
+import moment from "moment"
+import "moment/locale/id"
+import { Calendar, Eye } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
@@ -10,6 +12,7 @@ export interface NewsCardProps {
   title: string
   excerpt?: string
   date: string
+  description?: string
   readTime?: string
   image?: string
   slug?: string
@@ -21,9 +24,10 @@ export interface NewsCardProps {
   author?: string
 }
 
-export function NewsCard({ title, excerpt, date, readTime, image, slug, className, content, category, author, isDetail = false }: NewsCardProps) {
+export function NewsCard({ title, description, date, readTime, image, slug, className, content, category, author, isDetail = false }: NewsCardProps) {
   return (
-    <CustomCard className={cn("overflow-hidden", className)}>
+   <Link href={`/article/${slug}`}>
+       <CustomCard className={cn("overflow-hidden", className)}>
      <div className="relative w-full mb-4 aspect-[16/9]">
         <Image
           src={image || "/placeholder.svg"}
@@ -33,14 +37,13 @@ export function NewsCard({ title, excerpt, date, readTime, image, slug, classNam
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
-      <div className="py-3 flex flex-col justify-between ">
+      <div className="py-3 flex flex-col justify-between px-4">
         <div className="flex items-center text-sm text-gray-500 mb-3">
             <span className="font-semibold text-red-500 text-xs">[{category}]</span>
             <span className="mx-2">•</span>
             <Calendar className="h-4 w-4 mr-1" />
-            <span>{date}</span>
-            
-           {
+            <span>{moment(date).locale('id').format('dddd, D-MM-YYYY')}</span>
+             {
             isDetail &&  <>
                         <span className="mx-2">•</span>
                         <Eye className="h-4 w-4 mr-1" />
@@ -48,19 +51,18 @@ export function NewsCard({ title, excerpt, date, readTime, image, slug, classNam
                         </>
           }
           </div>
-        <h3 className={`font-bold mb-2 transition-colors ${!isDetail ? 'hover:text-[#0d6b3f] md:min-h-24' : ''
+        <h3 className={`font-bold mb-2 transition-colors ${!isDetail ? 'hover:text-[#0d6b3f]' : ''
           }`}>
           {
-            !isDetail ? <Link href={`/article/${slug}`}><p className="line-clamp-4">{title}</p></Link>
+            !isDetail ? <p className="line-clamp-3">{title}</p>
               : title 
           }
         </h3>
-        <p className="text-gray-600 mb-4 line-clamp-3">{excerpt}</p>
         {
-          !isDetail ? <Link href={`/article/${slug}`} className="text-[#0d6b3f] font-medium flex items-center hover:underline">
-            Baca Selengkapnya
-            <ChevronRight className="h-4 w-4 ml-1" />
-          </Link> : <RichTextContent content={content || ''} />
+          !isDetail && <p className="text-gray-600 mb-4 text-md line-clamp-4">{description}</p>
+        }
+        {
+          isDetail && <RichTextContent content={content || ''} />
         }
 
         {
@@ -68,5 +70,6 @@ export function NewsCard({ title, excerpt, date, readTime, image, slug, classNam
         }
       </div>
     </CustomCard>
+   </Link>
   )
 }

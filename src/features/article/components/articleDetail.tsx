@@ -7,6 +7,7 @@ import SliderCard from '@/features/infografis/component/sliderInfografis';
 import Image from 'next/image';
 import { Calendar, Eye } from 'lucide-react';
 import RichTextContent from '@/components/common/RichTextContent';
+import moment from 'moment';
 
 interface ArticleDetailProps {
     slug: string;
@@ -24,7 +25,7 @@ const ArticleDetail: React.FC<ArticleDetailProps> = ({ article }) => {
                             <span className="font-semibold text-red-500 text-xs">[{article?.category?.name || 'Umum'}]</span>
                             <span className="mx-2">•</span>
                             <Calendar className="h-4 w-4 mr-1" />
-                            <span>{article?.published_at ?? ""}</span>
+                            <span>{moment(article?.published_at ?? "").locale('id').format('dddd, D MMMM YYYY')}</span>
                             <span className="mx-2">•</span>
                             <Eye className="h-4 w-4 mr-1" />
                             <span>{article?.views?.toString() ?? "0"}</span>

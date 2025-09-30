@@ -3,6 +3,7 @@ import './globals.css';
 import RootLayoutClient from "./rootLayout";
 import SettingService from "@/shared/services/setting.service";
 import HolyLoader from "holy-loader";
+import Script from "next/script";
 
 export const metadata = await generateMetadata(); 
 
@@ -27,6 +28,10 @@ export default function RootLayout({
       <HolyLoader/>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <RootLayoutClient>{children}</RootLayoutClient>
+         <Script
+            src="https://website-widgets.pages.dev/dist/sienna.min.js"
+            strategy="afterInteractive"
+          />
       </body>
     </html>
   );
