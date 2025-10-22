@@ -14,11 +14,17 @@ type PageProps = {
 };
 
 export async function generateMetadata({ params }: PageProps ): Promise<Metadata> {
-  const { slug } = params;
+  const { slug } = await params;
   try {
-    const logoResponse = await SettingService.getSetting (`logo-${process.env.NEXT_PUBLIC_VILLAGE_ID}`)
+    const logoResponse = await SettingService.getSetting(`logo-${process.env.NEXT_PUBLIC_VILLAGE_ID}`);
     const article = await getArticle(slug);
-    return formatMetadata({ ...article, type: "article" }, { siteName: logoResponse?.data?.value?.regionEntity || "Pemerintah Kabupaten Muara Enim", defaultImage: logoResponse?.data?.value?.imageUrl  });
+    return formatMetadata(
+      { ...article, type: "article" },
+      {
+        siteName: logoResponse?.data?.value?.regionEntity || "Pemerintah Kabupaten Muara Enim",
+        defaultImage: logoResponse?.data?.value?.imageUrl,
+      }
+    );
   } catch {
     return {
       title: `Artikel | Pemerintah Kabupaten Muara Enim`,
@@ -27,7 +33,7 @@ export async function generateMetadata({ params }: PageProps ): Promise<Metadata
 }
 
 export default async function Page({ params }: PageProps ) {
-  const { slug } = params;
+  const { slug } = await params;
    try {
     const article = await getArticle(slug);
     return <ArticleDetail slug={slug} article={article} />;

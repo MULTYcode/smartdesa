@@ -12,6 +12,9 @@ export type PressReleaseType = {
   category: CategoryType,
   status: string;
   published_at: string;
+  user: {
+    name: string
+  }
   thumbnail: string;
   meta: Meta[] | []; 
   attachments: ({url: string, original_name: string})[];
