@@ -17,6 +17,23 @@ interface FooterProps {
   }
 }
 
+function collectStaticPages(links: NavItem[]): NavItem[] {
+  let result : NavItem[] = [];
+
+  for (const link of links) {
+    if (!link.staticPage && !link.child) {
+      result.push(link);
+    }
+
+    if (link.child && Array.isArray(link.child)) {
+      result = result.concat(collectStaticPages(link.child));
+    }
+  }
+
+  return result;
+}
+
+
 export function Footer({ data }: FooterProps) {
 
   const hasBrackets = /[\[\]]/.test(data?.regionEntity ?? '');
@@ -63,7 +80,7 @@ export function Footer({ data }: FooterProps) {
               </div>
             )
           }
-            <div className="col-span-2 flex flex-row gap-8 w-full justify-baseline xl:justify-evenly">
+            <div className="flex flex-row gap-8 w-full justify-baseline xl:justify-evenly">
               {
                 hasBrackets ? (
                   <div className="animate-pulse">
@@ -71,7 +88,7 @@ export function Footer({ data }: FooterProps) {
                     <ul className="space-y-2">
                       {[...Array(5)].map((_, i) => (
                         <li key={i}>
-                          <div className="h-4 w-40 bg-gray-200 rounded" />
+                          <div className="h-4 w-32 bg-gray-200 rounded" />
                         </li>
                       ))}
                     </ul>
@@ -80,15 +97,13 @@ export function Footer({ data }: FooterProps) {
                   <div>
                     <h3 className="font-bold text-lg mb-4">Tautan Cepat</h3>
                     <ul className="space-y-2">
-                      {data?.quickLinks
-                        ?.filter((link: NavItem) => link.child === null)
-                        .map((link: NavItem) => (
-                          <li key={link.route}>
-                            <a href={link.route} className="text-green-100 hover:text-white">
-                              {link.title}
-                            </a>
-                          </li>
-                        ))}
+                      {collectStaticPages(data?.quickLinks || []).map((link) => (
+                        <li key={link.route}>
+                          <a href={link.route} className="text-green-100 hover:text-white">
+                            {link.title}
+                          </a>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 )
@@ -100,7 +115,7 @@ export function Footer({ data }: FooterProps) {
                     <ul className="space-y-2">
                       {[...Array(5)].map((_, i) => (
                         <li key={i}>
-                          <div className="h-4 w-40 bg-gray-200 rounded" />
+                          <div className="h-4 w-32 bg-gray-200 rounded" />
                         </li>
                       ))}
                     </ul>
@@ -123,18 +138,18 @@ export function Footer({ data }: FooterProps) {
             </div>
           {
             hasBrackets ? (
-              <div className="animate-pulse">
+              <div className=" col-span-1 xl:col-span-2 animate-pulse">
                 <div className="h-5 w-32 bg-gray-300 rounded mb-4" />
                 <ul className="space-y-2">
                   {[...Array(5)].map((_, i) => (
                     <li key={i}>
-                      <div className="h-4 w-40 bg-gray-200 rounded" />
+                      <div className="h-4 w-64 bg-gray-200 rounded" />
                     </li>
                   ))}
                 </ul>
               </div>
             ) : (
-              <div>
+              <div className="col-span-1 xl:col-span-2">
                 <h3 className="font-bold text-lg mb-4">Kontak</h3>
                 <ul className="space-y-4">
                   <li className="flex items-start">

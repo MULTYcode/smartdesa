@@ -50,10 +50,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   try {
     const menuData = await SettingService.getStaticPage(menuItem?.staticPage || "");
-    return formatMetadata(
-      { ...menuData.data, type: "article" },
-      { siteName: logoResponse?.data?.value?.regionEntity || "Pemerintah Kabupaten Muara Enim" }
-    );
+    return formatMetadata({ ...menuData.data, type: "article" }, { siteName: logoResponse?.data?.value?.regionEntity || "Pemerintah Kabupaten Muara Enim", defaultImage: logoResponse?.data?.value?.imageUrl  });
   } catch {
     return {
       title: `Halaman | Pemerintah Kabupaten Muara Enim`,

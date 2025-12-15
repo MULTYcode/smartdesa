@@ -19,7 +19,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   try {
     const logoResponse = await SettingService.getSetting(`logo-${process.env.NEXT_PUBLIC_VILLAGE_ID}`);
     const article = await getArticle(slug);
-    return formatMetadata({ ...article, type: "article" }, { siteName: logoResponse?.data?.value?.regionEntity || "Pemerintah Kabupaten Muara Enim" });
+    return formatMetadata(
+      { ...article, type: "article" },
+      {
+        siteName: logoResponse?.data?.value?.regionEntity || "Pemerintah Kabupaten Muara Enim",
+        defaultImage: logoResponse?.data?.value?.imageUrl,
+      }
+    );
   } catch {
     return {
       title: `Artikel | Pemerintah Kabupaten Muara Enim`,

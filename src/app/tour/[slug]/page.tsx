@@ -13,7 +13,6 @@ export default function Page() {
   const { data, isLoading } = useTourDetail({}, String(slug));
   const gmapsApiKey = process.env.NEXT_PUBLIC_GMAPS_API_KEY
   const isStreetAvailable = StreetViewChecker({ lat: Number(data?.latitude), lng: Number(data?.longitude) });
-  console.log("isStreetAvailable", data);
   
   if (isLoading) {
     return (
