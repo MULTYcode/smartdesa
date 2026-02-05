@@ -29,7 +29,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <RootLayoutClient>{children}</RootLayoutClient>
          <Script
-            src="https://website-widgets.pages.dev/dist/sienna.min.js"
+            src="https://cdn.jsdelivr.net/npm/sienna-accessibility@latest/dist/sienna-accessibility.umd.js"
             strategy="afterInteractive"
           />
            <Script
