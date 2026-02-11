@@ -1,9 +1,12 @@
+"use client"
+
+import { useState } from "react"
 import { FeatureCard } from "@/components/ui/simple/feature-card"
 import type { InfoCard } from "@/types/Simple"
-
 import type { LucideIcon } from "lucide-react"
 import Icons from "@/icons/icons"
 import { useContent } from "@/hooks/useContent"
+import { ServiceModal } from "./ServiceModal"
 
 interface InfoSectionProps {
   cards: InfoCard[]
@@ -11,6 +14,15 @@ interface InfoSectionProps {
 
 export function InfoSection({ cards }: InfoSectionProps) {
   const { service } = useContent();
+  const [selectedService, setSelectedService] = useState<InfoCard | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const displayCards = [...cards]; 
+
+  const handleCardClick = (card: InfoCard) => {
+    setSelectedService(card);
+    setIsModalOpen(true);
+  };
 
   return (
     <section id="info-layanan" className="py-16 bg-gray-50 flex justify-center">
@@ -23,25 +35,37 @@ export function InfoSection({ cards }: InfoSectionProps) {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-8">
-          {cards.map((card) => {
+          {displayCards.map((card) => {
               const IconComponent = Icons[card.icon] as LucideIcon
+              const hasChildren = card.child && card.child.length > 0;
+
               return (
                 <FeatureCard
                   key={card.id}
                   title={card.title}
-                  className="px-4 pb-4"
-                  description={`Semua informasi tentang ${card.title} dapat kamu lihat disini.`}
+                  className="h-full"
+                  description={card.description || `Semua informasi tentang ${card.title} dapat kamu lihat disini.`}
                   icon={IconComponent}
+                  image={card.image}
+                  onClick={hasChildren ? () => handleCardClick(card) : undefined}
                   link={
-                    typeof card.link === "string"
-                      ? { text: "Selengkapnya", url: card.link }
-                      : card.link
+                    !hasChildren
+                      ? (typeof card.link === "string"
+                          ? { text: "Selengkapnya", url: card.link }
+                          : card.link)
+                      : undefined
                   }
                 />
               )
           })}
         </div>
       </div>
+
+      <ServiceModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        service={selectedService} 
+      />
     </section>
   )
 }

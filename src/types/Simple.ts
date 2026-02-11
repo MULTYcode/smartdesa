@@ -50,8 +50,10 @@ export interface InfoCard {
   title: string
   description: string
   icon: string
-  link: string
+  link: string | { text: string; url: string }
   order: number
+  image?: string;
+  child?: InfoCard[];
 }
 
 // News Item Types

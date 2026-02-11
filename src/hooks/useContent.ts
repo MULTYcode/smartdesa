@@ -2,18 +2,57 @@
 import type { HeroSection, AboutSection, CTASection, GalleryItem } from "@/types/Simple"
 import useSetting from "./useSettings";
 import useStaticPage from "./useStaticPage";
+import useFeatureFlags from "./useFeatureFlags";
+import { NavItem } from "@/types/Simple";
+
+function filterMenusByFeatures(
+  menus: NavItem[],
+  features: { tour: boolean; pressRelease: boolean }
+): NavItem[] {
+  // Helper untuk cek apakah route match (dengan atau tanpa /)
+  const isRouteMatch = (route: string | null | undefined, target: string): boolean => {
+    if (!route) return false;
+    const normalizedRoute = route.startsWith('/') ? route : `/${route}`;
+    return normalizedRoute === target;
+  };
+
+  return menus
+    .map((menu) => {
+      if (menu.child && Array.isArray(menu.child) && menu.child.length > 0) {
+        const filteredChildren = filterMenusByFeatures(menu.child, features);
+        return {
+          ...menu,
+          child: filteredChildren,
+        };
+      }
+      return menu;
+    })
+    .filter((menu) => {
+      if (isRouteMatch(menu.route, "/tour") && !features.tour) return false;
+      if (isRouteMatch(menu.route, "/press-release") && !features.pressRelease) return false;
+      if (menu.child && Array.isArray(menu.child) && menu.child.length === 0 && !menu.route) {
+        return false;
+      }
+
+      return true;
+    });
+}
+
 
 export function useContent() {
   const { data: logoData } = useSetting(`logo-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
   const { data: serviceData } = useSetting(`service-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
   const { data: appData } = useSetting(`app-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
-  const { data: welcomeData } = useStaticPage({}, `wellcome-message-${process.env.NEXT_PUBLIC_VILLAGE_ID}`); 
-  const { data: programData } = useStaticPage({}, `village-program-${process.env.NEXT_PUBLIC_VILLAGE_ID}`); 
+  const { data: welcomeData } = useStaticPage({}, `wellcome-message-${process.env.NEXT_PUBLIC_VILLAGE_ID}`);
+  const { data: programData } = useStaticPage({}, `village-program-${process.env.NEXT_PUBLIC_VILLAGE_ID}`);
   const { data: footerData } = useSetting(`footer-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
   const { data: menuData } = useSetting(`menu-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
   const { data: tourData } = useSetting(`tour-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
   const { data: articleData } = useSetting(`article-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
   const { data: heroData } = useSetting(`hero-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
+
+  // Feature flags untuk filter menu
+  const { pressRelease, isSectionEnabled } = useFeatureFlags();
 
   const email = footerData?.value?.contactUs?.email || "desaku@example.com"
   const subject = encodeURIComponent("Pesan dari pengunjung")
@@ -84,6 +123,15 @@ export function useContent() {
     imageUrl: articleData?.value?.imageUrl ?? "/images/placeholder.svg",
   }
 
+  // Raw menus dari API
+  const rawMenus = menuData?.value ?? [];
+
+  // Filtered menus berdasarkan feature flags
+  const filteredMenus = filterMenusByFeatures(rawMenus, {
+    tour: isSectionEnabled("tour"),
+    pressRelease: pressRelease,
+  });
+
   const footer = {
     logo: logoData?.value?.imageUrl ?? "/images/logo/enim.png?height=60&width=60",
     regionEntity: logoData?.value?.regionEntity ?? "[nama desa belum diatur]",
@@ -91,16 +139,18 @@ export function useContent() {
     address: footerData?.value?.contactUs?.address ?? "[alamat belum diatur]",
     phone: footerData?.value?.contactUs?.phone ?? "[phone belum diatur]",
     email: footerData?.value?.contactUs?.email ?? "[email belum diatur]",
+    latitude: footerData?.value?.contactUs?.latitude ?? null,
+    longitude: footerData?.value?.contactUs?.longitude ?? null,
     socialMedia: footerData?.value?.socialMedia ?? [],
     mainNav: serviceData?.value ?? [],
-    quickLinks: menuData?.value ?? [],
+    quickLinks: filteredMenus, // Filtered menu untuk footer
   }
 
   const header = {
-    logo: logoData?.value?.imageUrl  ?? "/images/logo/enim.png",
-    regionEntity: logoData?.value?.regionEntity  ?? "",
-    regionDescription: logoData?.value?.regionDescription  ?? "",
-    menus: menuData?.value ?? [],    
+    logo: logoData?.value?.imageUrl ?? "/images/logo/enim.png",
+    regionEntity: logoData?.value?.regionEntity ?? "",
+    regionDescription: logoData?.value?.regionDescription ?? "",
+    menus: filteredMenus, // Filtered menu untuk header
   }
 
   return {
@@ -114,6 +164,9 @@ export function useContent() {
     footer,
     header,
     article,
-    service
+    service,
+    pressRelease,
+    isSectionEnabled,
   }
 }
+

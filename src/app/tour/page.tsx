@@ -3,8 +3,13 @@
 import { TourCard } from "@/components/common/tour-card";
 import useTour from "@/features/tour/hooks/useList";
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import useFeatureFlags from "@/hooks/useFeatureFlags";
 
 export default function TourPage() {   
+    const router = useRouter();
+    const { isSectionEnabled, isLoading: isFeaturesLoading } = useFeatureFlags();
+    
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
     const [searchValue, setSearchValue] = useState(''); 
     const { data, isLoading, isFetchingNextPage, fetchNextPage, hasNextPage  } = useTour({"search": searchValue, 'page_size': 8 });
@@ -36,6 +41,28 @@ export default function TourPage() {
           window.removeEventListener("scroll", handleScroll);
         };
       }, [isLoading, hasNextPage, fetchNextPage]);
+
+    useEffect(() => {
+        if (!isFeaturesLoading && !isSectionEnabled("tour")) {
+            router.replace('/');
+        }
+    }, [isSectionEnabled, isFeaturesLoading, router]);
+
+    // Jangan render apapun jika sedang loading features atau fitur dinonaktifkan
+    if (isFeaturesLoading) {
+        return (
+            <section className="bg-gray-50 flex justify-center">
+                <div className="w-full px-6 sm:px-0 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl flex flex-col items-center my-10">
+                    <div className="w-full flex justify-center items-center h-64">
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"></div>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+    if (!isSectionEnabled("tour")) {
+        return null; // Will redirect
+    }
 
     return (
         <section className="bg-gray-50 flex justify-center">
@@ -79,3 +106,4 @@ export default function TourPage() {
         </section>
     )
 }
+

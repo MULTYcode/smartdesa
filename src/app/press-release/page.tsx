@@ -5,8 +5,13 @@ import SelectCategory from '@/components/form/form-elements/selectCategory'
 import CustomDatePicker from '@/components/form/form-elements/DatePicker'
 import usePressRelease from '@/features/press-release/hooks/usePressRelease'
 import { PressReleaseType } from '@/features/press-release/types/pressRelease.type'
+import { useRouter } from 'next/navigation'
+import useFeatureFlags from '@/hooks/useFeatureFlags'
 
 export default function PressReleaseListPage() {
+  const router = useRouter();
+  const { pressRelease, isLoading: isFeaturesLoading } = useFeatureFlags();
+  
   const debounceRef = useRef<NodeJS.Timeout | null>(null)
   const [searchTerm, setSearchTerm] = useState('');
   const [dateRange, setRangeDate] = useState('');
@@ -48,6 +53,27 @@ export default function PressReleaseListPage() {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [isLoading, hasNextPage, fetchNextPage])
+
+  useEffect(() => {
+    if (!isFeaturesLoading && !pressRelease) {
+      router.replace('/');
+    }
+  }, [pressRelease, isFeaturesLoading, router]);
+
+  // Loading state saat mengecek features
+  if (isFeaturesLoading) {
+    return (
+      <div className="flex justify-center bg-gray-50 min-h-screen">
+        <div className="w-full flex justify-center items-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"></div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!pressRelease) {
+    return null;
+  }
 
   return (
     <div className="flex justify-center bg-gray-50">

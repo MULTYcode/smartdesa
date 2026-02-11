@@ -41,14 +41,22 @@ export default function Topbar() {
       <div className="bg-[#0d6b3f] text-white py-2 flex justify-center w-full">
         <div className="w-full px-6 sm:px-0 max-w-lg md:max-w-3xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl flex-col sm:flex-row gap-2 flex justify-between items-start sm:items-center">
           <div className="flex flex-col sm:flex-row  items-start sm:items-center space-x-4 text-sm">
-            <div className="flex items-center">
+            <a 
+              href={`tel:${setting?.value?.contactUs?.phone}`} 
+              className="flex items-center hover:text-green-200 transition-colors duration-200"
+              aria-label="Hubungi kami via telepon"
+            >
               <Phone className="h-4 w-4 mr-1" />
               <span>{setting?.value?.contactUs?.phone}</span>
-            </div>
-            <div className="flex items-center">
+            </a>
+            <a 
+              href={`mailto:${setting?.value?.contactUs?.email}`} 
+              className="flex items-center hover:text-green-200 transition-colors duration-200"
+              aria-label="Kirim email kepada kami"
+            >
               <Mail className="h-4 w-4 mr-1" />
               <span>{setting?.value?.contactUs?.email}</span>
-            </div>
+            </a>
           </div>
           <Sosmed />
         </div>

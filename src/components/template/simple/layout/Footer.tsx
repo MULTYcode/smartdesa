@@ -11,9 +11,11 @@ interface FooterProps {
     address: string,
     phone: string,
     email: string,
-    socialMedia: [],
-    mainNav: [],
-    quickLinks: []
+    latitude?: string | number | null,
+    longitude?: string | number | null,
+    socialMedia: unknown[],
+    mainNav: NavLayanan[],
+    quickLinks: NavItem[]
   }
 }
 
@@ -33,10 +35,26 @@ function collectStaticPages(links: NavItem[]): NavItem[] {
   return result;
 }
 
+// Generate Google Maps URL from coordinates
+function getGoogleMapsUrl(latitude: string | number | null | undefined, longitude: string | number | null | undefined): string | null {
+  if (!latitude || !longitude) return null;
+  return `https://www.google.com/maps?q=${latitude},${longitude}`;
+}
+
+// Generate Google Maps Embed URL from coordinates
+function getGoogleMapsEmbedUrl(latitude: string | number | null | undefined, longitude: string | number | null | undefined): string | null {
+  if (!latitude || !longitude) return null;
+  const gmapsApiKey = process.env.NEXT_PUBLIC_GMAPS_API_KEY;
+  if (!gmapsApiKey) return null;
+  return `https://www.google.com/maps/embed/v1/place?key=${gmapsApiKey}&q=${latitude},${longitude}&zoom=15`;
+}
 
 export function Footer({ data }: FooterProps) {
 
   const hasBrackets = /[\[\]]/.test(data?.regionEntity ?? '');
+  const hasCoordinates = data?.latitude && data?.longitude;
+  const mapsUrl = getGoogleMapsUrl(data?.latitude, data?.longitude);
+  const mapsEmbedUrl = getGoogleMapsEmbedUrl(data?.latitude, data?.longitude);
 
   return (
     <footer className="bg-gray-900 text-white pt-16 pb-8 flex justify-center">
@@ -74,9 +92,25 @@ export function Footer({ data }: FooterProps) {
                     <p className="text-xs font-semibold text-white">{data?.regionDescription}</p>
                   </div>
                 </div>
-                <div className="flex space-x-4">
+                <div className="flex space-x-4 mb-6">
                  <Sosmed/>
                 </div>
+
+                {/* Google Maps Embed - Dibawah logo dengan ukuran terbatas */}
+                {hasCoordinates && mapsEmbedUrl && (
+                  <div className="max-w-xs">
+                    <div className="relative w-full overflow-hidden rounded-lg" style={{ paddingBottom: '75%' }}>
+                      <iframe
+                        src={mapsEmbedUrl}
+                        className="absolute top-0 left-0 w-full h-full border-0 rounded-lg"
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        title="Lokasi kami di Google Maps"
+                      />
+                    </div>
+                  </div>
+                )}
               </div>
             )
           }
@@ -125,8 +159,8 @@ export function Footer({ data }: FooterProps) {
                     <h3 className="font-bold text-lg mb-4">Layanan</h3>
                     <ul className="space-y-2">
                       {data?.mainNav?.map((service: NavLayanan) => (
-                        <li key={service.link}>
-                          <a href={service.link} className="text-green-100 hover:text-white">
+                        <li key={service.title}>
+                          <a href={service.title} className="text-green-100 hover:text-white">
                             {service.title}
                           </a>
                         </li>
@@ -154,15 +188,39 @@ export function Footer({ data }: FooterProps) {
                 <ul className="space-y-4">
                   <li className="flex items-start">
                     <MapPin className="min-h-6 min-w-6 mr-3 mt-0.5 text-green-100" />
-                    <span className="text-green-100">{data?.address}</span>
+                    {mapsUrl ? (
+                      <a 
+                        href={mapsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-green-100 hover:text-white hover:underline transition-colors duration-200"
+                        aria-label="Lihat lokasi di Google Maps"
+                      >
+                        {data?.address}
+                      </a>
+                    ) : (
+                      <span className="text-green-100">{data?.address}</span>
+                    )}
                   </li>
                   <li className="flex items-center">
                     <Phone className="min-h-6 min-w-6 mr-3 text-green-100" />
-                    <span className="text-green-100">{data?.phone}</span>
+                    <a 
+                      href={`tel:${data?.phone}`}
+                      className="text-green-100 hover:text-white hover:underline transition-colors duration-200"
+                      aria-label="Hubungi kami via telepon"
+                    >
+                      {data?.phone}
+                    </a>
                   </li>
                   <li className="flex items-center">
                     <Mail className="min-h-6 min-w-6 mr-3 text-green-100" />
-                    <span className="text-green-100">{data?.email}</span>
+                    <a 
+                      href={`mailto:${data?.email}`}
+                      className="text-green-100 hover:text-white hover:underline transition-colors duration-200"
+                      aria-label="Kirim email kepada kami"
+                    >
+                      {data?.email}
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -180,3 +238,4 @@ export function Footer({ data }: FooterProps) {
     </footer>
   )
 }
+

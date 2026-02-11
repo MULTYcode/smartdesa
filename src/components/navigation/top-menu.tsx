@@ -416,7 +416,7 @@ export function NavMenu({
 
               if (!hasChildren) {
                 return (
-                  <li key={it.title} role="none">
+                  <li key={`${it.title}-${it.order}`} role="none">
                     <Link
                       role="menuitem"
                       href={topHref}

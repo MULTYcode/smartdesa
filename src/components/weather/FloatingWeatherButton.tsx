@@ -19,7 +19,7 @@ import {
 import { useWeather } from "@/hooks/useWeather";
 import { useAirQuality, getAQILevel } from "@/hooks/useAirQuality";
 import { Kecamatan, WeatherData } from "@/types/weather";
-import kecamatanData from "@/kecamatan.json";
+import useWeatherSettings from "@/hooks/useWeatherSettings";
 
 const STORAGE_KEY = "selectedKecamatan";
 
@@ -61,7 +61,7 @@ export default function FloatingWeatherButton() {
   const [selectedKecamatan, setSelectedKecamatan] = useState<Kecamatan | null>(null);
   const [isClient, setIsClient] = useState(false);
 
-  const kecamatanList: Kecamatan[] = kecamatanData;
+  const { kecamatanList } = useWeatherSettings();
   const { data: weatherData, isLoading, isError, refetch } = useWeather(selectedKecamatan?.adm4 || null);
   
   const { 
@@ -84,7 +84,7 @@ export default function FloatingWeatherButton() {
     } else {
       setSelectedKecamatan(kecamatanList[0]);
     }
-  }, []);
+  }, [kecamatanList]);
 
   useEffect(() => {
     if (selectedKecamatan && isClient) {
