@@ -13,11 +13,24 @@ interface InfoSectionProps {
 }
 
 export function InfoSection({ cards }: InfoSectionProps) {
-  const { service } = useContent();
+  const { service, isSectionEnabled, pressRelease } = useContent();
   const [selectedService, setSelectedService] = useState<InfoCard | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const displayCards = [...cards]; 
+  const isRouteMatch = (route: string | undefined | null, target: string) => {
+    if (!route) return false;
+    const normalizedRoute = route.startsWith('/') ? route : `/${route}`;
+    return normalizedRoute === target;
+  };
+
+  const displayCards = cards.filter((card) => {
+    const url = typeof card.link === "string" ? card.link : card.link?.url;
+    
+    if (isRouteMatch(url, "/tour") && !isSectionEnabled("tour")) return false;
+    if ((isRouteMatch(url, "/press-release") || isRouteMatch(url, "/press release")) && !pressRelease) return false;
+    
+    return true;
+  }); 
 
   const handleCardClick = (card: InfoCard) => {
     setSelectedService(card);
