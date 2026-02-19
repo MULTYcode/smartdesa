@@ -1,5 +1,5 @@
 "use client"
-import type { HeroSection, AboutSection, CTASection, GalleryItem } from "@/types/Simple"
+import type { HeroSection, AboutSection, CTASection, GalleryItem, InfoCard } from "@/types/Simple"
 import useSetting from "./useSettings";
 import useStaticPage from "./useStaticPage";
 import useFeatureFlags from "./useFeatureFlags";
@@ -36,6 +36,55 @@ function filterMenusByFeatures(
 
       return true;
     });
+}
+
+function isValidServiceLink(link: string | { text: string; url: string } | null | undefined): boolean {
+  if (!link) return false;
+  const url = typeof link === 'string' ? link : link.url;
+  if (!url || url.trim() === '' || url.trim() === '/') return false;
+  return url.startsWith('http') || (url.startsWith('/') && url.length > 1);
+}
+
+function isFeatureBlockedService(
+  link: string | { text: string; url: string } | null | undefined,
+  features: { tour: boolean; pressRelease: boolean }
+): boolean {
+  if (!link) return false;
+  const url = (typeof link === 'string' ? link : link.url)?.toLowerCase() ?? '';
+  if ((url === '/tour' || url === 'tour') && !features.tour) return true;
+  if ((url === '/press-release' || url === 'press-release') && !features.pressRelease) return true;
+  return false;
+}
+
+function filterServiceLinks(
+  services: InfoCard[],
+  features: { tour: boolean; pressRelease: boolean }
+): InfoCard[] {
+  const result: InfoCard[] = [];
+
+  for (const service of services) {
+    if (isFeatureBlockedService(service.link, features)) continue;
+
+    const linkUrl = typeof service.link === 'string' ? service.link : service.link?.url;
+    const hasValidLink = isValidServiceLink(service.link);
+    const isRootSlash = linkUrl?.trim() === '/' || !linkUrl || linkUrl.trim() === '';
+
+    if (hasValidLink) {
+      if (service.child && service.child.length > 0) {
+        const filteredChildren = filterServiceLinks(service.child, features);
+        result.push({ ...service, child: filteredChildren });
+      } else {
+        result.push(service);
+      }
+    } else if (isRootSlash && service.child && service.child.length > 0) {
+      const validChildren = filterServiceLinks(service.child, features);
+      if (validChildren.length > 0) {
+        result.push(...validChildren);
+      }
+    }
+  }
+
+  return result;
 }
 
 
@@ -142,7 +191,10 @@ export function useContent() {
     latitude: footerData?.value?.contactUs?.latitude ?? null,
     longitude: footerData?.value?.contactUs?.longitude ?? null,
     socialMedia: footerData?.value?.socialMedia ?? [],
-    mainNav: serviceData?.value ?? [],
+    mainNav: filterServiceLinks(serviceData?.value ?? [], {
+      tour: isSectionEnabled("tour"),
+      pressRelease: pressRelease,
+    }),
     quickLinks: filteredMenus, // Filtered menu untuk footer
   }
 

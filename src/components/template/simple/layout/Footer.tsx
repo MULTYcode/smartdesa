@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { Mail, MapPin, Phone } from "lucide-react"
-import { NavItem, NavLayanan } from "@/types/Simple";
+import { NavItem, InfoCard } from "@/types/Simple";
 import Sosmed from "@/features/header/components/sosmed";
 
 interface FooterProps {
@@ -14,7 +14,7 @@ interface FooterProps {
     latitude?: string | number | null,
     longitude?: string | number | null,
     socialMedia: unknown[],
-    mainNav: NavLayanan[],
+    mainNav: InfoCard[],
     quickLinks: NavItem[]
   }
 }
@@ -158,13 +158,16 @@ export function Footer({ data }: FooterProps) {
                   <div>
                     <h3 className="font-bold text-lg mb-4">Layanan</h3>
                     <ul className="space-y-2">
-                      {data?.mainNav?.map((service: NavLayanan) => (
-                        <li key={service.title}>
-                          <a href={service.title} className="text-green-100 hover:text-white">
-                            {service.title}
-                          </a>
-                        </li>
-                      ))}
+                      {data?.mainNav?.map((service: InfoCard) => {
+                        const href = typeof service.link === 'string' ? service.link : service.link?.url ?? '#';
+                        return (
+                          <li key={service.id || service.title}>
+                            <a href={href} className="text-green-100 hover:text-white">
+                              {service.title}
+                            </a>
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
                 )
