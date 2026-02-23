@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client"
-import { NewsCard } from '@/components/common/news-card'
+import NewsCard from '@/components/common/news-card'
 import DatePicker from '@/components/form/form-elements/DatePicker';
-import SelectCategory from '@/components/form/form-elements/selectCategory';
+import SelectCategoryFilter from '@/components/form/form-elements/SelectCategoryFilter';
 import useArticle from '@/features/article/hooks/useArticle';
 import React, { useEffect, useRef, useState } from 'react'
 
@@ -56,7 +55,7 @@ export default function PageArticle() {
                 </span>
             </div>
             <div className="relative w-full col-span-6 md:col-span-2">
-                 <SelectCategory setCategoryId={setCategoryId}/>
+                 <SelectCategoryFilter setCategoryId={setCategoryId}/>
             </div>
             <div className="relative w-full col-span-6 md:col-span-4">
               <DatePicker setDate={setRangeDate} />

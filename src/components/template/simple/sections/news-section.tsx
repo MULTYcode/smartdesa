@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { NewsCard } from "@/components/common/news-card"
+import NewsCard from "@/components/common/news-card"
 import { ChevronRight } from "lucide-react"
 import useArticle from "@/features/article/hooks/useArticle";
 import { useContent } from "@/hooks/useContent";

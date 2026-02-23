@@ -24,7 +24,7 @@ export interface NewsCardProps {
   author?: string
 }
 
-export function NewsCard({ title, description, date, readTime, image, slug, className, content, category, author, isDetail = false }: NewsCardProps) {
+export default function NewsCard({ title, description, date, readTime, image, slug, className, content, category, author, isDetail = false }: NewsCardProps) {
   return (
    <Link href={`/article/${slug}`}>
        <CustomCard className={cn("overflow-hidden", className)}>

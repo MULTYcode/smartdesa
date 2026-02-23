@@ -1,7 +1,7 @@
 "use client"
 import { PressReleaseCard } from '@/features/press-release/component/PressReleaseCard'
 import React, { useEffect, useRef, useState } from 'react'
-import SelectCategory from '@/components/form/form-elements/selectCategory'
+import SelectCategoryFilter from '@/components/form/form-elements/SelectCategoryFilter'
 import CustomDatePicker from '@/components/form/form-elements/DatePicker'
 import usePressRelease from '@/features/press-release/hooks/usePressRelease'
 import { PressReleaseType } from '@/features/press-release/types/pressRelease.type'
@@ -93,7 +93,7 @@ export default function PressReleaseListPage() {
               />
             </div>
             <div className="relative w-full col-span-6 md:col-span-2">
-              <SelectCategory setCategoryId={setCategoryId} />
+              <SelectCategoryFilter setCategoryId={setCategoryId} />
             </div>
             <div className="relative w-full col-span-6 md:col-span-4">
               <CustomDatePicker setDate={setRangeDate} />

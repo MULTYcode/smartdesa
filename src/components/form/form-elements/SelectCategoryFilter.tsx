@@ -1,16 +1,17 @@
 "use client"
 
-import type React from "react"
-import { useEffect, useState } from "react"
-import Select, { type SingleValue } from "react-select"
-import type { StylesConfig } from "react-select"
+import React, { useEffect, useState } from "react"
+import dynamic from 'next/dynamic'
+import type { SingleValue, StylesConfig } from "react-select"
 import useCategory from "@/features/article/hooks/useCategory"
 
-type SelectCategoryProps = {
+const Select = dynamic(() => import('react-select'), { ssr: false });
+
+interface SelectCategoryProps {
   setCategoryId: React.Dispatch<React.SetStateAction<number>>
 }
 
-const SelectCategory = ({ setCategoryId }: SelectCategoryProps) => {
+export default function SelectCategoryFilter({ setCategoryId }: SelectCategoryProps) {
   const [options, setOptions] = useState<{ value: number; label: string }[]>([])
   const [search, setSearch] = useState("");
   
@@ -50,21 +51,16 @@ const SelectCategory = ({ setCategoryId }: SelectCategoryProps) => {
 
   useEffect(() => {
     if (!categories || !Array.isArray(categories)) {
+      setOptions([]);
       return
     }
 
-    setOptions((prevOptions) => {
-      const newOptions = categories.map((item) => ({
-        value: item.id,
-        label: item.name,
-      }))
-
-      if (JSON.stringify(prevOptions) === JSON.stringify(newOptions)) {
-        return prevOptions
-      }
-
-      return newOptions
-    })
+    const newOptions = categories.map((item) => ({
+      value: item.id,
+      label: item.name,
+    }))
+    
+    setOptions(newOptions)
   }, [categories])
 
   useEffect(() => {
@@ -76,17 +72,16 @@ const SelectCategory = ({ setCategoryId }: SelectCategoryProps) => {
   }
 
   return (
-    <Select<{ value: number; label: string }>
-      styles={customStyles}
+    <Select
+      styles={customStyles as any}
       isLoading={isLoading}
       isClearable
       placeholder="Cari kategori ..."
       name="category"
       options={options}
-      onChange={handleChange}
+      onChange={handleChange as any}
       onInputChange={handleInputChange}
     />
   )
 }
 
-export default SelectCategory
