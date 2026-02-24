@@ -19,17 +19,27 @@ const geistMono = Geist_Mono({
 
 
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  let gaId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || "";
+  try {
+    const villageId = process.env.NEXT_PUBLIC_VILLAGE_ID;
+    const response = await SettingService.getSetting(`google-analytics-id-${villageId}`);
+    if (response?.data?.value?.id) {
+      gaId = response.data.value.id;
+    }
+  } catch (error) {
+    console.error("Failed to fetch GA ID in RootLayout:", error);
+  }
 
   return (
     <html lang="en">
       <HolyLoader/>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <RootLayoutClient>{children}</RootLayoutClient>
+        <RootLayoutClient gaId={gaId}>{children}</RootLayoutClient>
          <Script
             src="https://cdn.jsdelivr.net/npm/sienna-accessibility@latest/dist/sienna-accessibility.umd.js"
             strategy="afterInteractive"

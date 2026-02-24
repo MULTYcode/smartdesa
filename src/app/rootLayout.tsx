@@ -9,7 +9,13 @@ import FloatingWeatherButton from "@/components/weather/FloatingWeatherButton";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import LayoutInner from "./layoutInner";
 
-export default function RootLayoutClient({ children }: { children: React.ReactNode }) {
+export default function RootLayoutClient({ 
+  children, 
+  gaId 
+}: { 
+  children: React.ReactNode; 
+  gaId: string;
+}) {
   const [queryClient] = useState(() => new QueryClient());
 
   return (
@@ -21,7 +27,7 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
       </ThemeProvider>
       <FloatingWeatherButton />
       <Chatbot />
-      <GoogleAnalytics />
+      <GoogleAnalytics gaId={gaId} />
     </QueryClientProvider>
   );
 }

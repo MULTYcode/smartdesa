@@ -1,11 +1,8 @@
 "use client";
 
 import Script from "next/script";
-import useGoogleAnalyticsSettings from "@/hooks/useGoogleAnalyticsSettings";
 
-export default function GoogleAnalytics() {
-  const { gaId } = useGoogleAnalyticsSettings();
-
+export default function GoogleAnalytics({ gaId }: { gaId: string | undefined }) {
   if (!gaId) return null;
 
   return (
