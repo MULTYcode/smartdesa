@@ -1,7 +1,9 @@
+"use client";
 import Image from "next/image"
 import { Mail, MapPin, Phone } from "lucide-react"
 import { NavItem, InfoCard } from "@/types/Simple";
 import Sosmed from "@/features/header/components/sosmed";
+import { GoogleMapsEmbed } from "@/components/ui/GoogleMapsEmbed";
 
 interface FooterProps {
   data?: {
@@ -41,20 +43,13 @@ function getGoogleMapsUrl(latitude: string | number | null | undefined, longitud
   return `https://www.google.com/maps?q=${latitude},${longitude}`;
 }
 
-// Generate Google Maps Embed URL from coordinates
-function getGoogleMapsEmbedUrl(latitude: string | number | null | undefined, longitude: string | number | null | undefined): string | null {
-  if (!latitude || !longitude) return null;
-  const gmapsApiKey = process.env.NEXT_PUBLIC_GMAPS_API_KEY;
-  if (!gmapsApiKey) return null;
-  return `https://www.google.com/maps/embed/v1/place?key=${gmapsApiKey}&q=${latitude},${longitude}&zoom=15`;
-}
+
 
 export function Footer({ data }: FooterProps) {
 
   const hasBrackets = /[\[\]]/.test(data?.regionEntity ?? '');
   const hasCoordinates = data?.latitude && data?.longitude;
   const mapsUrl = getGoogleMapsUrl(data?.latitude, data?.longitude);
-  const mapsEmbedUrl = getGoogleMapsEmbedUrl(data?.latitude, data?.longitude);
 
   return (
     <footer className="bg-gray-900 text-white pt-16 pb-8 flex justify-center">
@@ -97,16 +92,15 @@ export function Footer({ data }: FooterProps) {
                 </div>
 
                 {/* Google Maps Embed - Dibawah logo dengan ukuran terbatas */}
-                {hasCoordinates && mapsEmbedUrl && (
+                {hasCoordinates && (
                   <div className="max-w-xs">
                     <div className="relative w-full overflow-hidden rounded-lg" style={{ paddingBottom: '75%' }}>
-                      <iframe
-                        src={mapsEmbedUrl}
-                        className="absolute top-0 left-0 w-full h-full border-0 rounded-lg"
-                        allowFullScreen
-                        loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"
+                      <GoogleMapsEmbed
+                        latitude={data?.latitude}
+                        longitude={data?.longitude}
+                        mode="place"
                         title="Lokasi kami di Google Maps"
+                        className="absolute top-0 left-0 w-full h-full"
                       />
                     </div>
                   </div>
