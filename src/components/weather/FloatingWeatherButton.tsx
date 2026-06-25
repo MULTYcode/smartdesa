@@ -382,7 +382,7 @@ export default function FloatingWeatherButton() {
                             <div className={`text-lg font-bold ${aqiLevel.color}`}>
                               {airQualityData.current.us_aqi}
                             </div>
-                            <div className="text-gray-500 text-xs">AQI</div>
+                            <div className="text-gray-500 text-xs">IKU</div>
                           </div>
                           <div className="text-center border-l border-r border-gray-200">
                             <div className="text-lg font-bold text-gray-700">
