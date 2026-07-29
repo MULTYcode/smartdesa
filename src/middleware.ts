@@ -3,11 +3,14 @@ import type { NextRequest } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 
 /**
- * Daftar hostname yang diizinkan untuk aplikasi frontend-2.
+ * Hostname default yang diizinkan untuk aplikasi publik.
+ * Otomatis mengizinkan localhost, 127.0.0.1, dan domain instansi pemerintah (*.go.id).
  */
 const DEFAULT_ALLOWED_HOSTS = [
   'localhost',
   '127.0.0.1',
+  'go.id',
+  'muaraenimkab.go.id',
 ];
 
 function getAllowedHosts(): string[] {
@@ -22,10 +25,6 @@ function getAllowedHosts(): string[] {
   return DEFAULT_ALLOWED_HOSTS;
 }
 
-/**
- * Memvalidasi apakah hostname request berasal dari sumber yang diizinkan.
- * Mencegah serangan Host Header Injection / Open Redirect via X-Forwarded-Host.
- */
 function isHostAllowed(request: NextRequest): boolean {
   const allowedHosts = getAllowedHosts();
 
@@ -50,19 +49,20 @@ function safeRedirect(request: NextRequest, pathname: string): NextResponse {
 }
 
 export async function middleware(request: NextRequest) {
-  // 1. Validasi Host Header (Anti-Injection)
+  // 1. Validasi Host Header di SELURUH Halaman
   if (!isHostAllowed(request)) {
-    return new NextResponse('Bad Request: Invalid Host', { status: 400 });
+    return new NextResponse('Bad Request: Invalid Host Header', { status: 400 });
   }
 
-  // 2. Proteksi Autentikasi /admin
-  const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
-
-  if (!token) {
-    return safeRedirect(request, '/signin');
+  // 2. Proteksi Khusus Rute /admin (jika ada)
+  if (request.nextUrl.pathname.startsWith('/admin')) {
+    const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
+    if (!token) {
+      return safeRedirect(request, '/signin');
+    }
   }
 
-  // 3. Tambahkan Security Headers
+  // 3. Tambahkan Security Headers di SELURUH Halaman Publik
   const response = NextResponse.next();
   response.headers.set('X-Content-Type-Options', 'nosniff');
   response.headers.set('X-Frame-Options', 'DENY');
@@ -75,6 +75,11 @@ export async function middleware(request: NextRequest) {
   return response;
 }
 
+/**
+ * Jalankan middleware di SELURUH halaman aplikasi (kecuali aset statis)
+ */
 export const config = {
-  matcher: ['/admin/:path*'],
+  matcher: [
+    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+  ],
 };
