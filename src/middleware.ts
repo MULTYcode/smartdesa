@@ -49,20 +49,10 @@ function safeRedirect(request: NextRequest, pathname: string): NextResponse {
 }
 
 export async function middleware(request: NextRequest) {
-  // 1. Validasi Host Header di SELURUH Halaman
   if (!isHostAllowed(request)) {
     return new NextResponse('Bad Request: Invalid Host Header', { status: 400 });
   }
 
-  // 2. Proteksi Khusus Rute /admin (jika ada)
-  if (request.nextUrl.pathname.startsWith('/admin')) {
-    const token = await getToken({ req: request, secret: process.env.NEXTAUTH_SECRET });
-    if (!token) {
-      return safeRedirect(request, '/signin');
-    }
-  }
-
-  // 3. Tambahkan Security Headers di SELURUH Halaman Publik
   const response = NextResponse.next();
   response.headers.set('X-Content-Type-Options', 'nosniff');
   response.headers.set('X-Frame-Options', 'DENY');

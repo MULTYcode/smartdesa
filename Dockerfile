@@ -35,8 +35,13 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/next.config.ts ./next.config.ts
 
+# Copy the entrypoint script for runtime env injection
+COPY --from=builder /app/docker-entrypoint.sh /app/docker-entrypoint.sh
+RUN chmod +x /app/docker-entrypoint.sh
+
 # Expose port
 EXPOSE 3000
 
-# Start the app
+# Use entrypoint to generate env-config.js before starting the app
+ENTRYPOINT ["/app/docker-entrypoint.sh"]
 CMD ["npm", "start"]

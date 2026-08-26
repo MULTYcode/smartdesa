@@ -9,6 +9,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { validateAndRedirect } from '@/lib/shouldRedirect';
 import { redirect } from 'next/navigation';
+import { getRuntimeEnv } from '@/shared/lib/get-runtime-env';
 
 function findMenuItemByPath(
   items: MenuWithContent,
@@ -42,8 +43,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug = [] } = await params; // default ke array kosong
 
   const [{ data: menu }, logoResponse] = await Promise.all([
-    SettingService.getSetting(`menu-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {}),
-    SettingService.getSetting(`logo-${process.env.NEXT_PUBLIC_VILLAGE_ID}`)
+    SettingService.getSetting(`menu-${getRuntimeEnv("NEXT_PUBLIC_VILLAGE_ID")}`, {}),
+    SettingService.getSetting(`logo-${getRuntimeEnv("NEXT_PUBLIC_VILLAGE_ID")}`)
   ]);
 
   const menuItem = Array.isArray(menu?.value) ? findMenuItemByPath(menu.value, slug) : null;
@@ -63,7 +64,7 @@ export default async function PageStatic({ params }: PageProps) {
 
   try {
     const { data: menu } = await SettingService.getSetting(
-      `menu-${process.env.NEXT_PUBLIC_VILLAGE_ID}`,
+      `menu-${getRuntimeEnv("NEXT_PUBLIC_VILLAGE_ID")}`,
       {}
     );
 

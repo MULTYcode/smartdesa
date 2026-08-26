@@ -4,6 +4,7 @@ import useSetting from "./useSettings";
 import useStaticPage from "./useStaticPage";
 import useFeatureFlags from "./useFeatureFlags";
 import { NavItem } from "@/types/Simple";
+import { getRuntimeEnv } from "@/shared/lib/get-runtime-env";
 
 function filterMenusByFeatures(
   menus: NavItem[],
@@ -89,16 +90,16 @@ function filterServiceLinks(
 
 
 export function useContent() {
-  const { data: logoData } = useSetting(`logo-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
-  const { data: serviceData } = useSetting(`service-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
-  const { data: appData } = useSetting(`app-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
-  const { data: welcomeData } = useStaticPage({}, `wellcome-message-${process.env.NEXT_PUBLIC_VILLAGE_ID}`);
-  const { data: programData } = useStaticPage({}, `village-program-${process.env.NEXT_PUBLIC_VILLAGE_ID}`);
-  const { data: footerData } = useSetting(`footer-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
-  const { data: menuData } = useSetting(`menu-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
-  const { data: tourData } = useSetting(`tour-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
-  const { data: articleData } = useSetting(`article-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
-  const { data: heroData } = useSetting(`hero-${process.env.NEXT_PUBLIC_VILLAGE_ID}`, {});
+  const { data: logoData } = useSetting(`logo-${getRuntimeEnv("NEXT_PUBLIC_VILLAGE_ID")}`, {});
+  const { data: serviceData } = useSetting(`service-${getRuntimeEnv("NEXT_PUBLIC_VILLAGE_ID")}`, {});
+  const { data: appData } = useSetting(`app-${getRuntimeEnv("NEXT_PUBLIC_VILLAGE_ID")}`, {});
+  const { data: welcomeData } = useStaticPage({}, `wellcome-message-${getRuntimeEnv("NEXT_PUBLIC_VILLAGE_ID")}`);
+  const { data: programData } = useStaticPage({}, `village-program-${getRuntimeEnv("NEXT_PUBLIC_VILLAGE_ID")}`);
+  const { data: footerData } = useSetting(`footer-${getRuntimeEnv("NEXT_PUBLIC_VILLAGE_ID")}`, {});
+  const { data: menuData } = useSetting(`menu-${getRuntimeEnv("NEXT_PUBLIC_VILLAGE_ID")}`, {});
+  const { data: tourData } = useSetting(`tour-${getRuntimeEnv("NEXT_PUBLIC_VILLAGE_ID")}`, {});
+  const { data: articleData } = useSetting(`article-${getRuntimeEnv("NEXT_PUBLIC_VILLAGE_ID")}`, {});
+  const { data: heroData } = useSetting(`hero-${getRuntimeEnv("NEXT_PUBLIC_VILLAGE_ID")}`, {});
 
   // Feature flags untuk filter menu
   const { pressRelease, isSectionEnabled } = useFeatureFlags();
