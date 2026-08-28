@@ -28,8 +28,8 @@ WORKDIR /app
 # Set environment variable
 ENV NODE_ENV=production
 
-# Copy only the necessary files from builder
-COPY --from=builder /app/package*.json ./
+# Copy package*.json and .env (if present) from builder
+COPY --from=builder /app/package*.json /app/.env* ./
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/node_modules ./node_modules
@@ -38,6 +38,7 @@ COPY --from=builder /app/next.config.ts ./next.config.ts
 # Copy the entrypoint script for runtime env injection
 COPY --from=builder /app/docker-entrypoint.sh /app/docker-entrypoint.sh
 RUN chmod +x /app/docker-entrypoint.sh
+RUN chmod -R 777 /app/public
 
 # Expose port
 EXPOSE 3000
