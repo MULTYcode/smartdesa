@@ -45,13 +45,14 @@ export function MenuItem({ item, basePath = "", level = 0 }: MenuItemProps) {
         {isClickable ? (
           <Link 
             href={fullPath}
+            title={item.title}
             className={` "w-full block px-4 py-2 text-sm font-medium hover:bg-gray-100 transition-colors",
               ${isActive ? "text-[#0d6b3f] border-l-2 border-[#0d6b3f] pl-3" : "text-gray-800"}`}
           >
             {item.title}
           </Link>
         ) : (
-          <div className="px-4 py-2 text-sm font-medium text-gray-500">
+          <div className="px-4 py-2 text-sm font-medium text-gray-500" title={item.title}>
             {item.title}
           </div>
         )}
@@ -77,8 +78,9 @@ export function MenuItem({ item, basePath = "", level = 0 }: MenuItemProps) {
       {({ open }) => (
         <>
           {isClickable ? (
-            <Link href={fullPath}>
+            <Link href={fullPath} title={item.title}>
               <div 
+                title={item.title}
                 className={`flex whitespace-nowrap overflow-hidden max-w-[10rem]
                   "inline-flex items-center px-4 py-2 text-sm font-bold transition-all duration-200",
                   "focus:outline-none",
@@ -92,6 +94,7 @@ export function MenuItem({ item, basePath = "", level = 0 }: MenuItemProps) {
             </Link>
           ) : (
             <MenuButton 
+              title={item.title}
               className={`flex whitespace-nowrap overflow-hidden max-w-[10rem]
                 "inline-flex items-center px-4 py-2 text-sm font-bold transition-all duration-200",
                 "focus:outline-none text-gray-700 hover:border-b-2 hover:border-gray-300",

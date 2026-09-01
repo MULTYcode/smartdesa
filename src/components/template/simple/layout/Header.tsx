@@ -40,7 +40,7 @@ export function Header({ data }: HeaderProps) {
                   </div>
                 </>
               ) : (
-              <Link href="/" className="flex flex-row py-1 space-x-3 rtl:space-x-reverse rounded-md lg:hover:scale-95 transition transform duration-300 ease-in-out">
+              <Link href="/" title={`${data?.regionEntity ?? ''} - ${data?.regionDescription ?? ''}`} className="flex flex-row py-1 space-x-3 rtl:space-x-reverse rounded-md lg:hover:scale-95 transition transform duration-300 ease-in-out">
                 <Image
                   className="w-[38px] object-contain aspect-square"
                   src={data?.logo ?? '/images/logo/enim.png'}
@@ -49,8 +49,8 @@ export function Header({ data }: HeaderProps) {
                   height={500}
                 />
                 <div className="flex flex-col justify-center">
-                  <h1 className="font-bold text-lg leading-5 text-[#0d6b3f]">{data?.regionEntity}</h1>
-                  <p className="text-xs font-semibold text-gray-600">{data?.regionDescription}</p>
+                  <h1 className="font-bold text-lg leading-5 text-[#0d6b3f]" title={data?.regionEntity}>{data?.regionEntity}</h1>
+                  <p className="text-xs font-semibold text-gray-600" title={data?.regionDescription}>{data?.regionDescription}</p>
                 </div>
               </Link>
               )

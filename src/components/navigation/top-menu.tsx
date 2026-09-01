@@ -157,6 +157,7 @@ function SideSubmenu({
         <button
           ref={refs.setReference}
           {...getReferenceProps()}
+          title={item.title}
           className={`flex min-w-52 w-full items-center justify-between rounded-md px-3 py-2 text-sm outline-none
                       transition-colors duration-150
                       focus-visible:ring-2 focus-visible:ring-ring
@@ -172,7 +173,7 @@ function SideSubmenu({
           aria-label={`${parentLabel} → ${item.title}`}
           type="button"
         >
-          <span className="truncate text-pretty">{item.title}</span>
+          <span className="truncate text-pretty" title={item.title}>{item.title}</span>
           {hasChildren ? (
             <span className="ml-2 inline-block text-muted-foreground" aria-hidden>
               {"›"}
@@ -210,6 +211,7 @@ function SideSubmenu({
                       <li key={`${parentLabel}-${item.title}-${child.title}`}>
                         <Link
                           href={leafHref}
+                          title={child.title}
                           aria-current={isActiveLeaf ? "page" : undefined}
                           className={`block rounded-md px-3 py-2 text-sm outline-none transition-colors duration-150
                                       focus-visible:ring-2 focus-visible:ring-ring
@@ -219,7 +221,7 @@ function SideSubmenu({
                                           : "hover:bg-secondary hover:text-secondary-foreground"
                                       }`}
                         >
-                          <span className="truncate text-pretty">{child.title}</span>
+                          <span className="truncate text-pretty" title={child.title}>{child.title}</span>
                         </Link>
                       </li>
                     )
@@ -317,6 +319,7 @@ function TopMenuTrigger({
         <button
           ref={refs.setReference}
           {...getReferenceProps()}
+          title={item.title}
           className={`inline-flex items-center rounded-sm px-3 py-2 text-sm outline-none transition-colors duration-150
                       focus-visible:ring-2 font-semibold focus-visible:ring-ring
                       ${
@@ -330,8 +333,8 @@ function TopMenuTrigger({
           aria-controls={panelId}
           type="button"
         >
-          <span className="text-pretty">{item.title}</span>
-          <span className="ml-1 text-muted-foreground" aria-hidden>
+          <span className="text-pretty" title={item.title}>{item.title}</span>
+          <span className="ml-1 text-muted-foreground" aria-hidden title="Toggle Menu">
             {"▾"}
           </span>
         </button>
@@ -367,6 +370,7 @@ function TopMenuTrigger({
                         <li key={`${item.title}-${child.title}`}>
                           <Link
                             href={href}
+                            title={child.title}
                             aria-current={isActive ? "page" : undefined}
                             className={`block rounded-md px-3 py-2 text-sm outline-none transition-colors duration-150
                                         focus-visible:ring-2 focus-visible:ring-ring
@@ -376,7 +380,7 @@ function TopMenuTrigger({
                                             : "hover:bg-secondary hover:text-secondary-foreground"
                                         }`}
                           >
-                            <span className="truncate text-pretty">{child.title}</span>
+                            <span className="truncate text-pretty" title={child.title}>{child.title}</span>
                           </Link>
                         </li>
                       )
@@ -420,6 +424,7 @@ export function NavMenu({
                     <Link
                       role="menuitem"
                       href={topHref}
+                      title={it.title}
                       aria-current={isActiveTop ? "page" : undefined}
                       className={`inline-flex items-center rounded-sm px-3 py-2 text-sm font-semibold transition-colors duration-150
                                   focus-visible:ring-2 focus-visible:ring-ring
@@ -429,7 +434,7 @@ export function NavMenu({
                                       : "hover:bg-secondary hover:text-secondary-foreground"
                                   }`}
                     >
-                      <span className="text-pretty">{it.title}</span>
+                      <span className="text-pretty" title={it.title}>{it.title}</span>
                     </Link>
                   </li>
                 )
